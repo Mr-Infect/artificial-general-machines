@@ -30,7 +30,7 @@ experiment:
     step_seconds: 10
     validation_fraction: 0.2
   events:
-    - {t: 10, type: memory_reduction, params: {memory_mb: 120}}
+    - {t: 10, type: memory_reduction, params: {memory_mb: 80}}
     - {t: 20, type: network_loss}
     - {t: 20, type: capability_removal, params: {capabilities: [model:large_reasoner, tool:search]}}
     - {t: 30, type: latency_reduction, params: {latency_ms: 800}}

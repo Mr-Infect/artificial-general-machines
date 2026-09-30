@@ -93,7 +93,14 @@ def architecture(architecture_hash: str) -> Dict[str, Any]:
 
 
 @app.get("/patterns")
-def patterns() -> List[Dict[str, Any]]:
+def patterns(memory_db: Optional[str] = None) -> List[Dict[str, Any]]:
+    """Structural-memory patterns. Pass ``memory_db`` (path) for a suite's shared memory file."""
+    from pathlib import Path
+    if memory_db:
+        p = Path(memory_db)
+        if not p.exists():
+            raise HTTPException(404, "memory database not found")
+        return Database(p).patterns()
     return db().patterns()
 
 

@@ -151,18 +151,26 @@ class AGMAgent(Agent):
         cur_hash = self.current.hash() if self.current else "none"
         cur_q = self.expected_quality.get(cur_hash, 0.0) if current_valid else 0.0
         candidates = self._synthesize(ctx, caps) if not self.terminated else []
+        # Candidates already evaluated on the validation slice have a *known* validation quality; use it
+        # as their prediction instead of the memory/synthesis guess (the slice is fixed, so re-evaluating
+        # would return the same number and cost money for nothing).
+        candidates = [(ir, src, self.evaluated[ir.hash()].quality if ir.hash() in self.evaluated else pq) for ir, src, pq in candidates]
+        unevaluated = [c for c in candidates if c[0].hash() not in self.evaluated]
         best_pred = max([pq for _, _, pq in candidates if pq is not None], default=None)
-        # Objective model: with a memory prediction, the expected gain is prediction - current; without one,
-        # the gap to the target (bounded below by the exploration prior) is what adaptation could recover.
+        # Objective model: expected gain is (best predicted - current). Without any prediction, the gap to
+        # the target (bounded below by the exploration prior) is what adaptation could recover, but only
+        # if there is something new left to evaluate.
         gap = max(0.0, ctx.target_quality - cur_q)
         if not candidates:
             exp_impr = 0.0
         elif best_pred is not None:
-            exp_impr = max(best_pred - cur_q, gap if cur_q < ctx.target_quality else 0.0)
+            exp_impr = best_pred - cur_q
+            if unevaluated and cur_q < ctx.target_quality:
+                exp_impr = max(exp_impr, gap)
         else:
             exp_impr = max(self.exploration_prior, gap)
-        est_cost = [ctx.estimate(ir)["cost_per_batch"] for ir, _, _ in candidates] or [0.0]
-        n_eval = min(self.max_evaluations, len(candidates))
+        est_cost = [ctx.estimate(ir)["cost_per_batch"] for ir, _, _ in unevaluated] or [0.0]
+        n_eval = min(self.max_evaluations, len(unevaluated))
         avg_eval_cost = sum(sorted(est_cost)[:n_eval]) / max(1, n_eval)
         last_rt = (ctx.snapshot.get("last_execution") or {}).get("runtime_s", 0.5)
         x = EconomicsInputs(current_architecture_hash=cur_hash, expected_quality=cur_q, expected_improvement=exp_impr,
@@ -180,22 +188,33 @@ class AGMAgent(Agent):
             return self.current or self._fallback(ctx, caps)
         if outcome == AdaptationOutcome.DO_NOT_ADAPT and current_valid:
             return self.current
-        budget_n = n_eval if outcome == AdaptationOutcome.ADAPT else min(self.partial_evaluations, len(candidates))
-        # rank: memory predictions first, then synthesis, cheapest first within a class
+        budget_n = n_eval if outcome == AdaptationOutcome.ADAPT else min(self.partial_evaluations, len(unevaluated))
+        # rank: highest prediction first (memory-backed candidates carry one), cheapest first within a class
         ranked = sorted(candidates, key=lambda t: (-(t[2] if t[2] is not None else -1), ctx.estimate(t[0])["cost_per_batch"]))
         best_ir, best_res = (self.current if current_valid else None), None
         if current_valid:
             best_res = self.evaluated.get(cur_hash)
-        for ir, src, _ in ranked[:budget_n]:
+        # already-evaluated candidates are free to consider; new evaluations are limited by budget_n and
+        # stop early once a candidate meets the target on validation (further evaluation buys nothing).
+        new_evals = 0
+        for ir, src, _ in ranked:
             h = ir.hash()
-            res = self.evaluated.get(h) or ctx.evaluate_candidate(ir, f"agm_{src}")
-            self.evaluated[h] = res
-            self.adaptation_cost_total += res.cost
-            self.expected_quality[h] = res.quality
+            if h in self.evaluated:
+                res = self.evaluated[h]
+            else:
+                if new_evals >= budget_n:
+                    continue
+                res = ctx.evaluate_candidate(ir, f"agm_{src}")
+                new_evals += 1
+                self.evaluated[h] = res
+                self.adaptation_cost_total += res.cost
+                self.expected_quality[h] = res.quality
             if res.failed:
                 continue
             if best_res is None or (res.quality, -res.cost) > (best_res.quality, -best_res.cost):
                 best_ir, best_res = ir, res
+            if best_res is not None and best_res.quality >= ctx.target_quality and new_evals > 0:
+                break
         if best_ir is None:
             best_ir = self._fallback(ctx, caps)
         self.current = best_ir
