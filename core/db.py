@@ -164,7 +164,7 @@ class Database:
     def __init__(self, path: Optional[Path] = None):
         self.path = Path(path) if path else default_db_path()
         self.path.parent.mkdir(parents=True, exist_ok=True)
-        self.engine = create_engine(f"sqlite:///{self.path}", future=True)
+        self.engine = create_engine(f"sqlite:///{self.path}", future=True, connect_args={"timeout": 5})
         Base.metadata.create_all(self.engine)
         self._session_factory = sessionmaker(bind=self.engine, future=True, expire_on_commit=False)
 

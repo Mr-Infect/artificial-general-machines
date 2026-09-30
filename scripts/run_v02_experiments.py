@@ -160,6 +160,7 @@ def main():
     ap.add_argument("--executor", default="docker", choices=["docker", "process"])
     ap.add_argument("--only", nargs="*", default=["exp1", "exp2"], help="job kinds: exp1 exp2")
     ap.add_argument("--fresh", action="store_true", help="delete results/v02 first")
+    ap.add_argument("--resume", action="store_true", help="skip (kind, seed) jobs already recorded as ok in results/v02/driver_log.jsonl")
     args = ap.parse_args()
     if args.fresh and V02.exists():
         shutil.rmtree(V02)
@@ -169,6 +170,17 @@ def main():
         from runtime.executor import DockerExecutor
         DockerExecutor().ensure_image()
     jobs = [(k, s, args.executor) for s in range(args.seeds) for k in args.only]
+    if args.resume and (V02 / "driver_log.jsonl").exists():
+        done = set()
+        for line in (V02 / "driver_log.jsonl").read_text().splitlines():
+            try:
+                r = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            if not r.get("error"):
+                done.add((r["kind"], r["seed"]))
+        jobs = [j for j in jobs if (j[0], j[1]) not in done]
+        print(f"resume: {len(done)} jobs already done, {len(jobs)} remaining", flush=True)
     t0 = time.time()
     log = (V02 / "driver_log.jsonl").open("a")
     print(f"{len(jobs)} jobs, {args.workers} workers, executor={args.executor}", flush=True)

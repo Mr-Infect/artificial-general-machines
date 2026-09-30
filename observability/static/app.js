@@ -88,8 +88,11 @@ function drawLineage(st){const svg=$("#lineage");const nodes=Object.values(st.ar
 async function showNode(st,h){const n=st.archs[h];const par=n.parent&&st.archs[n.parent];const kids=Object.values(st.archs).filter(k=>k.parent==h).map(k=>k.alias);
  let diff="";if(par){try{const d=await (await fetch(`/architectures/${h}/diff/${n.parent}${dbq("?")}`)).json();diff=`<pre>structural distance ${fmt(d.distance.structural_distance)}; ${Object.entries(d.diff.diff).map(([k,v])=>`${k}: ${JSON.stringify(v[1])} → ${JSON.stringify(v[0])}`).join("; ")||"parameters only"}</pre>`;}catch(e){diff="(diff unavailable)";}}
  $("#nodeinfo").innerHTML=`<kv><b>node</b><span>${n.alias} (${h.slice(0,12)}) ${n.name||""}</span><b>parent</b><span>${par?par.alias:"—"}</span><b>children</b><span>${kids.join(", ")||"—"}</span><b>created</b><span>step ${n.created_step} · source ${n.source||"—"}</span><b>reason</b><span>${n.reason||"—"}</span><b>performance</b><span>${n.perf.map(p=>`${p.purpose[0]}${p.step}:${fmt(p.quality)}`).join(" ")||"—"}</span><b>environment</b><span>${JSON.stringify(st.env)}</span><b>experiment</b><span>${runMeta?runMeta.experiment.experiment_id:"—"}</span><b>diff vs parent</b><span>${diff||"—"}</span></kv>`;}
-const dbq=pfx=>{const p=new URLSearchParams(location.search).get("db_path");return p?`${pfx}db_path=${encodeURIComponent(p)}`:"";};
-async function loadRuns(){const rs=await (await fetch("/runs"+dbq("?"))).json();$("#runs").innerHTML=rs.map(r=>`<option value="${r.run_id}">${r.experiment||"?"} · ${r.agent} · seed ${r.seed} · ${r.domain} · ${r.status||"?"} (${r.n_events} ev)</option>`).join("");}
+let runDb={};
+const dbq=pfx=>{const p=new URLSearchParams(location.search).get("db_path")||runDb[$("#runs").value];return p?`${pfx}db_path=${encodeURIComponent(p)}`:"";};
+async function loadRuns(){const rs=await (await fetch("/runs")).json();runDb={};rs.forEach(r=>runDb[r.run_id]=r.db_path);
+ $("#runs").innerHTML=rs.slice().reverse().map(r=>`<option value="${r.run_id}">${r.experiment||"?"} · ${r.agent} · seed ${r.seed} · ${r.domain} · ${r.status||"?"} (${r.n_events} ev)</option>`).join("");}
+setInterval(()=>{if(mode=="idle")loadRuns();},15000);
 async function loadRun(id){runMeta=await (await fetch(`/runs/${id}${dbq("?")}`)).json();expl=await (await fetch(`/runs/${id}/explanations${dbq("?")}`)).json();}
 function setMode(m,txt){mode=m;const el=$("#mode");el.className="mode "+m;el.textContent=m=="live"?"LIVE · tailing recorded events":m=="demo"?"DEMO · replaying stored run":"NO RUN";$("#status").textContent=txt||"";}
 async function startDemo(){stop();const id=$("#runs").value;await loadRun(id);events=await (await fetch(`/runs/${id}/events${dbq("?")}`)).json();pos=-1;setMode("demo",`${events.length} stored events`);render();play();}

@@ -86,8 +86,14 @@ def load(db_paths: Sequence[str]) -> Dict[str, List[Dict[str, Any]]]:
             if e.get("status") == "finished" and e.get("summary"):
                 e["_db"] = p
                 groups[e["name"]].append(e)
+    # a job re-run after an interrupted attempt can leave two experiments with the same (name, seed):
+    # keep the latest finished one only, so nothing is double counted
     for k in groups:
-        groups[k].sort(key=lambda e: e["seed"])
+        latest = {}
+        for e in groups[k]:
+            if e["seed"] not in latest or e["finished_at"] > latest[e["seed"]]["finished_at"]:
+                latest[e["seed"]] = e
+        groups[k] = sorted(latest.values(), key=lambda e: e["seed"])
     return groups
 
 

@@ -51,16 +51,30 @@ def health():
     return {"status": "ok", "db": str(db().path), "mode_note": "live = tails the events table; demo = replays a stored run"}
 
 
+def all_db_paths() -> List[Path]:
+    """Default database plus every program/worker database under results/ (AGM_OBS_DB_GLOB overrides)."""
+    import glob as _glob
+    pattern = os.environ.get("AGM_OBS_DB_GLOB", str(ROOT / "results" / "**" / "*.sqlite"))
+    paths = {Path(p) for p in _glob.glob(pattern, recursive=True) if "memory" not in Path(p).parts and not Path(p).name.startswith("exp2_")}
+    paths.add(db().path)
+    return sorted(p for p in paths if p.exists())
+
+
 @app.get("/runs")
 def runs(db_path: Optional[str] = None):
-    d = db(db_path)
-    exps = {e["experiment_id"]: e for e in d.experiments()}
     out = []
-    for r in d.runs():
-        e = exps.get(r["experiment_id"], {})
-        m = e.get("manifest", {})
-        out.append({**r, "experiment": e.get("name"), "status": e.get("status"), "seed": e.get("seed"), "domain": m.get("task", {}).get("domain"),
-                    "steps": m.get("schedule", {}).get("steps"), "summary": (e.get("summary") or {}).get(r["agent"])})
+    for path in ([Path(db_path)] if db_path else all_db_paths()):
+        try:
+            d = Database(path)
+            exps = {e["experiment_id"]: e for e in d.experiments()}
+            for r in d.runs():
+                e = exps.get(r["experiment_id"], {})
+                m = e.get("manifest", {})
+                out.append({**r, "db_path": str(path), "experiment": e.get("name"), "status": e.get("status") or "running", "seed": e.get("seed"),
+                            "domain": m.get("task", {}).get("domain"), "steps": m.get("schedule", {}).get("steps"), "summary": (e.get("summary") or {}).get(r["agent"])})
+        except Exception:
+            continue
+    out.sort(key=lambda r: r["started"] or "")
     return out
 
 
