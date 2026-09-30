@@ -298,3 +298,17 @@ class Database:
         with self.session() as s:
             r = s.get(ArchitectureRow, architecture_hash)
             return json.loads(r.json) if r else None
+
+
+def copy_database(src: Path, dst: Path) -> None:
+    """Consistent copy of a SQLite database (includes WAL content). Plain file copies are NOT safe in WAL mode."""
+    import sqlite3
+    dst = Path(dst)
+    if dst.exists():
+        dst.unlink()
+    for suffix in ("-wal", "-shm"):
+        p = Path(str(dst) + suffix)
+        if p.exists():
+            p.unlink()
+    with sqlite3.connect(str(src)) as a, sqlite3.connect(str(dst)) as b:
+        a.backup(b)

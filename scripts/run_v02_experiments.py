@@ -81,6 +81,9 @@ def baselines(key):
             {"name": "search", "type": "search", "max_evaluations": 8}, {"name": "self_evolving", "type": "self_evolving", "mutations_per_step": 2}]
 
 
+from core.db import copy_database  # noqa: E402
+
+
 def run_spec(spec: dict, db_path: Path, executor: str, mdir: Path, rdir: Path) -> str:
     from core.db import Database
     from experiments.manifest import parse_experiment
@@ -125,12 +128,12 @@ def job(args):
                 copies = {}
                 for tag in ("full", "architecture", "principle", "task", "v1"):
                     c = memdir / f"exp2_warm_{T}_{s}_{tag}.sqlite"
-                    shutil.copy(merged, c)
+                    copy_database(merged, c)
                     copies[tag] = c
                 fromS = {}
                 for S in others:
                     c = memdir / f"exp2_from_{S}_to_{T}_{s}.sqlite"
-                    shutil.copy(src[S], c)
+                    copy_database(src[S], c)
                     fromS[S] = c
                 agents = [v2("v2_cold", "none")] + [v2(f"v2_from_{S}", "full", db=fromS[S]) for S in others] + [
                     v2("v2_warm_full", "full", db=copies["full"]), v2("v2_warm_architecture", "architecture", db=copies["architecture"]),
@@ -142,7 +145,7 @@ def job(args):
                 out["ids"][f"tgt_{T}"] = run_spec(spec, db_path, executor, mdir, rdir)
                 # exp8 held-out conditions with the standard-condition warm memory
                 warm8 = memdir / f"exp8_warm_{T}_{s}.sqlite"
-                shutil.copy(merged, warm8)
+                copy_database(merged, warm8)
                 spec8 = base(f"v02_exp8_heldout_{T}", T, 5000 + 100 * i + s, ["v02_exp8"], [v2("v2_cold", "none"), v2("v2_warm_full", "full", db=warm8)],
                              env=HELD_OUT_ENV, noise=HELD_OUT_NOISE,
                              description=f"Exp 8 held-out conditions in domain {T} (cpu 0.5, memory 100MB from t=0, noise {HELD_OUT_NOISE}, verification cost ×8): cold vs warm memory learned under standard conditions.")

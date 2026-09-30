@@ -74,6 +74,9 @@ def v2(name, memory_mode, db):
             "principle_memory": {"read": True, "write": True, "db": str(db)}}
 
 
+from core.db import copy_database  # noqa: E402
+
+
 def run_spec(spec, db_path, executor, mdir, rdir):
     from core.db import Database
     from experiments.manifest import parse_experiment
@@ -99,7 +102,7 @@ def job(args):
             copies = {}
             for tag in ("full", "no_principle", "no_archmem", "no_negative", "no_economics", "no_regime", "task", "arch"):
                 c = memdir / f"{d}_{s}_{tag}.sqlite"
-                shutil.copy(mem, c); copies[tag] = c
+                copy_database(mem, c); copies[tag] = c
             agents = [{"name": "fixed", "type": "fixed", "architecture": fixed_arch(d)}, {"name": "adaptive", "type": "adaptive", "library": "roles"},
                       {"name": "search", "type": "search", "space": "auto", "max_evaluations": 6},
                       v2("task_memory", "task", copies["task"]), v2("architecture_memory", "architecture", copies["arch"]),

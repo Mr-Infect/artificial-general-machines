@@ -13,8 +13,10 @@ from memory.principles import ArchitecturalPrinciple, PrincipleMemory
 
 def merge_memory_dbs(sources: Iterable[Path], dest: Path) -> dict:
     dest = Path(dest)
-    if dest.exists():
-        dest.unlink()
+    for suffix in ("", "-wal", "-shm"):
+        q = Path(str(dest) + suffix)
+        if q.exists():
+            q.unlink()
     out = Database(dest)
     pm = PrincipleMemory(out)
     n_pat = n_prn = 0
