@@ -14,10 +14,14 @@ from experiments.analysis import ci_excludes_zero  # noqa: E402
 from experiments.analysis_v03 import Y_SET, Z_SET  # noqa: E402
 
 
+def _fd(v):
+    return "n/a" if v is None else f"{v:.2f}"
+
+
 def p(x):
     if not x or x.get("delta_mean") is None:
         return f"no pairs (both missing {x.get('n_both_missing', '?') if x else '?'})"
-    return (f"{x['delta_mean']:+.3g} [95% CI {x['ci95'][0]:+.3g}, {x['ci95'][1]:+.3g}]{' *' if ci_excludes_zero(x) else ''}, d = {'n/a' if x.get('effect_size_d') is None else f'{x['effect_size_d']:.2f}'}, "
+    return (f"{x['delta_mean']:+.3g} [95% CI {x['ci95'][0]:+.3g}, {x['ci95'][1]:+.3g}]{' *' if ci_excludes_zero(x) else ''}, d = {_fd(x.get('effect_size_d'))}, "
             f"win/loss/tie {x['negative']}/{x['positive']}/{x['zero']} of {x['n_pairs']} pairs (lower is better), missing {x['n_both_missing']}")
 
 

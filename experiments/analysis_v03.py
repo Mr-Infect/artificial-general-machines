@@ -287,10 +287,14 @@ def main(argv=None):
     print(out / "analysis.md"); print("verdict:", res["verdict"])
 
 
+def _fmt_d(v):
+    return "—" if v is None else f"{v:.2f}"
+
+
 def _p(p):
     if not p or p.get("delta_mean") is None:
         return f"— (pairs {p.get('n_pairs', 0) if p else 0})"
-    return f"{p['delta_mean']:+.3g} [{p['ci95'][0]:+.3g}, {p['ci95'][1]:+.3g}]{'*' if ci_excludes_zero(p) else ''} d={'—' if p.get('effect_size_d') is None else f'{p['effect_size_d']:.2f}'} (+{p['positive']}/−{p['negative']}/={p['zero']}, n={p['n_pairs']}, missing {p['n_both_missing']})"
+    return f"{p['delta_mean']:+.3g} [{p['ci95'][0]:+.3g}, {p['ci95'][1]:+.3g}]{'*' if ci_excludes_zero(p) else ''} d={_fmt_d(p.get('effect_size_d'))} (+{p['positive']}/−{p['negative']}/={p['zero']}, n={p['n_pairs']}, missing {p['n_both_missing']})"
 
 
 def _d(x):
