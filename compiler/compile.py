@@ -42,10 +42,16 @@ def compile_ir(ir: ArchitectureIR, registry: CapabilityRegistry, limits: Dict[st
     a = ir.architecture
     req = required_capabilities(ir)
     profiles: Dict[str, Dict[str, float]] = {}
+    vcf = float(limits.get("verification_cost_factor", 1.0) or 1.0)
     for key in req:
         kind, name = key.split(":", 1)
         cap = registry.get(kind, name)
-        profiles[key] = _profile(cap)
+        prof = _profile(cap)
+        if kind == "verification" and name != "none" and vcf != 1.0:
+            prof = {**prof, "cost_per_call": prof["cost_per_call"] * vcf, "latency_ms": prof["latency_ms"] * vcf, "cpu_weight": prof["cpu_weight"] * vcf}
+        if kind == "model" and a.verification.type == "model_based" and name == a.verification.model and name != a.reasoning.model and vcf != 1.0:
+            prof = {**prof, "cost_per_call": prof["cost_per_call"] * vcf, "latency_ms": prof["latency_ms"] * vcf}
+        profiles[key] = prof
 
     # Static estimates used by adaptation economics and environment validation.
     base_runtime_mb = 40.0  # python interpreter footprint in the sandbox

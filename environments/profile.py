@@ -22,6 +22,7 @@ class EnvironmentProfile(BaseModel):
     cost_budget: float = 0.10
     available_capabilities: List[str] = Field(default_factory=list)  # kind:name keys; empty = all
     priority: int = 1
+    verification_cost_factor: float = 1.0   # scales cost/latency/cpu of verification capabilities (held-out conditions)
 
     def observable(self) -> Dict[str, Any]:
         """The view agents receive. Identical to the profile today, but kept as a

@@ -196,8 +196,11 @@ class ArchitecturalPrinciple(BaseModel):
         - >=2 contradictions and no supports          → CONTRADICTED
         - one contradiction only                      → INCONCLUSIVE
         confidence = supports / (supports + contradictions + 1), so a principle never reaches 1.0.
+        Supports and contradictions are counted by distinct experiment ids.
         """
-        s, c = len(self.supported()), len(self.contradicted())
+        # counted by DISTINCT experiments: many steps of one run are one test, never several
+        s = len({e.experiment_id for e in self.supported()})
+        c = len({e.experiment_id for e in self.contradicted()})
         if s + c == 0:
             self.status = PrincipleStatus.UNTESTED
         elif s >= 2 and c <= s / 3:

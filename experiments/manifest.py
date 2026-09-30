@@ -32,6 +32,7 @@ class EnvSpec(BaseModel):
     privacy: str = "local_only"
     energy_budget: float = 1.0
     available_capabilities: Any = "all"   # "all" or a list of kind:name keys
+    verification_cost_factor: float = 1.0
 
 
 class ObjectiveSpec(BaseModel):

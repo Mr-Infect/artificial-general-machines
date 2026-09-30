@@ -149,6 +149,8 @@ class ExperimentRunner:
                                   finished_at=finished, json=json.dumps(row_json, default=str)))
         from experiments.report import write_experiment_report
         write_experiment_report(self.db, experiment_id, results_dir)
+        from experiments.bundle import write_bundle
+        write_bundle(self.db, experiment_id, results_dir, self.registry)
         self.log(f"[{experiment_id}] finished -> {results_dir}")
         return experiment_id
 
@@ -187,7 +189,7 @@ class ExperimentRunner:
                                      privacy=spec.environment.privacy, energy_budget=spec.environment.energy_budget,
                                      deadline_s=spec.budget.max_seconds, cost_budget=spec.budget.max_cost,
                                      available_capabilities=self.registry.keys_for_domain(task["domain"]) if env_caps == "all" else list(env_caps),
-                                     priority=task["priority"])
+                                     priority=task["priority"], verification_cost_factor=spec.environment.verification_cost_factor)
         def _on_transition(t, ev, b, a):
             telemetry.record_env_transition(t, ev.model_dump(mode="json"), b.observable(), a.observable())
             elog.set_context(step_time[1], t, a.observable())
@@ -209,7 +211,7 @@ class ExperimentRunner:
 
         def limits() -> Dict[str, Any]:
             p = env.profile
-            return {"cpu": p.cpu, "memory_mb": p.memory_mb,
+            return {"cpu": p.cpu, "memory_mb": p.memory_mb, "verification_cost_factor": p.verification_cost_factor,
                     "timeout_s": max(1.0, min(spec.budget.step_timeout_s, max(1.0, p.deadline_s - run.wall_used_s)))}
 
         def validate(ir: ArchitectureIR) -> List[str]:
