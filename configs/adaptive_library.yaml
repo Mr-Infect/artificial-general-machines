@@ -20,3 +20,24 @@ presets:
     reasoning: {type: hierarchical, model: large_reasoner, threshold: 0.45}
     memory: {type: episodic}
     verification: {type: execution_based}
+  # planning-domain presets (invalid outside the planning domain and filtered out there)
+  planning_lightweight:
+    perception: {mode: single, components: [feasibility_checker], window: 20}
+    reasoning: {type: direct, model: small_reasoner, threshold: 0.5}
+    memory: {type: none}
+    verification: {type: none}
+  planning_standard:
+    perception: {mode: parallel, components: [priority_filter, risk_estimator, feasibility_checker], window: 20}
+    reasoning: {type: parallel, model: small_reasoner, threshold: 0.5}
+    memory: {type: none}
+    verification: {type: rule_based}
+  planning_forecast:
+    perception: {mode: parallel, components: [priority_filter, capacity_forecaster], window: 20}
+    reasoning: {type: parallel, model: small_reasoner, threshold: 0.5}
+    memory: {type: episodic}
+    verification: {type: execution_based}
+  planning_heavy:
+    perception: {mode: parallel, components: [priority_filter, capacity_forecaster, lookahead_planner], window: 20}
+    reasoning: {type: hierarchical, model: large_reasoner, threshold: 0.45}
+    memory: {type: episodic}
+    verification: {type: execution_based}

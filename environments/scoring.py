@@ -24,3 +24,13 @@ def score(predictions: List[int], labels: List[int]) -> Dict[str, float]:
         quality = f1
     return {"quality": quality, "f1": f1, "precision": precision, "recall": recall, "accuracy": accuracy,
             "tp": tp, "fp": fp, "fn": fn, "tn": tn}
+
+
+def evaluate_batch(ds: Dict, start: int, end: int, artifact: Dict) -> Dict[str, float]:
+    """Domain dispatch: anomaly domains score predictions against labels; the planning
+    domain simulates the plan against hidden truth and divides by the oracle."""
+    preds = artifact["predictions"]
+    if ds.get("domain") == "planning":
+        from environments.planning import score_batch
+        return score_batch(ds, start, end, preds, artifact.get("assignments"))
+    return score(preds, ds["labels"][start:end])

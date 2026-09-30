@@ -133,6 +133,9 @@ def _scientific(rng: random.Random, size: int, noise: float, anomaly_rate: float
 
 
 def generate(domain: str, size: int, noise: float, anomaly_rate: float, seed: int) -> Dict[str, Any]:
+    if domain == "planning":
+        from environments import planning
+        return planning.generate(size, noise, load=1.0 + anomaly_rate * 10, seed=seed)
     if domain not in DOMAINS:
         raise ValueError(f"unknown domain {domain}")
     rng = random.Random(seed)
@@ -150,6 +153,9 @@ def generate(domain: str, size: int, noise: float, anomaly_rate: float, seed: in
 def load_or_generate(domain: str, size: int, noise: float, anomaly_rate: float, seed: int) -> Dict[str, Any]:
     DATASET_DIR.mkdir(parents=True, exist_ok=True)
     key = dataset_key(domain, size, noise, anomaly_rate, seed)
+    if domain == "planning":
+        from environments import planning
+        key = planning.dataset_key(size, noise, 1.0 + anomaly_rate * 10, seed)
     path = DATASET_DIR / f"{domain}_{key}.json"
     if path.exists():
         return json.loads(path.read_text())
@@ -160,5 +166,8 @@ def load_or_generate(domain: str, size: int, noise: float, anomaly_rate: float, 
 
 def batch_payload(ds: Dict[str, Any], start: int, end: int) -> Dict[str, Any]:
     """The part of a dataset a sandbox is allowed to see: records only, no labels."""
+    if ds.get("domain") == "planning":
+        from environments import planning
+        return planning.batch_payload(ds, start, end)
     return {"records": ds["records"][start:end], "feature_names": ds["feature_names"], "ranges": ds["ranges"],
             "relations": ds["relations"], "domain": ds["domain"]}

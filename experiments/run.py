@@ -30,7 +30,7 @@ from core.ids import new_id
 from core.models import AdaptationDecision, Evaluation, Execution, SandboxResult
 from core.registry import CapabilityRegistry
 from environments.profile import DynamicEnvironment, EnvironmentProfile
-from environments.scoring import score
+from environments.scoring import evaluate_batch, score
 from environments.synthetic import batch_payload, load_or_generate
 from experiments.manifest import (ExperimentSpec, expand_suite, load_manifest, manifest_hash, parse_experiment, parse_suite)
 from memory.structural import StructuralMemory
@@ -177,7 +177,7 @@ class ExperimentRunner:
                                      latency_ms=spec.environment.latency_ms, network=spec.environment.network,
                                      privacy=spec.environment.privacy, energy_budget=spec.environment.energy_budget,
                                      deadline_s=spec.budget.max_seconds, cost_budget=spec.budget.max_cost,
-                                     available_capabilities=self.registry.all_keys() if env_caps == "all" else list(env_caps),
+                                     available_capabilities=self.registry.keys_for_domain(task["domain"]) if env_caps == "all" else list(env_caps),
                                      priority=task["priority"])
         env = DynamicEnvironment(profile, spec.events, on_transition=lambda t, ev, b, a: telemetry.record_env_transition(
             t, ev.model_dump(mode="json"), b.observable(), a.observable()))
@@ -225,7 +225,7 @@ class ExperimentRunner:
                 spec_c = compile_ir(ir, self.registry, limits())
                 sb = self.executor.run({"spec": spec_c.model_dump(), "data": val_payload, "state": {}}, limits())
                 ok = sb.artifact is not None and sb.artifact.get("ok") and not sb.timed_out
-                q = score(sb.artifact["predictions"], val_labels)["quality"] if ok else 0.0
+                q = evaluate_batch(ds, 0, n_val, sb.artifact)["quality"] if ok else 0.0
                 cost = float(sb.artifact["accounting"]["cost"]) if ok else 0.0
                 run.cost_adaptation += cost
                 run.wall_used_s += sb.runtime_s
@@ -286,7 +286,7 @@ class ExperimentRunner:
                 if sb.runtime_s * 1000.0 > env.profile.latency_ms:
                     cv.append(f"latency_exceeded:{sb.runtime_s * 1000:.0f}ms>{env.profile.latency_ms}ms")
                 if ok:
-                    sc = score(sb.artifact["predictions"], labels)
+                    sc = evaluate_batch(ds, start, end, sb.artifact)
                     cost = float(sb.artifact["accounting"]["cost"])
                     run.cost_execution += cost
                     run.model_calls += sb.artifact["accounting"]["model_calls"]

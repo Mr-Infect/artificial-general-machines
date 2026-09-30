@@ -373,6 +373,223 @@ def verify(spec, cols, data, prior, scores, score_lists, thr, acct):
     return keep, thr
 
 
+
+# ----------------------------------------------------------------------------
+# planning domain (records are jobs: tick, value, cost, est_duration, uncertainty, deadline)
+
+def _plan_ctx(data):
+    recs = data["records"]
+    nominal = {t["tick"]: t["nominal_capacity"] for t in data.get("ticks", [])}
+    history = [(t["nominal_capacity"], t["realized_capacity"]) for t in data.get("ticks", []) if t.get("realized_capacity") is not None]
+    return recs, nominal, history
+
+
+def _rank01(xs):
+    """Rank-normalize to [0, 1] (1 = best)."""
+    n = len(xs)
+    if n <= 1:
+        return [1.0] * n
+    order = sorted(range(n), key=lambda i: xs[i])
+    out = [0.0] * n
+    for r, i in enumerate(order):
+        out[i] = r / (n - 1)
+    return out
+
+
+def _fit_scores(recs, capacity_by_tick, order_key):
+    """Greedy fit at arrival tick in order of order_key: 1 if the job fits, else 0."""
+    used = {}
+    fit = [0.0] * len(recs)
+    for i in sorted(range(len(recs)), key=order_key):
+        t, val, cost, est, unc, dl = recs[i]
+        cap = capacity_by_tick.get(int(t), 0.0)
+        need = cost * est
+        if used.get(int(t), 0.0) + need <= cap:
+            used[int(t)] = used.get(int(t), 0.0) + need
+            fit[i] = 1.0
+    return fit
+
+
+def priority_filter(data, window, prior):
+    recs, _, _ = _plan_ctx(data)
+    return _rank01([r[1] / max(r[2], 1e-6) for r in recs])
+
+
+def risk_estimator(data, window, prior):
+    recs, _, _ = _plan_ctx(data)
+    return _rank01([(r[1] / max(r[2], 1e-6)) * (1.0 - min(0.9, r[4])) for r in recs])
+
+
+def capacity_forecaster(data, window, prior):
+    """Estimate realized/nominal bias from history (or carried prior) and fit jobs to forecast capacity."""
+    recs, nominal, history = _plan_ctx(data)
+    tail = history[-window:]
+    if tail:
+        bias = sum(r / n for n, r in tail) / len(tail)
+    else:
+        bias = prior.get("capacity_bias", 1.0)
+    forecast = {t: c * bias for t, c in nominal.items()}
+    return _fit_scores(recs, forecast, lambda i: -(recs[i][1] / max(recs[i][2], 1e-6)))
+
+
+def feasibility_checker(data, window, prior):
+    recs, nominal, _ = _plan_ctx(data)
+    return _fit_scores(recs, nominal, lambda i: -(recs[i][1] / max(recs[i][2], 1e-6)))
+
+
+def lookahead_planner(data, window, prior, pessimism=1.0):
+    """Deadline-aware multi-tick greedy with deferral + improvement passes. Deliberately expensive."""
+    recs, nominal, history = _plan_ctx(data)
+    bias = prior.get("capacity_bias", 1.0)
+    cap = {t: c * bias for t, c in nominal.items()}
+    used = {}
+    assign = {}
+    order = sorted(range(len(recs)), key=lambda i: -(recs[i][1] / max(recs[i][2] * recs[i][3], 1e-6)))
+    for i in order:
+        t, val, cost, est, unc, dl = recs[i]
+        need = cost * est * (1 + pessimism * unc)
+        for tt in range(int(t), int(dl) + 1):
+            if tt in cap and used.get(tt, 0.0) + need <= cap[tt]:
+                used[tt] = used.get(tt, 0.0) + need
+                assign[i] = tt
+                break
+    for _pass in range(3):  # improvement passes (cost grows with passes)
+        for i in order:
+            if i in assign:
+                continue
+            t, val, cost, est, unc, dl = recs[i]
+            need = cost * est * (1 + pessimism * unc)
+            for tt in range(int(t), int(dl) + 1):
+                if tt not in cap:
+                    continue
+                holders = [j for j, tj in assign.items() if tj == tt]
+                for j in sorted(holders, key=lambda j: recs[j][1]):
+                    jneed = recs[j][2] * recs[j][3] * (1 + pessimism * recs[j][4])
+                    if recs[j][1] < val and used[tt] - jneed + need <= cap[tt]:
+                        used[tt] += need - jneed
+                        del assign[j]
+                        assign[i] = tt
+                        break
+                if i in assign:
+                    break
+    scores = [1.0 if i in assign else 0.0 for i in range(len(recs))]
+    return scores, [assign.get(i) for i in range(len(recs))]
+
+
+PLANNING_COMPONENTS = {"priority_filter", "risk_estimator", "capacity_forecaster", "feasibility_checker", "lookahead_planner"}
+
+
+def run_planning_component(name, data, window, prior, assignments_out):
+    if name == "priority_filter":
+        return priority_filter(data, window, prior)
+    if name == "risk_estimator":
+        return risk_estimator(data, window, prior)
+    if name == "capacity_forecaster":
+        return capacity_forecaster(data, window, prior)
+    if name == "feasibility_checker":
+        return feasibility_checker(data, window, prior)
+    if name == "lookahead_planner":
+        scores, assign = lookahead_planner(data, window, prior)
+        assignments_out.append(assign)
+        return scores
+    raise ValueError("unknown planning component %s" % name)
+
+
+def _capacity_trim(recs, scores, thr, nominal, factor=1.0):
+    """Verification helper: keep flagged jobs in score order while they fit factor*nominal."""
+    keep = set()
+    used = {}
+    for i in sorted(range(len(recs)), key=lambda i: -scores[i]):
+        if scores[i] <= thr:
+            continue
+        t, val, cost, est, unc, dl = recs[i]
+        need = cost * est * factor
+        cap = nominal.get(int(t), 0.0)
+        if used.get(int(t), 0.0) + need <= cap:
+            used[int(t)] = used.get(int(t), 0.0) + need
+            keep.add(i)
+    return keep
+
+
+def execute_planning(spec, data, state, acct):
+    p = spec["pipeline"]
+    recs, nominal, history = _plan_ctx(data)
+    n = len(recs)
+    prior = state.get("stats", {}) if (state and p["memory"]["type"] != "none") else {}
+    comps = p["perception"]["components"]
+    window = p["perception"]["window"]
+    r = p["reasoning"]
+    thr, model = r["threshold"], r["model"]
+    assignments_out = []
+    score_lists = [run_planning_component(c, data, window, prior, assignments_out) for c in comps]
+    acct.component_calls += len(comps)
+    mode = {"direct": "mean", "sequential": "sequential", "parallel": "parallel", "hierarchical": "mean", "iterative": "mean"}[r["type"]]
+    scores = combine(score_lists, mode)
+    acct.charge("model:%s" % model, 1, tokens_scale=n / 200.0)
+
+    def refine(base):
+        """A model call: large_reasoner re-plans at three pessimism levels and averages fit; small keeps base."""
+        acct.charge("model:%s" % model, 1, tokens_scale=n / 200.0)
+        if model != "large_reasoner":
+            return base
+        acc = [0.0] * n
+        for pess in (0.5, 1.0, 1.5):
+            fit = _fit_scores(recs, {t: c * prior.get("capacity_bias", 1.0) for t, c in nominal.items()},
+                              lambda i: -(base[i]))
+            _s, _a = lookahead_planner(data, window, prior, pessimism=pess)
+            acct.component_calls += 1
+            for i in range(n):
+                acc[i] += 0.5 * fit[i] + 0.5 * _s[i]
+        return [0.5 * base[i] + 0.5 * acc[i] / 3 for i in range(n)]
+
+    if r["type"] == "hierarchical":
+        refined = refine(scores)
+        for i in range(n):
+            if abs(scores[i] - thr) < 0.15:
+                scores[i] = refined[i]
+    elif r["type"] == "iterative":
+        for _ in range(r["iterations"]):
+            scores = refine(scores)
+            keep = _capacity_trim(recs, scores, thr, nominal)
+            flagged = sum(1 for s_ in scores if s_ > thr)
+            if flagged and len(keep) < 0.8 * flagged:
+                thr = min(0.95, thr + 0.05)
+            elif flagged and len(keep) == flagged:
+                thr = max(0.05, thr - 0.05)
+
+    # verification
+    v = p["verification"]
+    if v["type"] == "none":
+        keep = {i for i in range(n) if scores[i] > thr}
+    elif v["type"] == "rule_based":
+        keep = _capacity_trim(recs, scores, thr, nominal, factor=1.0)
+    elif v["type"] == "execution_based":
+        keep = _capacity_trim(recs, scores, thr, nominal, factor=1.0 + v["strictness"] * 0.5)
+        acct.component_calls += 1
+    elif v["type"] == "model_based":
+        refined = refine(scores)
+        keep = {i for i in range(n) if scores[i] > thr and refined[i] >= thr - 0.1 * (1 - v["strictness"])}
+    else:
+        keep = {i for i in range(n) if scores[i] > thr}
+    preds = [1 if i in keep else 0 for i in range(n)]
+    assignments = None
+    if assignments_out:
+        assignments = [assignments_out[-1][i] if preds[i] else None for i in range(n)]
+    # memory: carry the capacity bias estimate forward
+    new_state = {}
+    if p["memory"]["type"] != "none":
+        tail = history[-max(5, p["memory"]["capacity"] // 10):]
+        bias = sum(rr / nn for nn, rr in tail) / len(tail) if tail else prior.get("capacity_bias", 1.0)
+        new_state = {"stats": {"capacity_bias": bias}}
+        if p["memory"]["type"] == "vector":
+            acct.charge("model:embedding_model", 1)
+    out = {"predictions": preds, "threshold": thr, "state": new_state}
+    if assignments is not None:
+        out["assignments"] = assignments
+    if p["output"].get("confidence", True):
+        out["confidence"] = [round(s_, 4) for s_ in scores]
+    return out
+
 # ----------------------------------------------------------------------------
 # main
 
@@ -387,6 +604,11 @@ def execute(payload):
     for key in spec.get("required_capabilities", []):
         if key.startswith("tool:") or key.startswith("reasoning:") or key.startswith("memory:") or key.startswith("verification:"):
             acct.charge(key, 1)
+    if data.get("domain") == "planning":
+        out = execute_planning(spec, data, state, acct)
+        out["accounting"] = {"model_calls": acct.model_calls, "tokens": acct.tokens, "cost": round(acct.cost, 6),
+                             "simulated_latency_ms": acct.latency_ms, "component_calls": acct.component_calls, "calls": acct.calls}
+        return out
     prior = load_prior(spec, state, cols)
     scores, score_lists, thr = reason(spec, cols, data, prior, acct)
     scores = vector_boost(spec, state, cols, scores)

@@ -15,6 +15,7 @@ from pydantic import BaseModel, Field
 class TaskType(str, Enum):
     anomaly_detection = "anomaly_detection"
     scientific_verification = "scientific_verification"
+    resource_planning = "resource_planning"
 
 
 class Task(BaseModel):

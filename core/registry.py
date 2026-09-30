@@ -57,3 +57,14 @@ class CapabilityRegistry:
 
     def all_keys(self) -> List[str]:
         return sorted(self._caps)
+
+    def keys_for_domain(self, domain: str) -> List[str]:
+        """Capability keys usable in a domain: components declare ``params.domains``; everything
+        else is domain-independent."""
+        out = []
+        for key, c in self._caps.items():
+            doms = c.params.get("domains")
+            if c.kind == "component" and doms and domain not in doms:
+                continue
+            out.append(key)
+        return sorted(out)

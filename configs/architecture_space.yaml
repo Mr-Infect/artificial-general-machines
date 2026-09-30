@@ -8,6 +8,12 @@ space:
     - [statistical_detector, anomaly_detector, rate_detector]
     - [range_validator, consistency_checker]
     - [range_validator, consistency_checker, anomaly_detector]
+    # planning-domain points (invalid outside planning and filtered out there)
+    - [feasibility_checker]
+    - [priority_filter, feasibility_checker]
+    - [priority_filter, risk_estimator, feasibility_checker]
+    - [priority_filter, capacity_forecaster]
+    - [priority_filter, capacity_forecaster, lookahead_planner]
   reasoning.type: [direct, parallel, hierarchical]
   reasoning.model: [small_reasoner, large_reasoner]
   memory.type: [none, episodic]

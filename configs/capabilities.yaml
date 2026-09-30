@@ -53,9 +53,28 @@ tools:
   search: {cpu_weight: 0.5, requires_network: true, cost_per_call: 0.002, latency_ms: 300}
   simulator: {cpu_weight: 3.0, memory_mb: 96}
 # Perception components available to the sandbox runner (sandbox/runner.py).
+# Each component declares an abstract *role* and *cost_class* so that architectural principles
+# (memory/principles.py) can be expressed over roles and instantiated in any domain, and the
+# domains in which the sandbox runner can execute it.
 components:
-  statistical_detector: {description: Rolling z-score detector, cpu_weight: 1.0, memory_mb: 4}
-  anomaly_detector: {description: Median absolute deviation detector, cpu_weight: 1.2, memory_mb: 4}
-  rate_detector: {description: First-difference burst detector, cpu_weight: 0.8, memory_mb: 2}
-  range_validator: {description: Physical/protocol range rule checker, cpu_weight: 0.3, memory_mb: 1}
-  consistency_checker: {description: Cross-feature relation checker, cpu_weight: 0.6, memory_mb: 2}
+  statistical_detector: {description: Rolling z-score detector, cpu_weight: 1.0, memory_mb: 4,
+                         params: {role: broad_filter, cost_class: cheap, domains: [network, scientific]}}
+  anomaly_detector: {description: Median absolute deviation detector, cpu_weight: 1.2, memory_mb: 4,
+                     params: {role: robust_estimator, cost_class: cheap, domains: [network, scientific]}}
+  rate_detector: {description: First-difference burst detector, cpu_weight: 0.8, memory_mb: 2,
+                  params: {role: change_detector, cost_class: cheap, domains: [network, scientific]}}
+  range_validator: {description: Physical/protocol range rule checker, cpu_weight: 0.3, memory_mb: 1,
+                    params: {role: rule_check, cost_class: cheap, domains: [network, scientific]}}
+  consistency_checker: {description: Cross-feature relation checker, cpu_weight: 0.6, memory_mb: 2,
+                        params: {role: consistency_check, cost_class: cheap, domains: [network, scientific]}}
+  # planning-domain components (environments/planning.py); same IR, different computational vocabulary
+  priority_filter: {description: Value-density pre-filter over pending jobs, cpu_weight: 0.4, memory_mb: 2,
+                    params: {role: broad_filter, cost_class: cheap, domains: [planning]}}
+  risk_estimator: {description: Downweights jobs with uncertain duration, cpu_weight: 0.8, memory_mb: 2,
+                   params: {role: robust_estimator, cost_class: cheap, domains: [planning]}}
+  capacity_forecaster: {description: Forecasts realised capacity from history, cpu_weight: 1.0, memory_mb: 4,
+                        params: {role: change_detector, cost_class: cheap, domains: [planning]}}
+  feasibility_checker: {description: Drops selections exceeding nominal capacity, cpu_weight: 0.3, memory_mb: 1,
+                        params: {role: rule_check, cost_class: cheap, domains: [planning]}}
+  lookahead_planner: {description: Multi-tick deadline-aware knapsack (expensive), cpu_weight: 6.0, memory_mb: 24,
+                      params: {role: expensive_analyzer, cost_class: expensive, domains: [planning]}}

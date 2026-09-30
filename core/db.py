@@ -117,6 +117,30 @@ class PatternRow(Base):
     json = Column(Text)
 
 
+class PrincipleRow(Base):
+    __tablename__ = "principles"
+    principle_id = Column(String, primary_key=True)
+    name = Column(String, index=True)
+    status = Column(String, index=True)
+    confidence = Column(Float)
+    evidence_count = Column(Integer)
+    updated_at = Column(String)
+    json = Column(Text)
+
+
+class EventRow(Base):
+    __tablename__ = "events"
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    run_id = Column(String, index=True)
+    experiment_id = Column(String, index=True)
+    agent = Column(String, index=True)
+    seq = Column(Integer, index=True)
+    step = Column(Integer)
+    timestamp = Column(String)
+    event_type = Column(String, index=True)
+    json = Column(Text)
+
+
 class TelemetryRow(Base):
     __tablename__ = "telemetry"
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -218,6 +242,26 @@ class Database:
         with self.session() as s:
             rows = s.execute(select(PatternRow)).scalars().all()
             return [json.loads(r.json) for r in rows]
+
+    def principles(self) -> List[Dict[str, Any]]:
+        with self.session() as s:
+            rows = s.execute(select(PrincipleRow)).scalars().all()
+            return [json.loads(r.json) for r in rows]
+
+    def events(self, run_id: str, after_seq: int = -1, limit: Optional[int] = None) -> List[Dict[str, Any]]:
+        with self.session() as s:
+            q = select(EventRow).where(EventRow.run_id == run_id, EventRow.seq > after_seq).order_by(EventRow.seq)
+            if limit:
+                q = q.limit(limit)
+            return [json.loads(r.json) for r in s.execute(q).scalars().all()]
+
+    def runs(self) -> List[Dict[str, Any]]:
+        from sqlalchemy import func
+        with self.session() as s:
+            rows = s.execute(select(EventRow.run_id, EventRow.experiment_id, EventRow.agent, func.count(EventRow.id), func.max(EventRow.seq),
+                                    func.min(EventRow.timestamp), func.max(EventRow.timestamp))
+                             .group_by(EventRow.run_id).order_by(func.min(EventRow.timestamp))).all()
+            return [dict(run_id=r[0], experiment_id=r[1], agent=r[2], n_events=r[3], last_seq=r[4], started=r[5], last_event=r[6]) for r in rows]
 
     def architecture(self, architecture_hash: str) -> Optional[Dict[str, Any]]:
         with self.session() as s:

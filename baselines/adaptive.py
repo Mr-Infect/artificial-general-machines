@@ -40,14 +40,15 @@ class AdaptiveAgent(Agent):
         if not valid:  # nothing runnable; keep current (execution will be refused and recorded)
             return self.current
         choice = None
-        if env.get("memory_mb", 1e9) < self.config.get("low_memory_mb", 200) and "lightweight" in valid:
-            choice = "lightweight"
+        pfx = "planning_" if ctx.task.get("domain") == "planning" else ""
+        if env.get("memory_mb", 1e9) < self.config.get("low_memory_mb", 200) and pfx + "lightweight" in valid:
+            choice = pfx + "lightweight"
         elif ctx.task.get("verification_required") and "verified" in valid:
             choice = "verified"
-        elif env.get("priority", 1) >= 2 and "heavy" in valid and ctx.budget_remaining > self.config.get("heavy_min_budget", 0.05):
-            choice = "heavy"
-        elif "standard" in valid:
-            choice = "standard"
+        elif env.get("priority", 1) >= 2 and pfx + "heavy" in valid and ctx.budget_remaining > self.config.get("heavy_min_budget", 0.05):
+            choice = pfx + "heavy"
+        elif pfx + "standard" in valid:
+            choice = pfx + "standard"
         else:
             choice = sorted(valid, key=lambda k: ctx.estimate(valid[k])["cost_per_batch"])[0]
         # If the last step missed the target, try an untried valid preset (cheapest first).
