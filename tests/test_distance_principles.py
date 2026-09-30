@@ -25,7 +25,7 @@ def test_distance_components_are_separate_and_bounded(registry):
     assert d["component_difference"] == 1.0 and d["role_difference"] == 0.0 and d["topology_difference"] == 0
     e = _ir(["anomaly_detector"], rtype="iterative", memory="vector")
     d = architecture_distance(a, e, registry)
-    assert all(0 <= d[k] <= 1 for k in d if k != "resource_profile_difference")
+    assert all(0 <= d[k] <= 1 for k in d if k != "resource_profile_difference") and d["resource_profile_difference"] is None
     assert d["control_flow_difference"] == 1.0 and d["verification_difference"] == 1.0
     assert architecture_distance(a, a, registry)["structural_distance"] == 0
 

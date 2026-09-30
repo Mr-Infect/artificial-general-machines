@@ -39,7 +39,8 @@ class AgentContext:
                  record_decision: Callable[[AdaptationDecision], None],
                  estimate: Callable[[ArchitectureIR], Dict[str, float]],
                  memory: Any = None, emit: Optional[Callable[..., Any]] = None, principle_memory: Any = None,
-                 domain: Optional[str] = None, alias: Optional[Callable[[str], str]] = None):
+                 domain: Optional[str] = None, alias: Optional[Callable[[str], str]] = None,
+                 register_architecture: Optional[Callable[[ArchitectureIR], None]] = None):
         self.experiment_id = experiment_id
         self.agent_name = agent_name
         self.step = step
@@ -59,6 +60,12 @@ class AgentContext:
         self.domain = domain or task.get("domain")
         self._emit = emit
         self._alias = alias
+        self._register = register_architecture
+
+    def register_architecture(self, ir: ArchitectureIR) -> None:
+        """Persist a generated (even if never executed) architecture so it stays inspectable."""
+        if self._register:
+            self._register(ir)
 
     def emit(self, event_type: str, **fields: Any) -> Any:
         """Record an event on the run's event stream (no-op when no log is attached)."""

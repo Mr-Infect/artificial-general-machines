@@ -147,6 +147,7 @@ class AGMv2Agent(AGMAgent):
         unevaluated = [c for c in candidates if c[0].hash() not in self.evaluated]
         cand_payload = []
         for ir, src, pq in candidates:
+            ctx.register_architecture(ir)
             est = ctx.estimate(ir)
             dist = architecture_distance(ir, self.current, self.registry) if self.current else None
             cand_payload.append({"hash": ir.hash(), "name": ir.name, "source": src, "parent_hash": ir.parent_hash,

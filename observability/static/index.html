@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AGM Architecture Observatory</title>
+<style>
+:root{--bg:#0f1218;--panel:#171c26;--ink:#e6e9ef;--muted:#8b93a7;--line:#2a3140;--accent:#5aa9ff;--ok:#4fd18b;--warn:#f2b544;--bad:#ff6b6b;--sel:#8f7bff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:13px/1.4 system-ui,sans-serif}
+header{display:flex;gap:12px;align-items:center;padding:8px 14px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+header h1{font-size:15px;margin:0 12px 0 0}.mode{padding:2px 8px;border-radius:4px;font-weight:600}.mode.live{background:#1d4d2f;color:var(--ok)}.mode.demo{background:#4a3a12;color:var(--warn)}.mode.idle{background:#2a3140;color:var(--muted)}
+select,button,input{background:#0f1218;color:var(--ink);border:1px solid var(--line);border-radius:4px;padding:3px 7px;font-size:12px}button:hover{border-color:var(--accent)}
+main{display:grid;grid-template-columns:repeat(12,1fr);gap:8px;padding:8px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:8px;min-height:80px;overflow:auto}
+.panel h2{font-size:12px;margin:0 0 6px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.c3{grid-column:span 3}.c4{grid-column:span 4}.c6{grid-column:span 6}.c8{grid-column:span 8}.c12{grid-column:span 12}
+@media(max-width:900px){.c3,.c4,.c6,.c8{grid-column:span 12}}
+kv{display:grid;grid-template-columns:auto 1fr;gap:2px 10px}kv b{color:var(--muted);font-weight:500}
+.pipe{display:flex;flex-wrap:wrap;gap:4px}.stage{padding:4px 8px;border:1px solid var(--line);border-radius:4px;color:var(--muted)}.stage.active{border-color:var(--accent);color:var(--accent);background:#14243a;font-weight:600}
+table{border-collapse:collapse;width:100%}td,th{padding:2px 6px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{color:var(--muted);font-weight:500}
+.st-selected{color:var(--ok)}.st-rejected{color:var(--bad)}.st-generated{color:var(--muted)}
+.trace{max-height:320px;overflow:auto;font-family:ui-monospace,monospace;font-size:12px}.trace div{padding:1px 0;cursor:pointer}.trace div.cur{background:#243046}.trace .t{color:var(--muted)}
+svg text{fill:var(--ink);font-size:11px}.node{cursor:pointer}.node rect{fill:#1f2635;stroke:var(--line)}.node.exec rect{stroke:var(--accent)}.node.cur rect{stroke:var(--ok);stroke-width:2}.edge{stroke:var(--muted)}
+.replay{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.bar{height:6px;background:#2a3140;border-radius:3px;position:relative;flex:1;min-width:120px;cursor:pointer}.bar i{position:absolute;left:0;top:0;bottom:0;background:var(--accent);border-radius:3px}
+.expl b{display:block;color:var(--muted);margin-top:4px}.expl ul{margin:0 0 0 14px;padding:0}pre{white-space:pre-wrap;margin:0;font-size:11px}
+.badge{padding:1px 5px;border-radius:3px;background:#2a3140;font-size:11px}.badge.SUPPORTED{background:#1d4d2f}.badge.CONTRADICTED{background:#5a2323}.badge.PARTIALLY_SUPPORTED{background:#4a3a12}
+canvas{width:100%;height:120px;background:#0f1218;border-radius:4px}
+</style></head><body>
+<header><h1>AGM Architecture Observatory</h1>
+<span id="mode" class="mode idle">NO RUN</span>
+<label>Run <select id="runs"></select></label>
+<button id="btnLive">Live mode</button><button id="btnDemo">Demo mode (replay stored run)</button>
+<span id="status" style="color:var(--muted)"></span>
+<span style="margin-left:auto;color:var(--muted)">Explicit machine state and decision events only. No internal “thought” is observed.</span></header>
+<main>
+ <section class="panel c3"><h2>A · Current environment</h2><kv id="env"></kv></section>
+ <section class="panel c3"><h2>B · Current architecture</h2><kv id="arch"></kv></section>
+ <section class="panel c3"><h2>I · Experiment</h2><kv id="exp"></kv></section>
+ <section class="panel c3"><h2>H · Memory</h2><div id="mem"></div></section>
+ <section class="panel c12"><h2>C · Decision pipeline</h2><div class="pipe" id="pipe"></div></section>
+ <section class="panel c12"><h2>Replay controller</h2><div class="replay" id="replay">
+  <button data-a="play">▶ Play</button><button data-a="pause">❚❚ Pause</button><button data-a="back">◀ Step</button><button data-a="fwd">Step ▶</button>
+  <select id="speed"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="10">10×</option></select>
+  <input id="jump" type="number" placeholder="jump to seq" style="width:110px"><button data-a="jump">Jump</button>
+  <div class="bar" id="bar"><i id="barfill"></i></div><span id="pos"></span></div></section>
+ <section class="panel c6"><h2>D · Candidate architectures (this step)</h2><table id="cands"><thead><tr><th>arch</th><th>name</th><th>source</th><th>dist</th><th>est q</th><th>est cost</th><th>est lat</th><th>status</th><th>reason</th></tr></thead><tbody></tbody></table></section>
+ <section class="panel c6"><h2>E · Decision trace</h2><div class="trace" id="trace"></div></section>
+ <section class="panel c6"><h2>F · Resources</h2><canvas id="res"></canvas><div id="reslegend" style="color:var(--muted)"></div></section>
+ <section class="panel c6"><h2>G · Architecture lineage</h2><svg id="lineage" width="100%" height="220"></svg><div id="nodeinfo"></div></section>
+ <section class="panel c12"><h2>Human-readable explanation of the selected step</h2><div class="expl" id="expl"></div></section>
+</main>
+<script src="/static/app.js"></script></body></html>

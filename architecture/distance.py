@@ -131,7 +131,7 @@ def architecture_distance(a: ArchitectureIR, b: ArchitectureIR, registry: Capabi
         keys = ["memory_mb", "cost_per_batch", "latency_ms", "cpu_weight"]
         d["resource_profile_difference"] = sum(_norm_diff(estimates_a[k], estimates_b[k]) for k in keys) / len(keys)
     else:
-        d["resource_profile_difference"] = float("nan")
+        d["resource_profile_difference"] = None
     d["structural_distance"] = sum(WEIGHTS[k] * d[k] for k in WEIGHTS)
     return d
 

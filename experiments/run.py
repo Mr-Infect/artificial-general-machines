@@ -292,7 +292,9 @@ class ExperimentRunner:
                                snapshot=snapshot, registry=self.registry, task=task, target_quality=target, rng=rng,
                                last_evaluation=last_eval, validate=validate, evaluate_candidate=evaluate_candidate,
                                record_decision=record_decision, estimate=estimate, memory=memory, emit=elog.emit,
-                               principle_memory=principle_memory, domain=task["domain"], alias=elog.alias)
+                               principle_memory=principle_memory, domain=task["domain"], alias=elog.alias,
+                               register_architecture=lambda a: self.db.add(ArchitectureRow(architecture_hash=a.hash(), ir_version=a.ir_version,
+                                   parent_hash=a.parent_hash, first_seen_experiment=experiment_id, json=a.to_json())))
             t0 = time.monotonic()
             ir = agent.select_architecture(ctx)
             think = time.monotonic() - t0
