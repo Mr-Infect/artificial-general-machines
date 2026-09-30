@@ -138,6 +138,19 @@ def main():
     args = ap.parse_args()
     if args.fresh and V03.exists():
         shutil.rmtree(V03)
+    V03.mkdir(parents=True, exist_ok=True)
+    lock = V03 / "driver.lock"
+    if lock.exists():
+        try:
+            other = int(lock.read_text().strip())
+            os.kill(other, 0)
+            print(f"another driver instance is running (pid {other}); refusing to start a second one (delete {lock} if it is stale)", flush=True)
+            return
+        except (ValueError, ProcessLookupError, PermissionError):
+            pass
+    lock.write_text(str(os.getpid()))
+    import atexit
+    atexit.register(lambda: lock.unlink(missing_ok=True))
     for d in ("manifests", "runs", "memory", "db", "analysis", "plots"):
         (V03 / d).mkdir(parents=True, exist_ok=True)
     import subprocess
