@@ -1,4 +1,4 @@
-# AGM Research Laboratory (v0.1)
+# AGM Research Laboratory (v0.2)
 
 A reproducible research and evaluation laboratory for testing the hypothesis of an
 Artificial General Machine (AGM): is *architectural self-determination* measurably
@@ -76,5 +76,26 @@ and compiler), and any distributed infrastructure.
   agent had before the experiment, so read `novelty_mean` with that in mind.
 * Wall-clock-dependent quantities (latency violations, deadlines) are inherently non-deterministic;
   predictions and architecture choices are deterministic given the seed and are what replay checks.
+
+## v0.2 additions
+
+| capability | where |
+|---|---|
+| architecture distance (8 separate differences + documented aggregate) and 5-level novelty | `architecture/distance.py` |
+| architectural principles: representation, rule-based extraction, memory, instantiation, validation with epistemic states | `memory/principles.py`, `docs/principles.md` |
+| third domain: resource-constrained planning | `environments/planning.py`, `docs/domain_planning.md` |
+| adaptation economics v2 with recorded decision error | `runtime/economics_v2.py` |
+| AGM v0.2 agent with memory-mode and economics ablations | `baselines/agm_v2.py` |
+| event model, Observatory dashboard, live WebSocket stream, replay controller, explanations | `observability/`, `docs/observability.md` |
+| per-experiment bundle (`raw_events.jsonl`, `metrics.json`, `architectures.json`, `principles.json`, `transfer.json`, `pareto.json`, `failures.json`, `report.md`) | `experiments/bundle.py` |
+| 30-seed experiment program and cross-seed analysis | `scripts/run_v02_experiments.py`, `experiments/analysis.py`, `docs/v0.2_experiments.md` |
+| frozen v0.1 baseline | tag `agm-v0.1-freeze`, `docs/v0.2_baseline.md` |
+| research report | `docs/V0.2_RESEARCH_REPORT.md` |
+
+```bash
+uvicorn observability.api:app --port 8100     # AGM Architecture Observatory (live + demo/replay)
+python3 scripts/run_v02_experiments.py --seeds 30 --workers 4 --executor process
+python3 -m experiments.analysis               # results/v02/analysis/analysis.md
+```
 
 See `docs/` for the design of each phase.

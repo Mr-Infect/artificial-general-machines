@@ -36,6 +36,34 @@ MEMORY_MODES = ("none", "task", "architecture", "principle", "full")
 ECON_MODES = ("economic", "always_adapt", "never_adapt")
 
 
+def enumerate_wide_space(caps: Dict[str, List[str]], big_ok: bool) -> List[ArchitectureIR]:
+    """The deliberately larger registry-bounded space (spec: the search space must be large enough for
+    prior knowledge to matter): singles, pairs and triples of available components × {none, rule_based,
+    execution_based} verification × {none, episodic} memory (singles: memory none), plus hierarchical/
+    large_reasoner variants of multi-component points when affordable. Deterministic order."""
+    import itertools
+    comps = list(caps.get("component", []))
+    vtypes = [v for v in ("none", "rule_based", "execution_based") if v in caps.get("verification", [v])]
+    mtypes = [m for m in ("none", "episodic") if m in caps.get("memory", [m])]
+    out: List[ArchitectureIR] = []
+    combos = [[c] for c in comps] + [list(p) for p in itertools.combinations(comps, 2)] + [list(p) for p in itertools.combinations(comps, 3)]
+    for cs in combos:
+        single = len(cs) == 1
+        for vt in vtypes:
+            for mt in (mtypes if not single else ["none"]):
+                variants = [("direct" if single else "parallel", "small_reasoner")]
+                if not single and big_ok and "large_reasoner" in caps.get("model", []):
+                    variants.append(("hierarchical", "large_reasoner"))
+                for rtype, model in variants:
+                    body = {"perception": {"mode": "single" if single else "parallel", "components": cs},
+                            "reasoning": {"type": rtype, "model": model, "threshold": 0.5}, "memory": {"type": mt}, "verification": {"type": vt}}
+                    try:
+                        out.append(ArchitectureIR(name=f"wide_{'+'.join(c[:4] for c in cs)}_{rtype[:3]}_{vt[:4]}_{mt[:2]}", architecture=body))
+                    except Exception:
+                        continue
+    return out
+
+
 class AGMv2Agent(AGMAgent):
     kind = "agm_v2"
 
@@ -43,6 +71,10 @@ class AGMv2Agent(AGMAgent):
         super().__init__(name, config, registry)
         self.memory_mode = config.get("memory_mode", "full")
         self.economics_mode = config.get("economics_mode", "economic")
+        # explore_all: experience-gathering mode for SOURCE runs only — evaluate up to max_evaluations
+        # even after a candidate meets the target, so that extraction rules see rejected alternatives.
+        self.explore_all = bool(config.get("explore_all", False))
+        self.synthesis_space = config.get("synthesis_space", "wide")   # wide (v0.2) | v1 (the v0.1 templates)
         if self.memory_mode not in MEMORY_MODES or self.economics_mode not in ECON_MODES:
             raise ValueError(f"bad ablation mode {self.memory_mode}/{self.economics_mode}")
         self.initial: Optional[ArchitectureIR] = None
@@ -61,6 +93,7 @@ class AGMv2Agent(AGMAgent):
         self.memory_hashes: List[str] = []
         self.evaluations_to_target: Optional[int] = None
         self._evals_total = 0
+        self._tested_pairs: set = set()   # (principle_id, hash) already counted as a test
 
     # ---------------------------------------------------------------- memory access respecting ablation
     def _use_patterns(self) -> bool:
@@ -72,7 +105,36 @@ class AGMv2Agent(AGMAgent):
     def _synthesize(self, ctx: AgentContext, caps: Dict[str, List[str]]):
         out: List[Tuple[ArchitectureIR, str, Optional[float]]] = []
         env = ctx.env
-        # 1. structural patterns (v0.1 memory)
+        # 1. principles (first, so a candidate that also appears as a pattern keeps its principle identity)
+        if ctx.principle_memory is not None and self._use_principles():
+            cctx = condition_context(env, ctx.task, ctx.target_quality, self.registry)
+            got = ctx.principle_memory.retrieve(cctx, k=self.memory_k, exclude_experiment=ctx.experiment_id)
+            cards = []
+            for principle, score, unmet in got:
+                cards.append({"id": principle.id, "name": principle.name, "status": principle.status.value, "confidence": principle.confidence,
+                              "applicability": round(score, 3), "unmet": unmet, "source_domains": principle.source_domains,
+                              "pattern": principle.structural_pattern.describe(), "description": principle.description})
+                ir = instantiate(principle, caps, self.registry, base=self.current)
+                if ir is None:
+                    continue
+                cross = ctx.domain not in principle.source_domains
+                ir = ir.model_copy(update={"metadata": {**ir.metadata, "cross_domain": cross, "principle_status": principle.status.value}})
+                # prediction prior: supported tests if any, else the quality observed when the principle
+                # was extracted, discounted by applicability (an UNTESTED principle is still a prior)
+                sup = principle.supported()
+                if sup:
+                    pred = sum(e.values.get("tested_quality", 0.0) for e in sup) / len(sup)
+                else:
+                    obs = [e.values.get("selected_quality") for e in principle.observed() if e.values.get("selected_quality") is not None]
+                    pred = (sum(obs) / len(obs)) * (0.5 + 0.5 * score) if obs else None
+                if principle.status == PrincipleStatus.CONTRADICTED and pred is not None:
+                    pred *= 0.5
+                out.append((ir, "principle", pred))
+                if cross:
+                    ctx.emit(EventType.TRANSFER_ATTEMPTED, architecture_hash=ir.hash(), reason=f"principle {principle.id} from {principle.source_domains} instantiated in {ctx.domain}",
+                             payload={"principle_id": principle.id, "source_domains": principle.source_domains, "target_domain": ctx.domain, "status": principle.status.value})
+            ctx.emit(EventType.PRINCIPLE_RETRIEVED, reason=f"{len(cards)} principle(s) applicable", payload={"principles": cards, "mode": self.memory_mode})
+        # 2. structural patterns (v0.1 memory)
         if ctx.memory is not None and self._use_patterns():
             got = ctx.memory.retrieve(env, ctx.task, k=self.memory_k, exclude_experiment=ctx.experiment_id)
             if self.memory_mode == "task":
@@ -87,30 +149,7 @@ class AGMv2Agent(AGMAgent):
                 self.retrieved.append((pattern.pattern_id, ir.hash()))
                 items.append({"pattern_id": pattern.pattern_id, "hash": ir.hash(), "similarity": round(sim, 3), "source_domain": pattern.source_domain, "quality": pattern.quality})
             ctx.emit(EventType.MEMORY_RETRIEVED, reason=f"{len(items)} structural pattern(s) applicable", payload={"n": len(items), "patterns": items, "mode": self.memory_mode})
-        # 2. principles
-        if ctx.principle_memory is not None and self._use_principles():
-            cctx = condition_context(env, ctx.task, ctx.target_quality, self.registry)
-            got = ctx.principle_memory.retrieve(cctx, k=self.memory_k, exclude_experiment=ctx.experiment_id)
-            cards = []
-            for principle, score, unmet in got:
-                cards.append({"id": principle.id, "name": principle.name, "status": principle.status.value, "confidence": principle.confidence,
-                              "applicability": round(score, 3), "unmet": unmet, "source_domains": principle.source_domains,
-                              "pattern": principle.structural_pattern.describe(), "description": principle.description})
-                ir = instantiate(principle, caps, self.registry, base=self.current)
-                if ir is None:
-                    continue
-                cross = ctx.domain not in principle.source_domains
-                ir = ir.model_copy(update={"metadata": {**ir.metadata, "cross_domain": cross, "principle_status": principle.status.value}})
-                pred = None
-                sup = principle.supported()
-                if sup:
-                    pred = sum(e.values.get("tested_quality", 0.0) for e in sup) / len(sup)
-                out.append((ir, "principle", pred))
-                if cross:
-                    ctx.emit(EventType.TRANSFER_ATTEMPTED, architecture_hash=ir.hash(), reason=f"principle {principle.id} from {principle.source_domains} instantiated in {ctx.domain}",
-                             payload={"principle_id": principle.id, "source_domains": principle.source_domains, "target_domain": ctx.domain, "status": principle.status.value})
-            ctx.emit(EventType.PRINCIPLE_RETRIEVED, reason=f"{len(cards)} principle(s) applicable", payload={"principles": cards, "mode": self.memory_mode})
-        # 3/4. heuristic synthesis + local variations (identical to v0.1)
+        # 3/4. heuristic synthesis + local variations
         saved_memory = ctx.memory
         ctx.memory = None
         try:
@@ -118,14 +157,27 @@ class AGMv2Agent(AGMAgent):
         finally:
             ctx.memory = saved_memory
         out.extend(base)
-        final, hashes = [], set()
+        if self.synthesis_space == "wide":
+            out.extend(self._wide_synthesis(ctx, caps))
+        final, index = [], {}
         for ir, src, pq in out:
             h = ir.hash()
-            if h in hashes or validate_against_registry(ir, self.registry) or ctx.validate(ir):
+            if h in index:   # duplicate: keep the first, but the best available prediction
+                i = index[h]
+                if pq is not None and (final[i][2] is None or pq > final[i][2]):
+                    final[i] = (final[i][0], final[i][1], pq)
                 continue
-            hashes.add(h)
+            if validate_against_registry(ir, self.registry) or ctx.validate(ir):
+                continue
+            index[h] = len(final)
             final.append((ir, src, pq))
         return final
+
+    def _wide_synthesis(self, ctx: AgentContext, caps: Dict[str, List[str]]):
+        env = ctx.env
+        tight = env.get("memory_mb", 512) < 200
+        big_ok = "large_reasoner" in caps["model"] and not tight and ctx.budget_remaining > 0.05
+        return [(ir, "synthesis", None) for ir in enumerate_wide_space(caps, big_ok)]
 
     # ---------------------------------------------------------------- main
     def select_architecture(self, ctx: AgentContext) -> ArchitectureIR:
@@ -226,15 +278,15 @@ class AGMv2Agent(AGMAgent):
                 self.evaluated[h] = res
                 self.adaptation_cost_total += res.cost
                 self.expected_quality[h] = res.quality
-                if ir.metadata.get("principle_id"):
-                    self.principle_reuse += 1
             self._step_results[h] = res
+            if ir.metadata.get("principle_id") and (ir.metadata["principle_id"], h) not in self._tested_pairs:
+                self.principle_reuse += 1   # a principle-derived candidate whose evaluation was consulted (new or cached), once
             if res.failed:
                 ctx.emit(EventType.ARCHITECTURE_REJECTED, architecture_hash=h, reason=f"failed on validation slice: {', '.join(res.violations) or 'execution failed'}", payload={"source": src})
                 continue
             if best_res is None or (res.quality, -res.cost) > (best_res.quality, -best_res.cost):
                 best_ir, best_res = ir, res
-            if best_res is not None and best_res.quality >= ctx.target_quality and new_evals > 0:
+            if best_res is not None and best_res.quality >= ctx.target_quality and new_evals > 0 and not self.explore_all:
                 stopped = True
         for ir, src, _ in candidates:
             h = ir.hash()
@@ -306,25 +358,34 @@ class AGMv2Agent(AGMAgent):
         pm = ctx.principle_memory
         if pm is not None and self._use_principles():
             sel_res = self._step_results.get(h)
-            pid = self.current.metadata.get("principle_id")
-            if pid and sel_res is not None:
-                others = [r for hh, r in self._step_results.items() if hh != h and not r.failed and not self._cand_meta(hh).get("principle_id")]
-                baseline = max((r.quality for r in others), default=None)
-                kind = PrincipleEvaluator(pm).record_test(pid, ctx.experiment_id, str(ctx.domain), ctx.step, sel_res.quality, baseline, sel_res.failed,
-                                                          sel_res.memory_mb, max((r.memory_mb for r in others), default=None),
-                                                          extra={"task_quality": q, "cross_domain": self.current.metadata.get("cross_domain", False)})
-                if kind:
-                    self.principles_tested.append({"principle_id": pid, "step": ctx.step, "kind": kind, "tested": sel_res.quality, "baseline": baseline})
-                    p = pm.get(pid)
-                    et = EventType.PRINCIPLE_SUPPORTED if kind == "supported" else EventType.PRINCIPLE_CONTRADICTED if kind == "contradicted" else EventType.PRINCIPLE_RETRIEVED
-                    ctx.emit(et, reason=f"principle {pid} test {kind} (validation {sel_res.quality:.3f} vs baseline {baseline})",
-                             payload={"principle_id": pid, "kind": kind, "status": p.status.value if p else None, "confidence": p.confidence if p else None,
-                                      "tested_quality": sel_res.quality, "baseline_quality": baseline, "principles": [] if kind == "inconclusive" else None} if kind != "inconclusive"
-                             else {"principle_id": pid, "kind": kind, "principles": [{"id": pid, "status": p.status.value if p else None, "note": "inconclusive test"}]})
-                    if self.current.metadata.get("cross_domain"):
-                        rec = {"principle_id": pid, "step": ctx.step, "kind": kind, "target_domain": ctx.domain, "task_quality": q}
-                        self.transfers.append(rec)
-                        ctx.emit(EventType.TRANSFER_COMPLETED, architecture_hash=h, reason=f"cross-domain principle {pid}: {kind}", payload=rec)
+            # every principle-derived candidate that was evaluated this step is a test of its principle
+            # (selected or rejected alike), scored against the best non-principle alternative evaluated
+            # under the same conditions. Only newly evaluated candidates count (no double counting).
+            non_prn = [r for hh, r in self._step_results.items() if not r.failed and not self._cand_meta(hh).get("principle_id")]
+            baseline = max((r.quality for r in non_prn), default=None)
+            baseline_mem = max((r.memory_mb for r in non_prn), default=None)
+            for hh, r in list(self._step_results.items()):
+                meta = self._cand_meta(hh)
+                pid = meta.get("principle_id")
+                if not pid or r is None or (pid, hh) in self._tested_pairs:
+                    continue
+                self._tested_pairs.add((pid, hh))
+                kind = PrincipleEvaluator(pm).record_test(pid, ctx.experiment_id, str(ctx.domain), ctx.step, r.quality, baseline, r.failed, r.memory_mb, baseline_mem,
+                                                          extra={"selected": hh == h, "task_quality": q if hh == h else None, "cross_domain": meta.get("cross_domain", False)})
+                if not kind:
+                    continue
+                self.principles_tested.append({"principle_id": pid, "step": ctx.step, "kind": kind, "tested": r.quality, "baseline": baseline, "selected": hh == h})
+                p = pm.get(pid)
+                if kind == "supported":
+                    ctx.emit(EventType.PRINCIPLE_SUPPORTED, architecture_hash=hh, reason=f"principle {pid} test supported (validation {r.quality:.3f} vs baseline {baseline})",
+                             payload={"principle_id": pid, "kind": kind, "status": p.status.value if p else None, "confidence": p.confidence if p else None, "tested_quality": r.quality, "baseline_quality": baseline})
+                elif kind == "contradicted":
+                    ctx.emit(EventType.PRINCIPLE_CONTRADICTED, architecture_hash=hh, reason=f"principle {pid} test contradicted (validation {r.quality:.3f} vs baseline {baseline})",
+                             payload={"principle_id": pid, "kind": kind, "status": p.status.value if p else None, "confidence": p.confidence if p else None, "tested_quality": r.quality, "baseline_quality": baseline})
+                if meta.get("cross_domain"):
+                    rec = {"principle_id": pid, "step": ctx.step, "kind": kind, "target_domain": ctx.domain, "selected": hh == h, "task_quality": q if hh == h else None}
+                    self.transfers.append(rec)
+                    ctx.emit(EventType.TRANSFER_COMPLETED, architecture_hash=hh, reason=f"cross-domain principle {pid}: {kind}", payload=rec)
             # extraction from this step's decision
             rejected = []
             for ir, src, _ in self._step_candidates:

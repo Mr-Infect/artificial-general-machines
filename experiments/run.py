@@ -119,8 +119,9 @@ class ExperimentRunner:
         steps = spec.schedule.steps
         batch = max(10, n_stream // steps)
 
+        target_info = self._objective_target(spec, ds, n_val)
         provenance = {
-            "experiment_id": experiment_id, "name": spec.name, "manifest": manifest, "manifest_hash": mhash,
+            "experiment_id": experiment_id, "name": spec.name, "manifest": manifest, "manifest_hash": mhash, "objective": target_info,
             "git": git, "seed": seed, "dataset_id": ds["dataset_id"], "validation_records": n_val,
             "stream_records": n_stream, "batch_size": batch, "executor": self.executor.name,
             "sandbox_image": image_id, "registry_capabilities": self.registry.all_keys(),
@@ -136,7 +137,7 @@ class ExperimentRunner:
 
         summaries: Dict[str, Any] = {}
         for agent_spec in spec.agents:
-            summaries[agent_spec.name] = self._run_agent(experiment_id, seed, agent_spec, ds, n_val, batch, results_dir, provenance)
+            summaries[agent_spec.name] = self._run_agent(experiment_id, seed, agent_spec, ds, n_val, batch, results_dir, provenance, target_info["target"])
 
         finished = utcnow()
         provenance["finished_at"] = finished
@@ -155,8 +156,49 @@ class ExperimentRunner:
         return experiment_id
 
     # ------------------------------------------------------------------
+    def _objective_target(self, spec: ExperimentSpec, ds, n_val: int) -> Dict[str, Any]:
+        """Lab-side oracle for relative targets: evaluate the enumerated wide space on the validation
+        slice with the process executor (deterministic; not an agent) and take relative_to_best × best."""
+        info = {"mode": "fixed", "target": spec.objective.quality_threshold, "floor": spec.objective.quality_threshold}
+        if spec.objective.relative_to_best is None and spec.objective.top_fraction is None:
+            return info
+        from baselines.agm_v2 import enumerate_wide_space
+        from runtime.executor import ProcessExecutor
+        task = spec.task.model_dump()
+        caps = self.registry.keys_for_domain(task["domain"])
+        cap_model = {kind: [k.split(":", 1)[1] for k in caps if k.startswith(kind + ":")] for kind in ("component", "model", "reasoning", "memory", "verification", "tool")}
+        space = enumerate_wide_space(cap_model, big_ok=True)
+        payload = batch_payload(ds, 0, n_val)
+        best, best_name, results = 0.0, None, []
+        px = ProcessExecutor()
+        for ir in space:
+            try:
+                c = compile_ir(ir, self.registry, {"timeout_s": 30})
+            except CompileError:
+                continue
+            sb = px.run({"spec": c.model_dump(), "data": payload, "state": {}}, {"timeout_s": 30})
+            ok = sb.artifact is not None and sb.artifact.get("ok")
+            q = evaluate_batch(ds, 0, n_val, sb.artifact)["quality"] if ok else 0.0
+            results.append({"hash": ir.hash(), "name": ir.name, "quality": q})
+            if q > best:
+                best, best_name = q, ir.name
+        if spec.objective.top_fraction is not None:
+            qs = sorted((r["quality"] for r in results), reverse=True)
+            k = max(1, int(round(spec.objective.top_fraction * len(qs))))
+            target = max(spec.objective.quality_threshold, qs[k - 1])
+            mode = "top_fraction"
+        else:
+            target = max(spec.objective.quality_threshold, spec.objective.relative_to_best * best)
+            mode = "relative_to_best"
+        info.update({"mode": mode, "relative_to_best": spec.objective.relative_to_best, "top_fraction": spec.objective.top_fraction,
+                     "best_validation_quality": best, "best_architecture": best_name, "n_space": len(results), "target": round(target, 4), "space_results": results,
+                     "quantile_of_target": sum(1 for r in results if r["quality"] >= target) / max(1, len(results))})
+        self.log(f"  objective ({mode}): best validation quality {best:.3f} ({best_name}); target = {target:.3f} "
+                 f"({info['quantile_of_target']:.0%} of {len(results)} space points reach it)")
+        return info
+
     def _run_agent(self, experiment_id: str, seed: int, agent_spec, ds, n_val: int, batch: int, results_dir: Path,
-                   provenance: Dict[str, Any]) -> Dict[str, Any]:
+                   provenance: Dict[str, Any], target: float) -> Dict[str, Any]:
         spec = self.spec
         cfg = agent_spec.model_dump()
         agent = build_agent(agent_spec.name, cfg, self.registry)
@@ -164,7 +206,6 @@ class ExperimentRunner:
         telemetry = Telemetry(self.db, experiment_id, agent_spec.name, results_dir)
         run = AgentRun(agent_spec.name)
         task = spec.task.model_dump()
-        target = spec.objective.quality_threshold
 
         # structural memory (only agents that declare it)
         memory = None

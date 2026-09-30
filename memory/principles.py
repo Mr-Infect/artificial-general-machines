@@ -283,7 +283,6 @@ def _bucket_conditions(ctx: Dict[str, Any]) -> Dict[str, Condition]:
     out["verification_cost"] = Condition(key="verification_cost_factor", op=">=", value=2.0) if ctx.get("verification_cost_factor", 1.0) >= 2 else Condition(key="verification_cost_factor", op="<=", value=1.99)
     out["expensive_model"] = Condition(key="expensive_model_available", op="==", value=bool(ctx.get("expensive_model_available", True)))
     out["verification_required"] = Condition(key="verification_required", op="==", value=bool(ctx.get("verification_required", False)))
-    out["target"] = Condition(key="target_quality", op=">=", value=0.8) if (ctx.get("target_quality") or 0) >= 0.8 else Condition(key="target_quality", op="<=", value=0.79)
     return out
 
 
@@ -353,7 +352,7 @@ def extract_principles(rec: DecisionRecord, registry: CapabilityRegistry) -> Lis
             best_unverified = max(res["quality"] for _, res in worse)
             found.append(mk("cheap_filter_before_verification",
                             StructuralPattern(cheap_stage_before_verification=True, verification_types=["rule_based", "execution_based", "model_based"]),
-                            [buckets["verification_required"]], [buckets["memory"], buckets["verification_cost"]], [buckets["target"]], [buckets["noise"]],
+                            [buckets["verification_required"]], [buckets["memory"], buckets["verification_cost"]], [], [buckets["noise"]],
                             {"quality": "higher than the same perception without verification", "memory_mb": "no increase"},
                             f"selected {sel.name} q={sel_q:.3f} with {a.verification.type} verification; best unverified rejected q={best_unverified:.3f}",
                             {"selected_quality": sel_q, "best_unverified_quality": best_unverified, "n_rejected_unverified": len(worse)}))
@@ -363,7 +362,7 @@ def extract_principles(rec: DecisionRecord, registry: CapabilityRegistry) -> Lis
         bigger = [(r, res) for r, res, _ in rejected if len(r.architecture.perception.components) > 1]
         found.append(mk("minimal_perception_under_tight_memory",
                         StructuralPattern(required_roles=[roles_of(sel, registry)[0]], max_components=1, model_cost_class="cheap"),
-                        [], [Condition(key="memory_mb", op="<=", value=128)], [buckets["target"]], [buckets["noise"]],
+                        [], [Condition(key="memory_mb", op="<=", value=128)], [], [buckets["noise"]],
                         {"quality": ">= target", "memory_mb": "lower estimate than multi-component alternatives"},
                         f"single {a.perception.components[0]} met target q={sel_q:.3f} under {ctx['memory_mb']}MB; {len(bigger)} larger candidates rejected",
                         {"selected_quality": sel_q, "memory_mb": ctx["memory_mb"], "n_rejected_larger": len(bigger),
@@ -375,7 +374,7 @@ def extract_principles(rec: DecisionRecord, registry: CapabilityRegistry) -> Lis
         if singles and max(res["quality"] for _, res in singles) < sel_q - 0.02:
             found.append(mk("ensemble_perception_under_uncertainty",
                             StructuralPattern(min_components=2, required_roles=sorted(set(roles_of(sel, registry)))[:2], reasoning_types=["parallel", "hierarchical", "sequential"]),
-                            [], [buckets["memory"]], [buckets["target"]], [Condition(key="noise", op=">=", value=0.1)],
+                            [], [buckets["memory"]], [], [Condition(key="noise", op=">=", value=0.1)],
                             {"quality": "higher than the best single-component alternative"},
                             f"ensemble of {len(a.perception.components)} beat best single (q={max(res['quality'] for _, res in singles):.3f}) with q={sel_q:.3f}",
                             {"selected_quality": sel_q, "best_single_quality": max(res["quality"] for _, res in singles), "n_components": len(a.perception.components)}))
@@ -385,7 +384,7 @@ def extract_principles(rec: DecisionRecord, registry: CapabilityRegistry) -> Lis
         exp = [(r, res) for r, res, _ in rejected if r.architecture.reasoning.model == "large_reasoner" and res.get("quality") is not None]
         if exp and max(res["quality"] for _, res in exp) <= sel_q + 0.01:
             found.append(mk("cheap_model_suffices", StructuralPattern(model_cost_class="cheap"),
-                            [], [buckets["memory"]], [buckets["target"]], [buckets["noise"]],
+                            [], [buckets["memory"]], [], [buckets["noise"]],
                             {"quality": ">= expensive-model alternative", "cost": "lower per batch"},
                             f"cheap model q={sel_q:.3f} >= best expensive-model candidate q={max(res['quality'] for _, res in exp):.3f}",
                             {"selected_quality": sel_q, "best_expensive_quality": max(res["quality"] for _, res in exp)}))
@@ -396,7 +395,7 @@ def extract_principles(rec: DecisionRecord, registry: CapabilityRegistry) -> Lis
         without = [(r, res) for r, res, _ in rejected if not (set(roles_of(r, registry)) & {"rule_check", "consistency_check"}) and res.get("quality") is not None]
         if without and max(res["quality"] for _, res in without) < sel_q - 0.02:
             found.append(mk("rule_roles_for_verification_tasks", StructuralPattern(required_roles=sorted(roles & {"rule_check", "consistency_check"})),
-                            [Condition(key="verification_required", op="==", value=True)], [], [buckets["target"]], [buckets["noise"]],
+                            [Condition(key="verification_required", op="==", value=True)], [], [], [buckets["noise"]],
                             {"quality": "higher than perception without rule/consistency roles"},
                             f"rule roles q={sel_q:.3f} vs best without q={max(res['quality'] for _, res in without):.3f}",
                             {"selected_quality": sel_q, "best_without_quality": max(res["quality"] for _, res in without)}))
@@ -406,7 +405,7 @@ def extract_principles(rec: DecisionRecord, registry: CapabilityRegistry) -> Lis
         cheap_alts = [(r, res) for r, res, _ in rejected if _cheap(r, registry) and r.architecture.reasoning.model != "large_reasoner" and res.get("quality") is not None]
         if cheap_alts and max(res["quality"] for _, res in cheap_alts) < sel_q - 0.05:
             found.append(mk("expensive_analysis_only_when_affordable", StructuralPattern(model_cost_class="expensive") if a.reasoning.model == "large_reasoner" else StructuralPattern(required_roles=["expensive_analyzer"]),
-                            [], [Condition(key="memory_mb", op=">=", value=129), buckets["expensive_model"]], [buckets["target"]], [buckets["noise"]],
+                            [], [Condition(key="memory_mb", op=">=", value=129), buckets["expensive_model"]], [], [buckets["noise"]],
                             {"quality": "> cheap alternatives by >= 0.05", "cost": "higher"},
                             f"expensive stage q={sel_q:.3f} vs best cheap q={max(res['quality'] for _, res in cheap_alts):.3f}",
                             {"selected_quality": sel_q, "best_cheap_quality": max(res["quality"] for _, res in cheap_alts)}))
@@ -523,7 +522,7 @@ class PrincipleMemory:
         return candidate
 
     def retrieve(self, ctx: Dict[str, Any], k: int = 5, exclude_experiment: Optional[str] = None,
-                 min_applicability: float = 0.5) -> List[Tuple[ArchitecturalPrinciple, float, List[str]]]:
+                 min_applicability: float = 0.34) -> List[Tuple[ArchitecturalPrinciple, float, List[str]]]:
         """Principles whose conditions apply to ctx, ranked by applicability × (0.5 + confidence),
         contradicted principles last. Returns (principle, score, unmet_conditions)."""
         if not self.readable:

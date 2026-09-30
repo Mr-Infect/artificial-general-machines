@@ -37,6 +37,13 @@ class EnvSpec(BaseModel):
 
 class ObjectiveSpec(BaseModel):
     quality_threshold: float = 0.85
+    # When set, the runner computes the best validation-slice quality over the enumerated wide
+    # architecture space (lab-side oracle, process executor) and uses relative_to_best × best as the
+    # target for this dataset. quality_threshold is then a floor only. Recorded in provenance.
+    relative_to_best: Optional[float] = None
+    # Alternative: target = validation quality of the point at the top `top_fraction` of the enumerated
+    # space (e.g. 0.1 → a "useful" architecture is one in the best decile of the known space).
+    top_fraction: Optional[float] = None
 
 
 class BudgetSpec(BaseModel):
