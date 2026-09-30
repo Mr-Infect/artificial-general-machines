@@ -30,8 +30,9 @@ from core.ids import new_id
 from core.models import AdaptationDecision, Evaluation, Execution, SandboxResult
 from core.registry import CapabilityRegistry
 from environments.profile import DynamicEnvironment, EnvironmentProfile
-from environments.scoring import evaluate_batch, score
-from environments.synthetic import batch_payload, load_or_generate
+from environments.scoring import evaluate_batch as _eb_v1, score
+from environments.synthetic import batch_payload as _bp_v1, load_or_generate
+from environments import regimes as R
 from experiments.manifest import (ExperimentSpec, expand_suite, load_manifest, manifest_hash, parse_experiment, parse_suite)
 from memory.structural import StructuralMemory
 from memory.principles import PrincipleMemory
@@ -41,6 +42,14 @@ from telemetry.telemetry import Telemetry
 
 ROOT = Path(__file__).resolve().parent.parent
 RESULTS = ROOT / "results"
+
+
+def batch_payload(ds, start, end):
+    return R.batch_payload(ds, start, end) if "base_domain" in ds else _bp_v1(ds, start, end)
+
+
+def evaluate_batch(ds, start, end, artifact):
+    return R.evaluate_batch(ds, start, end, artifact) if "base_domain" in ds else _eb_v1(ds, start, end, artifact)
 
 
 def git_commit() -> Dict[str, Any]:
@@ -113,15 +122,25 @@ class ExperimentRunner:
 
         # Dataset and split (identical for every agent).
         task = spec.task.model_dump()
-        ds = load_or_generate(task["domain"], task["dataset_size"], task["noise"], task["anomaly_rate"], seed)
-        n_val = int(len(ds["records"]) * spec.schedule.validation_fraction)
-        n_stream = len(ds["records"]) - n_val
-        steps = spec.schedule.steps
-        batch = max(10, n_stream // steps)
+        regime_info: Optional[Dict[str, Any]] = None
+        if spec.regime is not None:
+            schedule = spec.regime.schedule or R.sample_schedule(R.TRAINING_SET if spec.regime.set == "training" else R.HELDOUT_SET, spec.schedule.steps, seed)
+            ds = self._load_regime_dataset(task["domain"], task["dataset_size"], schedule, spec.schedule.steps, seed, spec.schedule.validation_fraction)
+            n_val, batch, steps = ds["validation_records"], ds["batch_size"], spec.schedule.steps
+            n_stream = len(ds["records"]) - n_val
+            regime_info = {"set": spec.regime.set, "schedule": schedule, "regime_by_step": [R.regime_at(schedule, st) for st in range(steps)],
+                           "transitions": [x["start_step"] for x in schedule[1:]], "params": {r: R.REGIMES[r] for r in {x["regime"] for x in schedule}}}
+        else:
+            ds = load_or_generate(task["domain"], task["dataset_size"], task["noise"], task["anomaly_rate"], seed)
+            n_val = int(len(ds["records"]) * spec.schedule.validation_fraction)
+            n_stream = len(ds["records"]) - n_val
+            steps = spec.schedule.steps
+            batch = max(10, n_stream // steps)
+        self._regime_info = regime_info
 
-        target_info = self._objective_target(spec, ds, n_val)
+        target_info = self._objective_target(spec, ds, n_val) if regime_info is None else self._regime_targets(spec, ds, n_val, batch, regime_info)
         provenance = {
-            "experiment_id": experiment_id, "name": spec.name, "manifest": manifest, "manifest_hash": mhash, "objective": target_info,
+            "experiment_id": experiment_id, "name": spec.name, "manifest": manifest, "manifest_hash": mhash, "objective": target_info, "regime": regime_info,
             "git": git, "seed": seed, "dataset_id": ds["dataset_id"], "validation_records": n_val,
             "stream_records": n_stream, "batch_size": batch, "executor": self.executor.name,
             "sandbox_image": image_id, "registry_capabilities": self.registry.all_keys(),
@@ -133,11 +152,15 @@ class ExperimentRunner:
                                   seed=seed, status="running", executor=self.executor.name, started_at=started,
                                   json=json.dumps({"experiment_id": experiment_id, "name": spec.name, "manifest": manifest,
                                                    "manifest_hash": mhash, "git_commit": git["commit"], "seed": seed,
-                                                   "started_at": started, "status": "running", "executor": self.executor.name})))
+                                                   "started_at": started, "status": "running", "executor": self.executor.name,
+                                                   "objective": {k: v for k, v in target_info.items() if k != "space_results"}, "regime": regime_info})))
+        if regime_info is not None:
+            (results_dir / "hidden_truth.json").write_text(json.dumps({"regime": regime_info, "objective": {k: v for k, v in target_info.items() if k != "space_results"}}, indent=1))
 
         summaries: Dict[str, Any] = {}
         for agent_spec in spec.agents:
-            summaries[agent_spec.name] = self._run_agent(experiment_id, seed, agent_spec, ds, n_val, batch, results_dir, provenance, target_info["target"])
+            summaries[agent_spec.name] = self._run_agent(experiment_id, seed, agent_spec, ds, n_val, batch, results_dir, provenance, target_info["target"],
+                                                         target_by_step=target_info.get("target_by_step"))
 
         finished = utcnow()
         provenance["finished_at"] = finished
@@ -156,6 +179,65 @@ class ExperimentRunner:
         return experiment_id
 
     # ------------------------------------------------------------------
+    def _load_regime_dataset(self, domain, size, schedule, steps, seed, vf):
+        R.S.DATASET_DIR.mkdir(parents=True, exist_ok=True)
+        structure = {"network_rules": "rules", "scientific_drift": "drift", "planning_stable": "stable"}.get(domain, "native")
+        key = R.dataset_key(domain, size, schedule, seed, structure)
+        path = R.S.DATASET_DIR / f"{domain}_{key}.json"
+        if path.exists():
+            return json.loads(path.read_text())
+        ds = R.generate(domain, size, schedule, steps, seed, vf)
+        path.write_text(json.dumps(ds))
+        return ds
+
+    def _regime_targets(self, spec: ExperimentSpec, ds, n_val: int, batch: int, regime_info: Dict[str, Any]) -> Dict[str, Any]:
+        """Lab oracle per regime: a deterministic sample of the wide space evaluated on the first batch of each
+        regime under that regime's limits and capability availability (validity enforced). Target per regime =
+        top-decile validation quality. Hidden from agents; recorded in provenance/hidden_truth.json."""
+        from baselines.agm_v2 import enumerate_wide_space
+        from runtime.executor import ProcessExecutor
+        from architecture.validate import validate_against_environment
+        task = spec.task.model_dump()
+        caps_all = self.registry.keys_for_domain(task["domain"])
+        px = ProcessExecutor()
+        targets, space_results = {}, {}
+        steps = spec.schedule.steps
+        for x in regime_info["schedule"]:
+            rname, st = x["regime"], x["start_step"]
+            reg = R.REGIMES[rname]
+            caps = [k for k in caps_all if reg["large_model"] or k != "model:large_reasoner"]
+            cap_model = {kind: [k.split(":", 1)[1] for k in caps if k.startswith(kind + ":")] for kind in ("component", "model", "reasoning", "memory", "verification", "tool")}
+            space = enumerate_wide_space(cap_model, big_ok=reg["large_model"])
+            rng = random.Random(f"oracle:{rname}:{ds['dataset_id']}")
+            singles = [ir for ir in space if len(ir.architecture.perception.components) == 1]
+            rest = [ir for ir in space if len(ir.architecture.perception.components) > 1]
+            rng.shuffle(rest)
+            sample = singles + rest[: max(0, spec.regime.oracle_points - len(singles))]
+            env = {"memory_mb": reg["memory_mb"], "cpu": reg["cpu"], "network": False, "privacy": "local_only", "available_capabilities": caps}
+            limits = {"cpu": reg["cpu"], "memory_mb": reg["memory_mb"], "verification_cost_factor": reg["vcf"], "timeout_s": 30}
+            start, end = n_val + st * batch, n_val + (st + 1) * batch if st < steps - 1 else len(ds["records"])
+            payload = batch_payload(ds, start, end)
+            res = []
+            for ir in sample:
+                try:
+                    c = compile_ir(ir, self.registry, limits)
+                except CompileError:
+                    continue
+                if validate_against_environment(ir, env, self.registry, c.estimates["memory_mb"]):
+                    res.append({"hash": ir.hash(), "name": ir.name, "quality": None, "invalid": True})
+                    continue
+                sb = px.run({"spec": c.model_dump(), "data": payload, "state": {}}, limits)
+                ok = sb.artifact is not None and sb.artifact.get("ok")
+                q = evaluate_batch(ds, start, end, sb.artifact)["quality"] if ok else 0.0
+                res.append({"hash": ir.hash(), "name": ir.name, "quality": q, "invalid": False})
+            qs = sorted((r["quality"] for r in res if r["quality"] is not None), reverse=True)
+            k = max(1, int(round(0.1 * len(qs)))) if qs else 1
+            targets[rname] = round(qs[k - 1], 4) if qs else 0.0
+            space_results[rname] = {"n_sampled": len(sample), "n_valid": len(qs), "best": qs[0] if qs else None, "target": targets[rname], "results": res}
+            self.log(f"  regime {rname} (from step {st}): {len(qs)} valid of {len(sample)} sampled; best {qs[0] if qs else 0:.3f}; target {targets[rname]:.3f}")
+        target_by_step = [targets[r] for r in regime_info["regime_by_step"]]
+        return {"mode": "regime_top_decile", "target": target_by_step[0], "target_by_regime": targets, "target_by_step": target_by_step, "space_results": space_results}
+
     def _objective_target(self, spec: ExperimentSpec, ds, n_val: int) -> Dict[str, Any]:
         """Lab-side oracle for relative targets: evaluate the enumerated wide space on the validation
         slice with the process executor (deterministic; not an agent) and take relative_to_best × best."""
@@ -198,8 +280,9 @@ class ExperimentRunner:
         return info
 
     def _run_agent(self, experiment_id: str, seed: int, agent_spec, ds, n_val: int, batch: int, results_dir: Path,
-                   provenance: Dict[str, Any], target: float) -> Dict[str, Any]:
+                   provenance: Dict[str, Any], target: float, target_by_step: Optional[List[float]] = None) -> Dict[str, Any]:
         spec = self.spec
+        regime_info = getattr(self, "_regime_info", None)
         cfg = agent_spec.model_dump()
         agent = build_agent(agent_spec.name, cfg, self.registry)
         rng = random.Random(f"{seed}:{agent_spec.name}")
@@ -225,26 +308,34 @@ class ExperimentRunner:
             principle_memory = PrincipleMemory(pdb, readable=bool(pm_cfg.get("read", True)), writable=bool(pm_cfg.get("write", True)))
         elog = EventLog(self.db, experiment_id, agent_spec.name, results_dir, domain=task["domain"])
         env_caps = spec.environment.available_capabilities
-        profile = EnvironmentProfile(cpu=spec.environment.cpu, memory_mb=spec.environment.memory_mb,
-                                     latency_ms=spec.environment.latency_ms, network=spec.environment.network,
-                                     privacy=spec.environment.privacy, energy_budget=spec.environment.energy_budget,
-                                     deadline_s=spec.budget.max_seconds, cost_budget=spec.budget.max_cost,
-                                     available_capabilities=self.registry.keys_for_domain(task["domain"]) if env_caps == "all" else list(env_caps),
-                                     priority=task["priority"], verification_cost_factor=spec.environment.verification_cost_factor)
+        avail = self.registry.keys_for_domain(task["domain"]) if env_caps == "all" else list(env_caps)
+        prof_kwargs = dict(cpu=spec.environment.cpu, memory_mb=spec.environment.memory_mb, latency_ms=spec.environment.latency_ms, network=spec.environment.network,
+                           privacy=spec.environment.privacy, energy_budget=spec.environment.energy_budget, deadline_s=spec.budget.max_seconds,
+                           cost_budget=spec.budget.max_cost, priority=task["priority"], verification_cost_factor=spec.environment.verification_cost_factor)
+        events = list(spec.events)
+        if regime_info is not None:
+            ov = R.initial_profile_overrides(regime_info["schedule"])
+            prof_kwargs.update(memory_mb=ov["memory_mb"], cpu=ov["cpu"], verification_cost_factor=ov["verification_cost_factor"], failure_penalty=ov["failure_penalty"])
+            if not ov["large_model"]:
+                avail = [k for k in avail if k != "model:large_reasoner"]
+            from environments.profile import EnvironmentEvent
+            events += [EnvironmentEvent.model_validate(e) for e in R.env_events_for(regime_info["schedule"], spec.schedule.step_seconds, avail)]
+        profile = EnvironmentProfile(available_capabilities=avail, **prof_kwargs)
         def _on_transition(t, ev, b, a):
             telemetry.record_env_transition(t, ev.model_dump(mode="json"), b.observable(), a.observable())
             elog.set_context(step_time[1], t, a.observable())
             elog.emit(EventType.CONSTRAINT_CHANGED, reason=f"{ev.type.value} {ev.params}", constraints=a.observable(),
                       payload={"event": ev.model_dump(mode="json"), "before": b.observable(), "after": a.observable()})
-        env = DynamicEnvironment(profile, spec.events, on_transition=_on_transition)
+        env = DynamicEnvironment(profile, events, on_transition=_on_transition)
         elog.set_context(0, 0.0, profile.observable())
         elog.emit(EventType.RUN_STARTED, reason=f"run {agent_spec.name} ({agent.kind}) on {task['domain']}", constraints=profile.observable(),
                   payload={"agent_type": agent.kind, "agent_config": cfg, "objective": {"quality_threshold": target}, "constraints": profile.observable(),
                            "seed": seed, "task": task, "steps": spec.schedule.steps})
         known_at_start = agent.known_architectures()
         val_payload = batch_payload(ds, 0, n_val)
-        val_labels = ds["labels"][:n_val]
+        val_range = [0, n_val]   # candidate-evaluation window; moves to the most recent labelled batch in validation_mode=recent
         last_eval: Optional[Dict[str, Any]] = None
+        step_records: List[Dict[str, Any]] = []
 
         def budget() -> Dict[str, float]:
             return {"cost_remaining": env.profile.cost_budget - run.total_cost, "cost_spent": run.total_cost,
@@ -296,7 +387,7 @@ class ExperimentRunner:
                 elog.emit(EventType.EXECUTION_STARTED, architecture_hash=ir.hash(), payload={"purpose": "candidate_evaluation", "limits": limits()})
                 sb = self.executor.run({"spec": spec_c.model_dump(), "data": val_payload, "state": {}}, limits())
                 ok = sb.artifact is not None and sb.artifact.get("ok") and not sb.timed_out
-                q = evaluate_batch(ds, 0, n_val, sb.artifact)["quality"] if ok else 0.0
+                q = evaluate_batch(ds, val_range[0], val_range[1], sb.artifact)["quality"] if ok else 0.0
                 cost = float(sb.artifact["accounting"]["cost"]) if ok else 0.0
                 run.cost_adaptation += cost
                 run.wall_used_s += sb.runtime_s
@@ -322,15 +413,22 @@ class ExperimentRunner:
             return res
 
         step_time = [0.0, 0]  # [logical_time, step]
+        target_all = target
         for step in range(spec.schedule.steps):
             t = step * spec.schedule.step_seconds
             step_time[0], step_time[1] = t, step
+            if target_by_step:
+                target = target_by_step[step]
+            if spec.schedule.validation_mode == "recent" and step > 0:
+                ps, pe = n_val + (step - 1) * batch, n_val + step * batch
+                val_payload, val_range = batch_payload(ds, ps, pe), [ps, pe]
             elog.set_context(step, t, env.observable())
             env.advance(t)
             elog.set_context(step, t, env.observable())
             snapshot = telemetry.snapshot(env.observable(), budget())
             elog.emit(EventType.ENVIRONMENT_OBSERVED, constraints=env.observable(),
                       payload={"snapshot": {k: v for k, v in snapshot.items() if k != "host"}, "budget": budget()})
+            snapshot["target_quality"] = target
             ctx = AgentContext(experiment_id=experiment_id, agent_name=agent_spec.name, step=step, logical_time_s=t,
                                snapshot=snapshot, registry=self.registry, task=task, target_quality=target, rng=rng,
                                last_evaluation=last_eval, validate=validate, evaluate_candidate=evaluate_candidate,
@@ -420,7 +518,12 @@ class ExperimentRunner:
             step_cost = float(sb.artifact["accounting"]["cost"]) if sb.artifact and sb.artifact.get("ok") else 0.0
             summary = {"step": step, "quality": ev.quality, "runtime_s": sb.runtime_s, "cpu_time_s": sb.cpu_time_s,
                        "max_memory_mb": sb.max_memory_mb, "cost": step_cost, "violations": ev.constraint_violations,
-                       "failed": ev.failed, "architecture_hash": ir.hash(), "architecture_name": ir.name, "novelty": nov}
+                       "failed": ev.failed, "architecture_hash": ir.hash(), "architecture_name": ir.name, "novelty": nov, "target": target,
+                       "observations": (sb.artifact or {}).get("observations") if sb.artifact else None,
+                       "net_quality": ev.quality - (env.profile.failure_penalty if ev.failed else 0.0)}
+            step_records.append({"step": step, "quality": ev.quality, "net_quality": summary["net_quality"], "target": target, "met": ev.quality >= target,
+                                 "failed": ev.failed, "hash": ir.hash(), "evaluations_so_far": run.arch_evaluations, "cost_so_far": run.total_cost,
+                                 "memory_mb": env.profile.memory_mb, "runtime_s": sb.runtime_s, "max_memory_mb": sb.max_memory_mb})
             telemetry.record_execution(t, summary)
             elog.emit(EventType.RESULT_EVALUATED, architecture_hash=ir.hash(),
                       payload={"purpose": "task", "quality": ev.quality, "accuracy": ev.accuracy, "f1": ev.f1, "failed": ev.failed,
@@ -450,6 +553,8 @@ class ExperimentRunner:
             "run_id": elog.run_id, "n_events": elog.seq + 1, "architecture_aliases": dict(elog.aliases),
             "agent_extra": agent.summary() if hasattr(agent, "summary") else {},
             "env_transitions": len(env.transitions), "decisions": getattr(agent, "decisions", []),
+            "step_records": step_records, "net_quality_mean": sum(r["net_quality"] for r in step_records) / len(step_records),
+            "steps_met_target": sum(1 for r in step_records if r["met"]), "target_by_step": target_by_step,
         }
         for k in ("quality_mean", "quality_min", "quality_final", "search_time_s", "architecture_evaluations", "model_calls", "tokens",
                   "cpu_time_s", "max_memory_mb", "execution_cost", "adaptation_cost", "total_cost", "constraint_violations",

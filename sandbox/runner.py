@@ -147,7 +147,14 @@ def consistency_checker(cols, relations, feature_names, window, prior):
 COMPONENTS = {"statistical_detector", "anomaly_detector", "rate_detector", "range_validator", "consistency_checker"}
 
 
+ALIASES = {"flux_zscore": "statistical_detector", "robust_flux": "anomaly_detector", "flux_delta": "rate_detector",
+           "flux_bounds": "range_validator", "flux_relation": "consistency_checker",
+           "request_ranker": "priority_filter", "risk_weighting": "risk_estimator", "bandwidth_forecast": "capacity_forecaster",
+           "admission_check": "feasibility_checker", "horizon_scheduler": "lookahead_planner"}
+
+
 def run_component(name, cols, window, data, prior):
+    name = ALIASES.get(name, name)
     if name == "statistical_detector":
         return statistical_detector(cols, window, prior)
     if name == "anomaly_detector":
@@ -480,6 +487,7 @@ PLANNING_COMPONENTS = {"priority_filter", "risk_estimator", "capacity_forecaster
 
 
 def run_planning_component(name, data, window, prior, assignments_out):
+    name = ALIASES.get(name, name)
     if name == "priority_filter":
         return priority_filter(data, window, prior)
     if name == "risk_estimator":
@@ -590,6 +598,13 @@ def execute_planning(spec, data, state, acct):
         out["confidence"] = [round(s_, 4) for s_ in scores]
     return out
 
+def _observations(scores, preds):
+    n = max(1, len(preds))
+    m = _mean(scores) if scores else 0.0
+    return {"flag_rate": round(sum(preds) / n, 4), "score_mean": round(m, 4), "score_std": round(_std(scores, m) if scores else 0.0, 4),
+            "ambiguous_fraction": round(sum(1 for s in scores if 0.35 < s < 0.65) / n, 4) if scores else 0.0}
+
+
 # ----------------------------------------------------------------------------
 # main
 
@@ -604,8 +619,9 @@ def execute(payload):
     for key in spec.get("required_capabilities", []):
         if key.startswith("tool:") or key.startswith("reasoning:") or key.startswith("memory:") or key.startswith("verification:"):
             acct.charge(key, 1)
-    if data.get("domain") == "planning":
+    if data.get("base_domain", data.get("domain")) == "planning":
         out = execute_planning(spec, data, state, acct)
+        out["observations"] = _observations(out.get("confidence") or [], out["predictions"])
         out["accounting"] = {"model_calls": acct.model_calls, "tokens": acct.tokens, "cost": round(acct.cost, 6),
                              "simulated_latency_ms": acct.latency_ms, "component_calls": acct.component_calls, "calls": acct.calls}
         return out
@@ -618,6 +634,9 @@ def execute(payload):
     out = {"predictions": preds, "threshold": thr}
     if spec["pipeline"]["output"].get("confidence", True):
         out["confidence"] = [round(s, 4) for s in scores]
+    # observations an agent may use to infer the hidden regime (no labels involved)
+    out["observations"] = _observations(scores, preds)
+    out["observations"]["input_dispersion"] = round(_mean([_std(c) / (abs(_mean(c)) + 1e-9) for c in cols]), 4)
     out["accounting"] = {"model_calls": acct.model_calls, "tokens": acct.tokens, "cost": round(acct.cost, 6),
                          "simulated_latency_ms": acct.latency_ms, "component_calls": acct.component_calls,
                          "calls": acct.calls}

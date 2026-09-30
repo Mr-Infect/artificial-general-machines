@@ -23,6 +23,7 @@ class EnvironmentProfile(BaseModel):
     available_capabilities: List[str] = Field(default_factory=list)  # kind:name keys; empty = all
     priority: int = 1
     verification_cost_factor: float = 1.0   # scales cost/latency/cpu of verification capabilities (held-out conditions)
+    failure_penalty: float = 0.0            # quality units charged per failed execution (net quality)
 
     def observable(self) -> Dict[str, Any]:
         """The view agents receive. Identical to the profile today, but kept as a
@@ -41,6 +42,7 @@ class EventType(str, Enum):
     deadline_reduction = "deadline_reduction"
     priority_increase = "priority_increase"
     cost_budget_reduction = "cost_budget_reduction"
+    verification_cost_change = "verification_cost_change"
 
 
 class EnvironmentEvent(BaseModel):
@@ -76,6 +78,9 @@ def apply_event(profile: EnvironmentProfile, event: EnvironmentEvent) -> Environ
         p.deadline_s = float(q["deadline_s"]) if "deadline_s" in q else p.deadline_s * float(q.get("factor", 0.5))
     elif event.type == EventType.priority_increase:
         p.priority = int(q.get("priority", p.priority + 1))
+    elif event.type == EventType.verification_cost_change:
+        p.verification_cost_factor = float(q.get("verification_cost_factor", p.verification_cost_factor))
+        p.failure_penalty = float(q.get("failure_penalty", p.failure_penalty))
     elif event.type == EventType.cost_budget_reduction:
         p.cost_budget = float(q["cost_budget"]) if "cost_budget" in q else p.cost_budget * float(q.get("factor", 0.5))
     return p

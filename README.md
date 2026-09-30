@@ -1,4 +1,4 @@
-# AGM Research Laboratory (v0.2)
+# AGM Research Laboratory (v0.3)
 
 A reproducible research and evaluation laboratory for testing the hypothesis of an
 Artificial General Machine (AGM): is *architectural self-determination* measurably
@@ -96,6 +96,23 @@ and compiler), and any distributed infrastructure.
 uvicorn observability.api:app --port 8100     # AGM Architecture Observatory (live + demo/replay)
 python3 scripts/run_v02_experiments.py --seeds 30 --workers 4 --executor process
 python3 -m experiments.analysis               # results/v02/analysis/analysis.md
+```
+
+## v0.3 additions
+
+| capability | where |
+|---|---|
+| hidden regimes with seeded transitions; structural twins (blind transfer) and false-analogy domains | `environments/regimes.py` |
+| negative architectural knowledge and TRUST/TEST/IGNORE/REJECT/ADAPT applicability decisions | `memory/principles.py` |
+| AGM v0.3 (regime detection, applicability decisions, negative knowledge, ablation flags) | `baselines/agm_v3.py` |
+| vocabulary-agnostic search and adaptive baselines | `baselines/search.py` (`space: auto`), `baselines/adaptive.py` (`library: roles`) |
+| per-regime lab targets, recent-batch validation, hidden-truth records | `experiments/run.py` |
+| pre-registered design and kill criteria | `docs/v0.3_design.md` |
+| experiment program, analysis, report | `scripts/run_v03_experiments.py`, `experiments/analysis_v03.py`, `scripts/write_v03_report.py` |
+
+```bash
+python3 scripts/run_v03_experiments.py --seeds 30 --workers 4 --executor process   # ~hours; --resume to continue
+python3 -m experiments.analysis_v03 && python3 scripts/write_v03_report.py         # results/v03/report.md
 ```
 
 See `docs/` for the design of each phase.

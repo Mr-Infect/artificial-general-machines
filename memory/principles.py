@@ -173,6 +173,7 @@ class ArchitecturalPrinciple(BaseModel):
     status: PrincipleStatus = PrincipleStatus.UNTESTED
     evidence: List[Evidence] = Field(default_factory=list)
     rule: str = ""
+    polarity: str = "positive"   # positive: "this organization worked under C"; negative: "this organization failed under C"
     schema_version: str = PRINCIPLE_SCHEMA_VERSION
     created_at: str = Field(default_factory=utcnow)
     updated_at: str = Field(default_factory=utcnow)
@@ -314,6 +315,7 @@ def _cheap(ir: ArchitectureIR, registry: CapabilityRegistry) -> bool:
 
 
 RULES: Dict[str, str] = {
+    "failed_under_conditions": "NEGATIVE: this organization failed (or fell far below the target) under these conditions; avoid it when they hold.",
     "cheap_filter_before_verification": "Use cheap broad filtering before a verification stage when the unverified alternative loses quality.",
     "minimal_perception_under_tight_memory": "Under a tight memory limit, a single robust estimator with a cheap model preserves quality at lower resource estimate.",
     "ensemble_perception_under_uncertainty": "Under higher noise, combining several cheap perception roles beats any single one.",
@@ -344,6 +346,23 @@ def extract_principles(rec: DecisionRecord, registry: CapabilityRegistry) -> Lis
                                    summary=f"Generalization: {RULES[rule]} Conditions: " + ", ".join(c.describe() for c in pre + res + obj + unc)))
         p.recompute_status()
         return p
+
+    # Rule 0 (negative knowledge): evaluated candidates that failed or fell far below target under these conditions
+    for r, res, _ in rejected:
+        q = res.get("quality")
+        failed = bool(res.get("failed"))
+        if not failed and (q is None or q >= rec.target_quality - 0.25):
+            continue
+        ra = r.architecture
+        pat = StructuralPattern(required_roles=sorted(set(roles_of(r, registry))), min_components=len(ra.perception.components), max_components=len(ra.perception.components),
+                                reasoning_types=[ra.reasoning.type], model_cost_class="expensive" if ra.reasoning.model == "large_reasoner" else "cheap",
+                                memory_types=[ra.memory.type], verification_types=[ra.verification.type])
+        p = mk("failed_under_conditions", pat, [buckets["verification_required"]], [buckets["memory"], buckets["verification_cost"], buckets["expensive_model"]], [], [buckets["noise"]],
+               {"quality": "below target or failed"}, f"{r.name} {'failed' if failed else f'scored {q:.3f} vs target {rec.target_quality:.3f}'} under memory {ctx.get('memory_mb')}MB noise {ctx.get('noise')}",
+               {"rejected_quality": q, "failed": failed, "target": rec.target_quality, "violations": res.get("violations")})
+        p.polarity = "negative"
+        p.source_architectures = [r.hash()]
+        found.append(p)
 
     # Rule 1: cheap filter before verification
     if a.verification.type != "none" and _cheap(sel, registry):
@@ -410,6 +429,23 @@ def extract_principles(rec: DecisionRecord, registry: CapabilityRegistry) -> Lis
                             f"expensive stage q={sel_q:.3f} vs best cheap q={max(res['quality'] for _, res in cheap_alts):.3f}",
                             {"selected_quality": sel_q, "best_cheap_quality": max(res["quality"] for _, res in cheap_alts)}))
     return found
+
+
+# ------------------------------------------------------------------------------
+# applicability decision (spec v0.3 §6): TRUST / TEST / IGNORE / REJECT / ADAPT, from status,
+# confidence and applicability only (never from the environment's name)
+
+def applicability_decision(principle: ArchitecturalPrinciple, applicability: float, unmet: List[str]) -> Tuple[str, str]:
+    st = principle.status
+    if applicability < 0.34:
+        return "IGNORE", f"applicability {applicability:.2f} < 0.34 ({len(unmet)} unmet: {', '.join(unmet[:3])})"
+    if st == PrincipleStatus.CONTRADICTED:
+        return "REJECT", f"status CONTRADICTED (confidence {principle.confidence:.2f})"
+    if st == PrincipleStatus.SUPPORTED and applicability >= 0.8:
+        return "TRUST", f"status SUPPORTED, applicability {applicability:.2f} ≥ 0.8"
+    if unmet and applicability >= 0.5:
+        return "ADAPT", f"partially applicable ({applicability:.2f}); unmet: {', '.join(unmet[:3])}"
+    return "TEST", f"status {st.value}, applicability {applicability:.2f}: evaluate as a test"
 
 
 # ------------------------------------------------------------------------------
@@ -537,6 +573,12 @@ class PrincipleMemory:
                 continue
             penalty = 0.25 if p.status == PrincipleStatus.CONTRADICTED else 1.0
             out.append((p, app * (0.5 + p.confidence) * penalty, unmet))
+        # negative principles are always returned when applicable so that they can veto candidates
+        out.sort(key=lambda t: t[1], reverse=True)
+        neg = [t for t in out if t[0].polarity == "negative"]
+        pos = [t for t in out if t[0].polarity != "negative"]
+        return pos[:k] + neg[:k]
+        # (unreachable legacy line kept for clarity)
         out.sort(key=lambda t: t[1], reverse=True)
         return out[:k]
 

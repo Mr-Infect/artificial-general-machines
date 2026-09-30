@@ -58,23 +58,34 @@ tools:
 # domains in which the sandbox runner can execute it.
 components:
   statistical_detector: {description: Rolling z-score detector, cpu_weight: 1.0, memory_mb: 4,
-                         params: {role: broad_filter, cost_class: cheap, domains: [network, scientific]}}
+                         params: {role: broad_filter, cost_class: cheap, domains: [network, scientific, network_rules, scientific_drift]}}
   anomaly_detector: {description: Median absolute deviation detector, cpu_weight: 1.2, memory_mb: 4,
-                     params: {role: robust_estimator, cost_class: cheap, domains: [network, scientific]}}
+                     params: {role: robust_estimator, cost_class: cheap, domains: [network, scientific, network_rules, scientific_drift]}}
   rate_detector: {description: First-difference burst detector, cpu_weight: 0.8, memory_mb: 2,
-                  params: {role: change_detector, cost_class: cheap, domains: [network, scientific]}}
+                  params: {role: change_detector, cost_class: cheap, domains: [network, scientific, network_rules, scientific_drift]}}
   range_validator: {description: Physical/protocol range rule checker, cpu_weight: 0.3, memory_mb: 1,
-                    params: {role: rule_check, cost_class: cheap, domains: [network, scientific]}}
+                    params: {role: rule_check, cost_class: cheap, domains: [network, scientific, network_rules, scientific_drift]}}
   consistency_checker: {description: Cross-feature relation checker, cpu_weight: 0.6, memory_mb: 2,
-                        params: {role: consistency_check, cost_class: cheap, domains: [network, scientific]}}
+                        params: {role: consistency_check, cost_class: cheap, domains: [network, scientific, network_rules, scientific_drift]}}
   # planning-domain components (environments/planning.py); same IR, different computational vocabulary
   priority_filter: {description: Value-density pre-filter over pending jobs, cpu_weight: 0.4, memory_mb: 2,
-                    params: {role: broad_filter, cost_class: cheap, domains: [planning]}}
+                    params: {role: broad_filter, cost_class: cheap, domains: [planning, planning_stable]}}
   risk_estimator: {description: Downweights jobs with uncertain duration, cpu_weight: 0.8, memory_mb: 2,
-                   params: {role: robust_estimator, cost_class: cheap, domains: [planning]}}
+                   params: {role: robust_estimator, cost_class: cheap, domains: [planning, planning_stable]}}
   capacity_forecaster: {description: Forecasts realised capacity from history, cpu_weight: 1.0, memory_mb: 4,
-                        params: {role: change_detector, cost_class: cheap, domains: [planning]}}
+                        params: {role: change_detector, cost_class: cheap, domains: [planning, planning_stable]}}
   feasibility_checker: {description: Drops selections exceeding nominal capacity, cpu_weight: 0.3, memory_mb: 1,
-                        params: {role: rule_check, cost_class: cheap, domains: [planning]}}
+                        params: {role: rule_check, cost_class: cheap, domains: [planning, planning_stable]}}
   lookahead_planner: {description: Multi-tick deadline-aware knapsack (expensive), cpu_weight: 6.0, memory_mb: 24,
-                      params: {role: expensive_analyzer, cost_class: expensive, domains: [planning]}}
+                      params: {role: expensive_analyzer, cost_class: expensive, domains: [planning, planning_stable]}}
+  # v0.3 structural twins (blind-transfer domains): different names, same roles/cost classes, same implementations
+  flux_zscore: {description: Twin of statistical_detector, cpu_weight: 1.0, memory_mb: 4, params: {role: broad_filter, cost_class: cheap, domains: [telemetry_grid, lab_assay]}}
+  robust_flux: {description: Twin of anomaly_detector, cpu_weight: 1.2, memory_mb: 4, params: {role: robust_estimator, cost_class: cheap, domains: [telemetry_grid, lab_assay]}}
+  flux_delta: {description: Twin of rate_detector, cpu_weight: 0.8, memory_mb: 2, params: {role: change_detector, cost_class: cheap, domains: [telemetry_grid, lab_assay]}}
+  flux_bounds: {description: Twin of range_validator, cpu_weight: 0.3, memory_mb: 1, params: {role: rule_check, cost_class: cheap, domains: [telemetry_grid, lab_assay]}}
+  flux_relation: {description: Twin of consistency_checker, cpu_weight: 0.6, memory_mb: 2, params: {role: consistency_check, cost_class: cheap, domains: [telemetry_grid, lab_assay]}}
+  request_ranker: {description: Twin of priority_filter, cpu_weight: 0.4, memory_mb: 2, params: {role: broad_filter, cost_class: cheap, domains: [allocation]}}
+  risk_weighting: {description: Twin of risk_estimator, cpu_weight: 0.8, memory_mb: 2, params: {role: robust_estimator, cost_class: cheap, domains: [allocation]}}
+  bandwidth_forecast: {description: Twin of capacity_forecaster, cpu_weight: 1.0, memory_mb: 4, params: {role: change_detector, cost_class: cheap, domains: [allocation]}}
+  admission_check: {description: Twin of feasibility_checker, cpu_weight: 0.3, memory_mb: 1, params: {role: rule_check, cost_class: cheap, domains: [allocation]}}
+  horizon_scheduler: {description: Twin of lookahead_planner, cpu_weight: 6.0, memory_mb: 24, params: {role: expensive_analyzer, cost_class: expensive, domains: [allocation]}}

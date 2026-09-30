@@ -51,6 +51,9 @@ class EventType(str, Enum):
     TRANSFER_ATTEMPTED = "TRANSFER_ATTEMPTED"
     TRANSFER_COMPLETED = "TRANSFER_COMPLETED"
     RUN_COMPLETED = "RUN_COMPLETED"
+    REGIME_CHANGE_DETECTED = "REGIME_CHANGE_DETECTED"
+    PRINCIPLE_DECISION = "PRINCIPLE_DECISION"
+    ARCHITECTURE_SWITCHED = "ARCHITECTURE_SWITCHED"
 
 
 # The decision-pipeline stage each event type activates on the dashboard.
@@ -65,6 +68,7 @@ STAGE_OF = {
     EventType.RESOURCE_LIMIT_HIT: "EXECUTE", EventType.RESULT_EVALUATED: "EVALUATE",
     EventType.PRINCIPLE_CREATED: "LEARN", EventType.PRINCIPLE_SUPPORTED: "LEARN", EventType.PRINCIPLE_CONTRADICTED: "LEARN",
     EventType.TRANSFER_ATTEMPTED: "MEMORY", EventType.TRANSFER_COMPLETED: "LEARN", EventType.RUN_COMPLETED: "LEARN",
+    EventType.REGIME_CHANGE_DETECTED: "UNDERSTAND", EventType.PRINCIPLE_DECISION: "MEMORY", EventType.ARCHITECTURE_SWITCHED: "DECIDE",
 }
 PIPELINE = ["OBSERVE", "UNDERSTAND", "REQUIREMENTS", "MEMORY", "CANDIDATES", "ECONOMICS", "DECIDE", "VALIDATE", "EXECUTE", "EVALUATE", "LEARN"]
 
@@ -283,6 +287,10 @@ def fold_state(events: List[Event], upto: Optional[int] = None) -> Dict[str, Any
             st["principles"]["supported"].append(p)
         elif t == EventType.PRINCIPLE_CONTRADICTED:
             st["principles"]["contradicted"].append(p)
+        elif t == EventType.REGIME_CHANGE_DETECTED:
+            st.setdefault("regime_detections", []).append({"seq": e.seq, "step": e.step, **p})
+        elif t == EventType.PRINCIPLE_DECISION:
+            st["principles"].setdefault("decisions", []).append({"step": e.step, **p})
         elif t == EventType.RUN_COMPLETED:
             st["completed"] = True
             st["summary"] = p

@@ -38,8 +38,11 @@ class SearchAgent(Agent):
 
     def __init__(self, name, config, registry):
         super().__init__(name, config, registry)
-        path = ROOT / config.get("space", "configs/architecture_space.yaml")
-        self.space = enumerate_space(yaml.safe_load(path.read_text())["space"])
+        self.space_mode = config.get("space", "configs/architecture_space.yaml")
+        if self.space_mode == "auto":
+            self.space = []   # built lazily from the capabilities available in the environment (any vocabulary)
+        else:
+            self.space = enumerate_space(yaml.safe_load((ROOT / self.space_mode).read_text())["space"])
         self.max_evaluations = int(config.get("max_evaluations", 12))
         self.patience = int(config.get("patience", 2))
         self.misses = 0
@@ -49,8 +52,16 @@ class SearchAgent(Agent):
     def known_architectures(self) -> List[ArchitectureIR]:
         return self.space
 
+    def _ensure_space(self, ctx: AgentContext) -> None:
+        if self.space_mode == "auto" and not self.space:
+            from baselines.agm_v2 import enumerate_wide_space
+            avail = set(ctx.env.get("available_capabilities", []))
+            caps = {kind: [n for n in self.registry.names(kind) if not avail or f"{kind}:{n}" in avail] for kind in ("component", "model", "reasoning", "memory", "verification", "tool")}
+            self.space = enumerate_wide_space(caps, big_ok=True)
+
     def _search(self, ctx: AgentContext) -> Optional[ArchitectureIR]:
         from architecture.validate import validate_against_registry
+        self._ensure_space(ctx)
         valid = [ir for ir in self.space if not validate_against_registry(ir, self.registry) and not ctx.validate(ir)]
         if not valid:
             return None
@@ -71,6 +82,7 @@ class SearchAgent(Agent):
         return best_ir
 
     def select_architecture(self, ctx: AgentContext) -> ArchitectureIR:
+        self._ensure_space(ctx)
         need = self.current is None or bool(ctx.validate(self.current))
         last_q = (ctx.last_evaluation or {}).get("quality")
         if last_q is not None and last_q < ctx.target_quality:

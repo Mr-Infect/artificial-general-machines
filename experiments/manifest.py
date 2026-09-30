@@ -56,6 +56,14 @@ class ScheduleSpec(BaseModel):
     steps: int = 5
     step_seconds: float = 10.0
     validation_fraction: float = 0.2
+    validation_mode: str = "prefix"   # prefix: fixed labelled prefix; recent: the most recent labelled batch (v0.3)
+
+
+class RegimeSpec(BaseModel):
+    """v0.3 hidden regime schedule. set = training | heldout; schedule may be given explicitly."""
+    set: str = "training"
+    schedule: Optional[List[Dict[str, Any]]] = None
+    oracle_points: int = 64
 
 
 class AgentSpec(BaseModel):
@@ -78,6 +86,7 @@ class ExperimentSpec(BaseModel):
     events: List[EnvironmentEvent] = Field(default_factory=list)
     agents: List[AgentSpec] = Field(default_factory=lambda: [AgentSpec(name="fixed", type="fixed"), AgentSpec(name="adaptive", type="adaptive")])
     memory_db: Optional[str] = None    # shared structural-memory database (suite-level override)
+    regime: Optional[RegimeSpec] = None
     tags: List[str] = Field(default_factory=list)
 
 
