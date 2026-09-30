@@ -154,7 +154,11 @@ def render_markdown(r: Dict[str, Any]) -> str:
         L.append("| agent | step | outcome | expected_quality | expected_improvement | search_cost | validation_cost | budget_remaining | deadline_remaining_s | rationale |")
         L.append("|---|---|---|---|---|---|---|---|---|---|")
         for d in r["adaptation_decisions"]:
-            L.append(f"| {d['agent']} | {d['step']} | {d['outcome']} | {_fmt(d['expected_quality'])} | {_fmt(d['expected_improvement'])} | {_fmt(d['search_cost'])} | {_fmt(d['validation_cost'])} | {_fmt(d['resource_budget_remaining'])} | {_fmt(d['deadline_remaining_s'])} | {d['rationale']} |")
+            if "inputs" in d:   # v0.2 economics record
+                x = d["inputs"]
+                L.append(f"| {d['agent']} | {d['step']} | {d['outcome']} | {_fmt(x['expected_quality'])} | {_fmt(x['expected_improvement'])} | {_fmt(x['search_cost_usd'])} | {_fmt(x['validation_cost_usd'])} | {_fmt(x['budget_remaining_usd'])} | {_fmt(x['deadline_remaining_s'])} | gain {_fmt(d['expected_gain'])} est.cost {_fmt(d['estimated_adaptation_cost'])} actual {_fmt(d.get('actual_adaptation_cost'))} err {_fmt(d.get('decision_error'))}: {d['rationale'][:160]} |")
+            else:
+                L.append(f"| {d['agent']} | {d['step']} | {d['outcome']} | {_fmt(d['expected_quality'])} | {_fmt(d['expected_improvement'])} | {_fmt(d['search_cost'])} | {_fmt(d['validation_cost'])} | {_fmt(d['resource_budget_remaining'])} | {_fmt(d['deadline_remaining_s'])} | {d['rationale']} |")
     else:
         L.append("- none recorded")
     if r["transfer"]:

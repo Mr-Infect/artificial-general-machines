@@ -3,9 +3,10 @@ from baselines.adaptive import AdaptiveAgent
 from baselines.search import SearchAgent
 from baselines.self_evolving import SelfEvolvingAgent
 from baselines.agm import AGMAgent
+from baselines.agm_v2 import AGMv2Agent
 
 AGENT_TYPES = {"fixed": FixedAgent, "adaptive": AdaptiveAgent, "search": SearchAgent,
-               "self_evolving": SelfEvolvingAgent, "agm": AGMAgent}
+               "self_evolving": SelfEvolvingAgent, "agm": AGMAgent, "agm_v2": AGMv2Agent}
 
 
 def build_agent(name, config, registry):

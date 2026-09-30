@@ -38,7 +38,8 @@ class AgentContext:
                  evaluate_candidate: Callable[[ArchitectureIR, str], CandidateResult],
                  record_decision: Callable[[AdaptationDecision], None],
                  estimate: Callable[[ArchitectureIR], Dict[str, float]],
-                 memory: Any = None):
+                 memory: Any = None, emit: Optional[Callable[..., Any]] = None, principle_memory: Any = None,
+                 domain: Optional[str] = None, alias: Optional[Callable[[str], str]] = None):
         self.experiment_id = experiment_id
         self.agent_name = agent_name
         self.step = step
@@ -54,6 +55,19 @@ class AgentContext:
         self.record_decision = record_decision
         self.estimate = estimate
         self.memory = memory
+        self.principle_memory = principle_memory
+        self.domain = domain or task.get("domain")
+        self._emit = emit
+        self._alias = alias
+
+    def emit(self, event_type: str, **fields: Any) -> Any:
+        """Record an event on the run's event stream (no-op when no log is attached)."""
+        if self._emit is None:
+            return None
+        return self._emit(event_type, **fields)
+
+    def alias(self, architecture_hash: str) -> str:
+        return self._alias(architecture_hash) if self._alias else architecture_hash[:8]
 
     @property
     def env(self) -> Dict[str, Any]:
