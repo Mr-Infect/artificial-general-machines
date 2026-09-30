@@ -11,8 +11,11 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, Iterator, List, Optional
 
-from sqlalchemy import (Column, Float, Integer, String, Text, create_engine,
+import time as _time
+
+from sqlalchemy import (Column, Float, Integer, String, Text, create_engine, event,
                         select)
+from sqlalchemy.exc import OperationalError
 from sqlalchemy.orm import Session, declarative_base, sessionmaker
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -164,24 +167,52 @@ class Database:
     def __init__(self, path: Optional[Path] = None):
         self.path = Path(path) if path else default_db_path()
         self.path.parent.mkdir(parents=True, exist_ok=True)
-        self.engine = create_engine(f"sqlite:///{self.path}", future=True, connect_args={"timeout": 5})
-        Base.metadata.create_all(self.engine)
+        self.engine = create_engine(f"sqlite:///{self.path}", future=True, connect_args={"timeout": 30})
+
+        @event.listens_for(self.engine, "connect")
+        def _pragmas(dbapi_conn, _rec):   # WAL: readers never block writers (dashboard vs. experiment workers)
+            try:
+                cur = dbapi_conn.cursor()
+                cur.execute("PRAGMA journal_mode=WAL")
+                cur.execute("PRAGMA synchronous=NORMAL")
+                cur.execute("PRAGMA busy_timeout=30000")
+                cur.close()
+            except Exception:
+                pass
+        self._retry(lambda: Base.metadata.create_all(self.engine))
         self._session_factory = sessionmaker(bind=self.engine, future=True, expire_on_commit=False)
 
     def session(self) -> Session:
         return self._session_factory()
 
+    @staticmethod
+    def _retry(fn, attempts: int = 6):
+        """Retry on 'database is locked' with backoff; experiment records must never be lost to contention."""
+        delay = 0.5
+        for i in range(attempts):
+            try:
+                return fn()
+            except OperationalError as e:
+                if "locked" not in str(e).lower() or i == attempts - 1:
+                    raise
+                _time.sleep(delay)
+                delay = min(delay * 2, 8.0)
+
     # --- writers -----------------------------------------------------
     def add(self, row: Base) -> None:
-        with self.session() as s:
-            s.merge(row)
-            s.commit()
+        def _do():
+            with self.session() as s:
+                s.merge(row)
+                s.commit()
+        self._retry(_do)
 
     def add_all(self, rows: List[Base]) -> None:
-        with self.session() as s:
-            for r in rows:
-                s.merge(r)
-            s.commit()
+        def _do():
+            with self.session() as s:
+                for r in rows:
+                    s.merge(r)
+                s.commit()
+        self._retry(_do)
 
     def add_metric(self, experiment_id: str, agent: str, step: Optional[int], name: str, value: float, unit: str = "") -> None:
         self.add(MetricRow(experiment_id=experiment_id, agent=agent, step=step, name=name, value=float(value), unit=unit))

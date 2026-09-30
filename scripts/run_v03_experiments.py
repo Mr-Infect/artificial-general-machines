@@ -117,6 +117,14 @@ def job(args):
     return out
 
 
+def job_with_retry(args):
+    res = job(args)
+    if res["error"] and "locked" in res["error"].lower():
+        time.sleep(10)
+        res = job(args)
+    return res
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--seeds", type=int, default=30)
@@ -142,7 +150,7 @@ def main():
     log = (V03 / "driver_log.jsonl").open("a")
     print(f"{len(jobs)} jobs (1 per seed), {args.workers} workers, executor={args.executor}", flush=True)
     with Pool(args.workers) as pool:
-        for i, res in enumerate(pool.imap_unordered(job, jobs)):
+        for i, res in enumerate(pool.imap_unordered(job_with_retry, jobs)):
             log.write(json.dumps(res) + "\n"); log.flush()
             print(f"[{i + 1}/{len(jobs)}] seed {res['seed']} {'ERROR' if res['error'] else 'ok'} {res['seconds']:.0f}s (elapsed {time.time() - t0:.0f}s)", flush=True)
             if res["error"]:

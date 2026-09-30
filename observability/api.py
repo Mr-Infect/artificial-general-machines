@@ -33,8 +33,15 @@ app = FastAPI(title="AGM Architecture Observatory", version="0.2")
 _registry = CapabilityRegistry.load()
 
 
+_DB_CACHE: Dict[str, Database] = {}
+_RUNS_CACHE: Dict[str, Any] = {"t": 0.0, "value": None}
+
+
 def db(path: Optional[str] = None) -> Database:
-    return Database(Path(path)) if path else Database()
+    key = str(Path(path)) if path else "__default__"
+    if key not in _DB_CACHE:
+        _DB_CACHE[key] = Database(Path(path)) if path else Database()
+    return _DB_CACHE[key]
 
 
 def _events(run_id: str, path: Optional[str] = None) -> List[Event]:
@@ -62,6 +69,9 @@ def all_db_paths() -> List[Path]:
 
 @app.get("/runs")
 def runs(db_path: Optional[str] = None):
+    import time as _t
+    if not db_path and _RUNS_CACHE["value"] is not None and _t.time() - _RUNS_CACHE["t"] < 20:
+        return _RUNS_CACHE["value"]
     out = []
     for path in ([Path(db_path)] if db_path else all_db_paths()):
         try:
@@ -75,6 +85,8 @@ def runs(db_path: Optional[str] = None):
         except Exception:
             continue
     out.sort(key=lambda r: r["started"] or "")
+    if not db_path:
+        _RUNS_CACHE["t"], _RUNS_CACHE["value"] = _t.time(), out
     return out
 
 
