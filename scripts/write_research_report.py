@@ -51,8 +51,15 @@ def main():
     L = []
     L.append("# AGM v0.2 Research Report\n")
     L.append("**Question.** Is there measurable evidence that AGM is learning transferable principles of computational organization, rather than merely searching, mutating, or memorizing architectures?\n")
-    if n_met == len(res["criteria"]):
+    n_cells = len(mat)
+    if n_met == len(res["criteria"]) and len(cells_better) > n_cells / 2 and not cells_worse:
         answer = "**Answer: yes, with the alternative explanations listed in §9.**"
+    elif n_met == len(res["criteria"]):
+        answer = (f"**Answer: weak and direction-dependent; not a general capability.** By the letter of the pre-registered criteria (which required a significant "
+                  f"cost reduction in *any* source→target cell) all {n_met} of {len(res['criteria'])} are met. Substantively, transferred memory reduced adaptation cost in "
+                  f"{len(cells_better)} of {n_cells} directions ({', '.join(cells_better)}), *increased* it significantly in {len(cells_worse)} ({', '.join(cells_worse)}) and had no "
+                  f"effect in {len(cells_null)}. The pre-registered criterion was too lenient; it is kept here unchanged and tightened in v0.3 (majority of transfer "
+                  f"environments must improve and none may be significantly harmed).")
     elif crit["D"]["met"] or crit["G"]["met"]:
         answer = "**Answer: uncertain.** Some transfer benefit was measured but not all pre-registered criteria hold."
     else:
@@ -154,6 +161,7 @@ def main():
 
     L.append("## 11. Conclusion\n")
     L.append(answer)
+    L.append(f"\nDirection-level summary of the primary metric (paired Δ adaptation cost, memory − cold): reduced in {cells_better or 'none'}; increased in {cells_worse or 'none'}; no significant change in {cells_null or 'none'}.")
     L.append(f"\nWhat the laboratory established in v0.2: (i) architectural principles can be extracted, stored inspectably, instantiated in a different domain's vocabulary and tested with recorded epistemic outcomes; (ii) the machine records and can be audited on its adaptation economics; (iii) over {e1.get('B', {}).get('n_runs', 0)} seeds and a 3×3 transfer matrix, prior architectural knowledge did not reduce the cost of finding a useful architecture in a new domain. The most valuable output of v0.2 is that this negative result is now measured with confidence intervals rather than suspected.\n")
     L.append("Artifacts: `results/v02/analysis/analysis.md`, per-experiment bundles under `results/v02/runs/`, manifests under `results/v02/manifests/`, memories under `results/v02/memory/`.")
     (ROOT / "docs/V0.2_RESEARCH_REPORT.md").write_text("\n".join(L) + "\n")
