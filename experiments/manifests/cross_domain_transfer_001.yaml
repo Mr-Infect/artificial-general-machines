@@ -1,0 +1,11 @@
+# First research benchmark (Section 16).
+#   python -m experiments.run experiments/manifests/cross_domain_transfer_001.yaml
+#   python -m experiments.report --suite cross_domain_001
+# Key question: does structural experience learned in Domain A improve adaptation in Domain B?
+# The expected result is not encoded anywhere; the suite report shows paired differences with CIs.
+suite:
+  name: cross_domain_transfer_001
+  memory_db: results/memory/cross_domain_001.sqlite
+  experiments:
+    - domain_a_network.yaml
+    - domain_b_scientific.yaml

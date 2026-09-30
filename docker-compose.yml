@@ -1,0 +1,15 @@
+# Supporting services only (Section 2). The sandbox containers are launched by the
+# runner directly with explicit limits and are NOT defined here.
+services:
+  api:
+    image: python:3.10-slim
+    working_dir: /app
+    volumes:
+      - ./:/app:ro
+      - ./results:/app/results
+    environment:
+      AGM_DB_PATH: results/agm_lab.sqlite
+    command: sh -c "pip install -q -r requirements.txt && uvicorn core.api:app --host 0.0.0.0 --port 8000"
+    ports:
+      - "127.0.0.1:8000:8000"
+    mem_limit: 512m

@@ -1,0 +1,14 @@
+# Predefined search space for the B2 architecture-search baseline.
+# The cartesian product is enumerated and invalid combinations are dropped.
+space:
+  perception.components:
+    - [anomaly_detector]
+    - [statistical_detector]
+    - [statistical_detector, anomaly_detector]
+    - [statistical_detector, anomaly_detector, rate_detector]
+    - [range_validator, consistency_checker]
+    - [range_validator, consistency_checker, anomaly_detector]
+  reasoning.type: [direct, parallel, hierarchical]
+  reasoning.model: [small_reasoner, large_reasoner]
+  memory.type: [none, episodic]
+  verification.type: [none, rule_based, execution_based]

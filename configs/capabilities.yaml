@@ -1,0 +1,61 @@
+# Capability registry (Section 5). Deliberately small; extend by adding entries.
+# Costs are SIMULATED accounting values used for resource/monetary comparisons.
+# No real LLM is invoked in v0.1: "models" are compute profiles executed in the sandbox.
+models:
+  small_reasoner:
+    description: Cheap combiner over detector scores (mean + threshold).
+    cost_per_call: 0.0005
+    latency_ms: 40
+    memory_mb: 32
+    cpu_weight: 1.0
+    tokens_per_call: 300
+  large_reasoner:
+    description: Multi-scale iterative combiner; more compute, better calibration.
+    cost_per_call: 0.004
+    latency_ms: 250
+    memory_mb: 128
+    cpu_weight: 4.0
+    tokens_per_call: 1800
+  classifier:
+    description: Fixed-threshold classifier over a single score.
+    cost_per_call: 0.0001
+    latency_ms: 10
+    memory_mb: 16
+    cpu_weight: 0.5
+    tokens_per_call: 0
+  embedding_model:
+    description: Windowed feature embedding used by vector memory.
+    cost_per_call: 0.0002
+    latency_ms: 30
+    memory_mb: 64
+    cpu_weight: 1.5
+    tokens_per_call: 120
+reasoning:
+  direct: {cpu_weight: 1.0, latency_ms: 5}
+  sequential: {cpu_weight: 1.5, latency_ms: 10}
+  parallel: {cpu_weight: 1.2, latency_ms: 8}
+  hierarchical: {cpu_weight: 2.0, latency_ms: 15}
+  iterative: {cpu_weight: 3.0, latency_ms: 30}
+memory:
+  none: {memory_mb: 0, cpu_weight: 0}
+  episodic: {memory_mb: 8, cpu_weight: 0.2}
+  vector: {memory_mb: 48, cpu_weight: 0.8}
+  graph: {memory_mb: 64, cpu_weight: 1.0}
+verification:
+  none: {cpu_weight: 0, latency_ms: 0}
+  rule_based: {cpu_weight: 0.3, latency_ms: 5}
+  model_based: {cpu_weight: 2.0, latency_ms: 60, cost_per_call: 0.001}
+  execution_based: {cpu_weight: 1.5, latency_ms: 40}
+tools:
+  python: {cpu_weight: 1.0}
+  parser: {cpu_weight: 0.5}
+  database: {cpu_weight: 0.5, memory_mb: 32}
+  search: {cpu_weight: 0.5, requires_network: true, cost_per_call: 0.002, latency_ms: 300}
+  simulator: {cpu_weight: 3.0, memory_mb: 96}
+# Perception components available to the sandbox runner (sandbox/runner.py).
+components:
+  statistical_detector: {description: Rolling z-score detector, cpu_weight: 1.0, memory_mb: 4}
+  anomaly_detector: {description: Median absolute deviation detector, cpu_weight: 1.2, memory_mb: 4}
+  rate_detector: {description: First-difference burst detector, cpu_weight: 0.8, memory_mb: 2}
+  range_validator: {description: Physical/protocol range rule checker, cpu_weight: 0.3, memory_mb: 1}
+  consistency_checker: {description: Cross-feature relation checker, cpu_weight: 0.6, memory_mb: 2}

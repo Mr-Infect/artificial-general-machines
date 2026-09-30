@@ -1,0 +1,22 @@
+# Preset architectures for the B1 adaptive agent. It may only choose among these.
+presets:
+  lightweight:
+    perception: {mode: single, components: [anomaly_detector], window: 50}
+    reasoning: {type: direct, model: small_reasoner, threshold: 0.5}
+    memory: {type: none}
+    verification: {type: none}
+  standard:
+    perception: {mode: parallel, components: [statistical_detector, anomaly_detector, rate_detector], window: 50}
+    reasoning: {type: parallel, model: small_reasoner, threshold: 0.5}
+    memory: {type: none}
+    verification: {type: rule_based}
+  verified:
+    perception: {mode: parallel, components: [range_validator, consistency_checker, anomaly_detector], window: 50}
+    reasoning: {type: parallel, model: small_reasoner, threshold: 0.5}
+    memory: {type: none}
+    verification: {type: rule_based}
+  heavy:
+    perception: {mode: parallel, components: [statistical_detector, anomaly_detector, rate_detector], window: 50}
+    reasoning: {type: hierarchical, model: large_reasoner, threshold: 0.45}
+    memory: {type: episodic}
+    verification: {type: execution_based}
