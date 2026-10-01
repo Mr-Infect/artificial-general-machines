@@ -1,0 +1,1834 @@
+{
+ "pairs": {},
+ "attempts": {
+  "fixed": [],
+  "adaptive": [],
+  "search": [],
+  "task_memory": [],
+  "architecture_memory": [],
+  "always_adapt": [],
+  "never_adapt": [],
+  "agm_cold": [],
+  "agm_full": [
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   }
+  ],
+  "agm_no_principle": [],
+  "agm_no_archmem": [
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   }
+  ],
+  "agm_no_negative": [
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   }
+  ],
+  "agm_no_economics": [
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   }
+  ],
+  "agm_no_regime": [
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "lab_assay",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   }
+  ]
+ },
+ "completions": {
+  "fixed": [],
+  "adaptive": [],
+  "search": [],
+  "task_memory": [],
+  "architecture_memory": [],
+  "always_adapt": [],
+  "never_adapt": [],
+  "agm_cold": [],
+  "agm_full": [
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "step": 0,
+    "kind": "inconclusive",
+    "target_domain": "lab_assay",
+    "selected": true,
+    "task_quality": 0.0
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "step": 1,
+    "kind": "inconclusive",
+    "target_domain": "lab_assay",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "step": 2,
+    "kind": "inconclusive",
+    "target_domain": "lab_assay",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "step": 3,
+    "kind": "inconclusive",
+    "target_domain": "lab_assay",
+    "selected": true,
+    "task_quality": 0.0
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "step": 4,
+    "kind": "supported",
+    "target_domain": "lab_assay",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "step": 4,
+    "kind": "supported",
+    "target_domain": "lab_assay",
+    "selected": false,
+    "task_quality": null
+   }
+  ],
+  "agm_no_principle": [],
+  "agm_no_archmem": [
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "step": 0,
+    "kind": "inconclusive",
+    "target_domain": "lab_assay",
+    "selected": true,
+    "task_quality": 0.0
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "step": 1,
+    "kind": "inconclusive",
+    "target_domain": "lab_assay",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "step": 2,
+    "kind": "inconclusive",
+    "target_domain": "lab_assay",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "step": 3,
+    "kind": "inconclusive",
+    "target_domain": "lab_assay",
+    "selected": true,
+    "task_quality": 0.0
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "step": 4,
+    "kind": "supported",
+    "target_domain": "lab_assay",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "step": 4,
+    "kind": "supported",
+    "target_domain": "lab_assay",
+    "selected": false,
+    "task_quality": null
+   }
+  ],
+  "agm_no_negative": [
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "step": 0,
+    "kind": "inconclusive",
+    "target_domain": "lab_assay",
+    "selected": true,
+    "task_quality": 0.0
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "step": 1,
+    "kind": "inconclusive",
+    "target_domain": "lab_assay",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "step": 2,
+    "kind": "inconclusive",
+    "target_domain": "lab_assay",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "step": 3,
+    "kind": "inconclusive",
+    "target_domain": "lab_assay",
+    "selected": true,
+    "task_quality": 0.0
+   }
+  ],
+  "agm_no_economics": [
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "step": 0,
+    "kind": "inconclusive",
+    "target_domain": "lab_assay",
+    "selected": true,
+    "task_quality": 0.0
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "step": 1,
+    "kind": "inconclusive",
+    "target_domain": "lab_assay",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "step": 2,
+    "kind": "inconclusive",
+    "target_domain": "lab_assay",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "step": 3,
+    "kind": "inconclusive",
+    "target_domain": "lab_assay",
+    "selected": true,
+    "task_quality": 0.0
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "step": 4,
+    "kind": "supported",
+    "target_domain": "lab_assay",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "step": 4,
+    "kind": "supported",
+    "target_domain": "lab_assay",
+    "selected": false,
+    "task_quality": null
+   }
+  ],
+  "agm_no_regime": [
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "step": 0,
+    "kind": "inconclusive",
+    "target_domain": "lab_assay",
+    "selected": true,
+    "task_quality": 0.0
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "step": 1,
+    "kind": "inconclusive",
+    "target_domain": "lab_assay",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "step": 2,
+    "kind": "inconclusive",
+    "target_domain": "lab_assay",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "step": 3,
+    "kind": "inconclusive",
+    "target_domain": "lab_assay",
+    "selected": true,
+    "task_quality": 0.0
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "step": 4,
+    "kind": "supported",
+    "target_domain": "lab_assay",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "step": 4,
+    "kind": "supported",
+    "target_domain": "lab_assay",
+    "selected": false,
+    "task_quality": null
+   }
+  ]
+ },
+ "principle_reuse": {
+  "fixed": null,
+  "adaptive": null,
+  "search": null,
+  "task_memory": 0,
+  "architecture_memory": 0,
+  "always_adapt": 0,
+  "never_adapt": 0,
+  "agm_cold": 0,
+  "agm_full": 6,
+  "agm_no_principle": 0,
+  "agm_no_archmem": 6,
+  "agm_no_negative": 6,
+  "agm_no_economics": 6,
+  "agm_no_regime": 6
+ }
+}

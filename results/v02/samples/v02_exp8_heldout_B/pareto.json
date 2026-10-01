@@ -1,0 +1,50 @@
+{
+ "objectives": {
+  "quality_mean": true,
+  "latency_ms": false,
+  "max_memory_mb": false,
+  "adaptation_cost": false,
+  "architecture_evaluations": false,
+  "failure_rate": false
+ },
+ "points": {
+  "v2_cold": {
+   "quality_mean": 0.35222734254992316,
+   "latency_ms": 49.88540260019363,
+   "max_memory_mb": 132.4609375,
+   "adaptation_cost": 0.003,
+   "architecture_evaluations": 6,
+   "failure_rate": 0.0
+  },
+  "v2_warm_full": {
+   "quality_mean": 0.35222734254992316,
+   "latency_ms": 52.73358800004644,
+   "max_memory_mb": 132.4609375,
+   "adaptation_cost": 0.0035,
+   "architecture_evaluations": 7,
+   "failure_rate": 0.0
+  }
+ },
+ "classification": {
+  "v2_cold": "non-dominated",
+  "v2_warm_full": "dominated"
+ },
+ "frontier": [
+  "v2_cold"
+ ],
+ "pareto_cost_quality": [
+  "v2_cold"
+ ],
+ "resource_normalized": {
+  "v2_cold": {
+   "quality_per_adaptation_cost": 117.40911418330772,
+   "quality_per_architecture_evaluation": 0.05870455709165386,
+   "raw_quality": 0.35222734254992316
+  },
+  "v2_warm_full": {
+   "quality_per_adaptation_cost": 100.63638358569233,
+   "quality_per_architecture_evaluation": 0.05031819179284617,
+   "raw_quality": 0.35222734254992316
+  }
+ }
+}

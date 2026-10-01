@@ -1,0 +1,105 @@
+{
+ "pairs": {},
+ "attempts": {
+  "v2_cold": [],
+  "v2_warm_full": [
+   {
+    "principle_id": "prn_1790769705_428b32b44f7d",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "network",
+    "status": "UNTESTED"
+   },
+   {
+    "principle_id": "prn_1790769703_ed45dfd63b0a",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "network",
+    "status": "UNTESTED"
+   },
+   {
+    "principle_id": "prn_1790769705_428b32b44f7d",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "network",
+    "status": "INCONCLUSIVE"
+   },
+   {
+    "principle_id": "prn_1790769703_ed45dfd63b0a",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "network",
+    "status": "UNTESTED"
+   },
+   {
+    "principle_id": "prn_1790769705_428b32b44f7d",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "network",
+    "status": "INCONCLUSIVE"
+   },
+   {
+    "principle_id": "prn_1790769703_ed45dfd63b0a",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "network",
+    "status": "UNTESTED"
+   },
+   {
+    "principle_id": "prn_1790769705_428b32b44f7d",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "network",
+    "status": "INCONCLUSIVE"
+   },
+   {
+    "principle_id": "prn_1790769703_ed45dfd63b0a",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "network",
+    "status": "UNTESTED"
+   },
+   {
+    "principle_id": "prn_1790769705_428b32b44f7d",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "network",
+    "status": "INCONCLUSIVE"
+   },
+   {
+    "principle_id": "prn_1790769703_ed45dfd63b0a",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "network",
+    "status": "UNTESTED"
+   }
+  ]
+ },
+ "completions": {
+  "v2_cold": [],
+  "v2_warm_full": [
+   {
+    "principle_id": "prn_1790769705_428b32b44f7d",
+    "step": 0,
+    "kind": "contradicted",
+    "target_domain": "network",
+    "selected": false,
+    "task_quality": null
+   }
+  ]
+ },
+ "principle_reuse": {
+  "v2_cold": 0,
+  "v2_warm_full": 1
+ }
+}

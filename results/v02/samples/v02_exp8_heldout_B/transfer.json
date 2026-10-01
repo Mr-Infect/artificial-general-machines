@@ -1,0 +1,113 @@
+{
+ "pairs": {},
+ "attempts": {
+  "v2_cold": [],
+  "v2_warm_full": [
+   {
+    "principle_id": "prn_1790769670_822d4f2a3f36",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific",
+    "status": "UNTESTED"
+   },
+   {
+    "principle_id": "prn_1790769747_ba19e9f72963",
+    "source_domains": [
+     "planning"
+    ],
+    "target_domain": "scientific",
+    "status": "UNTESTED"
+   },
+   {
+    "principle_id": "prn_1790769670_822d4f2a3f36",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific",
+    "status": "INCONCLUSIVE"
+   },
+   {
+    "principle_id": "prn_1790769747_ba19e9f72963",
+    "source_domains": [
+     "planning"
+    ],
+    "target_domain": "scientific",
+    "status": "INCONCLUSIVE"
+   },
+   {
+    "principle_id": "prn_1790769670_822d4f2a3f36",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific",
+    "status": "INCONCLUSIVE"
+   },
+   {
+    "principle_id": "prn_1790769747_ba19e9f72963",
+    "source_domains": [
+     "planning"
+    ],
+    "target_domain": "scientific",
+    "status": "INCONCLUSIVE"
+   },
+   {
+    "principle_id": "prn_1790769670_822d4f2a3f36",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific",
+    "status": "INCONCLUSIVE"
+   },
+   {
+    "principle_id": "prn_1790769747_ba19e9f72963",
+    "source_domains": [
+     "planning"
+    ],
+    "target_domain": "scientific",
+    "status": "INCONCLUSIVE"
+   },
+   {
+    "principle_id": "prn_1790769670_822d4f2a3f36",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific",
+    "status": "INCONCLUSIVE"
+   },
+   {
+    "principle_id": "prn_1790769747_ba19e9f72963",
+    "source_domains": [
+     "planning"
+    ],
+    "target_domain": "scientific",
+    "status": "INCONCLUSIVE"
+   }
+  ]
+ },
+ "completions": {
+  "v2_cold": [],
+  "v2_warm_full": [
+   {
+    "principle_id": "prn_1790769670_822d4f2a3f36",
+    "step": 0,
+    "kind": "contradicted",
+    "target_domain": "scientific",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790769747_ba19e9f72963",
+    "step": 0,
+    "kind": "contradicted",
+    "target_domain": "scientific",
+    "selected": false,
+    "task_quality": null
+   }
+  ]
+ },
+ "principle_reuse": {
+  "v2_cold": 0,
+  "v2_warm_full": 2
+ }
+}

@@ -1,0 +1,48 @@
+{
+ "pairs": {},
+ "attempts": {
+  "agm_train": [
+   {
+    "principle_id": "prn_1790781838_643c9d3d5c4f",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "planning",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790781861_4853b38713fa",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "planning",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   }
+  ]
+ },
+ "completions": {
+  "agm_train": [
+   {
+    "principle_id": "prn_1790781838_643c9d3d5c4f",
+    "step": 0,
+    "kind": "contradicted",
+    "target_domain": "planning",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790781861_4853b38713fa",
+    "step": 0,
+    "kind": "supported",
+    "target_domain": "planning",
+    "selected": false,
+    "task_quality": null
+   }
+  ]
+ },
+ "principle_reuse": {
+  "agm_train": 5
+ }
+}

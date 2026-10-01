@@ -1,0 +1,78 @@
+experiment:
+  name: v02_exp8_heldout_C
+  description: "Exp 8 held-out conditions in domain C (cpu 0.5, memory 100MB from\
+    \ t=0, noise 0.3, verification cost \xD78): cold vs warm memory learned under\
+    \ standard conditions."
+  tags:
+  - v02_exp8
+  seed: 5226
+  repeats: 1
+  task:
+    type: resource_planning
+    domain: planning
+    dataset_size: 2000
+    noise: 0.3
+    anomaly_rate: 0.03
+    verification_required: false
+    priority: 1
+  environment:
+    cpu: 0.5
+    memory_mb: 100
+    latency_ms: 1500
+    network: true
+    available_capabilities: all
+    verification_cost_factor: 8.0
+  objective:
+    quality_threshold: 0.0
+    top_fraction: 0.1
+  budget:
+    max_seconds: 120
+    max_cost: 0.25
+    step_timeout_s: 30
+  schedule:
+    steps: 5
+    step_seconds: 10
+    validation_fraction: 0.2
+  events:
+  - t: 10
+    type: memory_reduction
+    params:
+      memory_mb: 80
+  - t: 20
+    type: network_loss
+  - t: 20
+    type: capability_removal
+    params:
+      capabilities:
+      - model:large_reasoner
+      - tool:search
+      - component:lookahead_planner
+  - t: 30
+    type: latency_reduction
+    params:
+      latency_ms: 800
+  - t: 40
+    type: priority_increase
+    params:
+      priority: 3
+  agents:
+  - name: v2_cold
+    type: agm_v2
+    max_evaluations: 6
+    memory_mode: none
+    economics_mode: economic
+    explore_all: false
+  - name: v2_warm_full
+    type: agm_v2
+    max_evaluations: 6
+    memory_mode: full
+    economics_mode: economic
+    explore_all: false
+    memory:
+      read: true
+      write: true
+      db: /home/cool/AGM-Laboratory/results/v02/memory/exp8_warm_C_26.sqlite
+    principle_memory:
+      read: true
+      write: true
+      db: /home/cool/AGM-Laboratory/results/v02/memory/exp8_warm_C_26.sqlite

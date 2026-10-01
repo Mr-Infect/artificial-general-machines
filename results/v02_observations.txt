@@ -1,0 +1,166 @@
+AGM LABORATORY v0.2 - INTERIM OBSERVATIONS (plain text)
+generated 2026-09-30T19:01; based on 124 finished experiments from the first ~23 of 60 jobs
+(the 30-seed program was paused at 29/60 jobs; final numbers will come from results/v02/analysis/analysis.md after it completes)
+executor: process (same fixed runner for every agent); code commits: cad9294d4e, d07b0f410b
+
+HOW TO READ: paired deltas are (variant - reference) over seeds; CI = bootstrap 95%; SIGNIFICANT = CI excludes 0.
+adaptation cost is simulated USD; evaluations = sandbox candidate evaluations; evaluations-to-target = evaluations until a
+candidate first reached the per-dataset target (top decile of the enumerated architecture space on the validation slice).
+
+1) EXPERIMENT 1 - REPEATABILITY (Domain A network -> Domain B scientific)
+  Domain A: n=13 seeds
+    adaptive         quality 0.919 (sd 0.039, n=13); evals 0 (sd 0, n=13); adapt cost 0 (sd 0, n=13); e2t -; fail rate 0 (sd 0, n=13); target reached 0.92
+    agm_v1_cold      quality 0.966 (sd 0.028, n=13); evals 3.46 (sd 2.6, n=13); adapt cost 0.00173 (sd 0.0013, n=13); e2t -; fail rate 0 (sd 0, n=13); target reached 1.00
+    agm_v2_cold      quality 0.963 (sd 0.029, n=13); evals 6.38 (sd 5.8, n=13); adapt cost 0.00319 (sd 0.0029, n=13); e2t 2.17 (sd 2.7, n=12); fail rate 0 (sd 0, n=13); target reached 1.00
+    agm_v2_explore   quality 0.963 (sd 0.029, n=13); evals 30.2 (sd 7.4, n=13); adapt cost 0.0151 (sd 0.0037, n=13); e2t 9.33 (sd 3.1, n=12); fail rate 0 (sd 0, n=13); target reached 1.00
+    fixed            quality 0.168 (sd 0.019, n=13); evals 0 (sd 0, n=13); adapt cost 0 (sd 0, n=13); e2t -; fail rate 0.8 (sd 0, n=13); target reached 0.08
+    search           quality 0.925 (sd 0.078, n=13); evals 17.2 (sd 5.3, n=13); adapt cost 0.0223 (sd 0.0064, n=13); e2t -; fail rate 0 (sd 0, n=13); target reached 0.92
+    self_evolving    quality 0.449 (sd 0.31, n=13); evals 4.54 (sd 2.1, n=13); adapt cost 0.00289 (sd 0.002, n=13); e2t -; fail rate 0.477 (sd 0.36, n=13); target reached 0.31
+  Domain B: n=13 seeds
+    adaptive         quality 0.63 (sd 0.14, n=13); evals 0 (sd 0, n=13); adapt cost 0 (sd 0, n=13); e2t -; fail rate 0 (sd 0, n=13); target reached 0.62
+    agm_v1_cold      quality 0.605 (sd 0.21, n=13); evals 6.92 (sd 2.3, n=13); adapt cost 0.00346 (sd 0.0011, n=13); e2t -; fail rate 0 (sd 0, n=13); target reached 0.85
+    agm_v1_memory    quality 0.603 (sd 0.21, n=13); evals 6.92 (sd 2.3, n=13); adapt cost 0.00346 (sd 0.0011, n=13); e2t -; fail rate 0 (sd 0, n=13); target reached 0.85
+    agm_v2_cold      quality 0.605 (sd 0.21, n=13); evals 13.7 (sd 9.9, n=13); adapt cost 0.00685 (sd 0.0049, n=13); e2t 4.11 (sd 4.1, n=9); fail rate 0 (sd 0, n=13); target reached 0.85
+    agm_v2_memory    quality 0.603 (sd 0.21, n=13); evals 13.8 (sd 9.7, n=13); adapt cost 0.00692 (sd 0.0049, n=13); e2t 4.44 (sd 4.1, n=9); fail rate 0 (sd 0, n=13); target reached 0.85
+    fixed            quality 0.131 (sd 0.058, n=13); evals 0 (sd 0, n=13); adapt cost 0 (sd 0, n=13); e2t -; fail rate 0.8 (sd 0, n=13); target reached 0.38
+    search           quality 0.614 (sd 0.19, n=13); evals 18.9 (sd 5.4, n=13); adapt cost 0.0227 (sd 0.007, n=13); e2t -; fail rate 0 (sd 0, n=13); target reached 0.77
+    self_evolving    quality 0.399 (sd 0.22, n=13); evals 5.31 (sd 2, n=13); adapt cost 0.00288 (sd 0.0012, n=13); e2t -; fail rate 0.354 (sd 0.33, n=13); target reached 0.46
+    memory - cold (v1): quality -0.001775 [CI -0.00533, +0] n.s.  (+0/-1/=12, n=13); evals +0 [CI +0, +0] n.s.  (+0/-0/=13, n=13); adapt cost +0 [CI +0, +0] n.s.  (+0/-0/=13, n=13); e2t no pairs
+    memory - cold (v2): quality -0.001775 [CI -0.00533, +0] n.s.  (+0/-1/=12, n=13); evals +0.1538 [CI +0, +0.462] n.s.  (+1/-0/=12, n=13); adapt cost +7.692e-05 [CI +0, +0.000231] n.s.  (+1/-0/=12, n=13); e2t +0.3333 [CI +0, +0.889] n.s.  (+2/-0/=7, n=9)
+
+2) EXPERIMENT 2 - TRANSFER MATRIX (AGM v0.2 with memory from source S vs cold, in target T)
+  B->A: adapt cost +0.001091 [CI +0.000545, +0.00168] SIGNIFICANT  (+9/-0/=2, n=11)
+        evals +2.182 [CI +1.09, +3.36] SIGNIFICANT  (+9/-0/=2, n=11); e2t +2.182 [CI +1.09, +3.36] SIGNIFICANT  (+9/-0/=2, n=11)
+        quality +0.005104 [CI +0, +0.0153] n.s.  (+1/-0/=10, n=11); failures +0 [CI +0, +0] n.s.  (+0/-0/=11, n=11); principle reuse mean 2.727272727272727; principle tests {'contradicted': 29, 'inconclusive': 1}
+        cold e2t mean 1.64 (sd 2.1, n=11); transferred-vs-cold final structural distance mean 0.0, identical fraction 1.0
+  C->A: adapt cost +0.0003636 [CI +0.000182, +0.000545] SIGNIFICANT  (+7/-0/=4, n=11)
+        evals +0.7273 [CI +0.364, +1.09] SIGNIFICANT  (+7/-0/=4, n=11); e2t +0.7273 [CI +0.364, +1.09] SIGNIFICANT  (+7/-0/=4, n=11)
+        quality +0 [CI +0, +0] n.s.  (+0/-0/=11, n=11); failures +0 [CI +0, +0] n.s.  (+0/-0/=11, n=11); principle reuse mean 1.1818181818181819; principle tests {'contradicted': 9, 'inconclusive': 4}
+        cold e2t mean 1.64 (sd 2.1, n=11); transferred-vs-cold final structural distance mean 0.0, identical fraction 1.0
+  A->B: adapt cost +0 [CI +0, +0] n.s.  (+0/-0/=11, n=11)
+        evals +0 [CI +0, +0] n.s.  (+0/-0/=11, n=11); e2t +0 [CI +0, +0] n.s.  (+0/-0/=6, n=6)
+        quality -0.002523 [CI -0.00757, +0] n.s.  (+0/-1/=10, n=11); failures +0 [CI +0, +0] n.s.  (+0/-0/=11, n=11); principle reuse mean 1.1818181818181819; principle tests {'inconclusive': 2, 'contradicted': 6, 'supported': 5}
+        cold e2t mean 4.83 (sd 4.6, n=6); transferred-vs-cold final structural distance mean 0.0, identical fraction 1.0
+  C->B: adapt cost -9.091e-05 [CI -0.000409, +0.000136] n.s.  (+1/-1/=9, n=11)
+        evals -0.1818 [CI -0.818, +0.273] n.s.  (+1/-1/=9, n=11); e2t -0.5 [CI -2, +0.5] n.s.  (+1/-1/=4, n=6)
+        quality +0.00202 [CI +0, +0.00606] n.s.  (+1/-0/=10, n=11); failures +0 [CI +0, +0] n.s.  (+0/-0/=11, n=11); principle reuse mean 1.7272727272727273; principle tests {'contradicted': 7, 'inconclusive': 1, 'supported': 9}
+        cold e2t mean 4.83 (sd 4.6, n=6); transferred-vs-cold final structural distance mean 0.01363636363636364, identical fraction 0.9090909090909091
+  A->C: adapt cost +0.00035 [CI +0.0002, +0.0005] SIGNIFICANT  (+7/-0/=3, n=10)
+        evals +0.7 [CI +0.4, +1] SIGNIFICANT  (+7/-0/=3, n=10); e2t +0.7 [CI +0.4, +1] SIGNIFICANT  (+7/-0/=3, n=10)
+        quality -0.002439 [CI -0.00629, +0.000464] n.s.  (+1/-2/=7, n=10); failures +0 [CI +0, +0] n.s.  (+0/-0/=10, n=10); principle reuse mean 1.0; principle tests {'contradicted': 9}
+        cold e2t mean 4 (sd 3.9, n=10); transferred-vs-cold final structural distance mean 0.05000000000000001, identical fraction 0.8
+  B->C: adapt cost +0.0002 [CI +5e-05, +0.00035] SIGNIFICANT  (+4/-0/=6, n=10)
+        evals +0.4 [CI +0.1, +0.7] SIGNIFICANT  (+4/-0/=6, n=10); e2t +0.4 [CI +0.1, +0.7] SIGNIFICANT  (+4/-0/=6, n=10)
+        quality -0.003296 [CI -0.00872, +0] n.s.  (+0/-2/=8, n=10); failures +0 [CI +0, +0] n.s.  (+0/-0/=10, n=10); principle reuse mean 0.9; principle tests {'contradicted': 4, 'supported': 2, 'inconclusive': 2}
+        cold e2t mean 4 (sd 3.9, n=10); transferred-vs-cold final structural distance mean 0.06, identical fraction 0.9
+
+3) EXPERIMENTS 3/4 - MEMORY-MODE ABLATION (variant - cold; warm memory from the two other domains)
+  Domain A:
+    v2_warm_task           adapt cost +0 [CI +0, +0] n.s.  (+0/-0/=11, n=11); e2t +0 [CI +0, +0] n.s.  (+0/-0/=11, n=11); quality +0 [CI +0, +0] n.s.  (+0/-0/=11, n=11)
+    v2_warm_architecture   adapt cost +0.0006364 [CI +0.000409, +0.000909] SIGNIFICANT  (+9/-0/=2, n=11); e2t +1.273 [CI +0.818, +1.82] SIGNIFICANT  (+9/-0/=2, n=11); quality +0 [CI +0, +0] n.s.  (+0/-0/=11, n=11)
+    v2_warm_principle      adapt cost +0.0009091 [CI +0.000545, +0.00132] SIGNIFICANT  (+9/-0/=2, n=11); e2t +1.818 [CI +1.09, +2.64] SIGNIFICANT  (+9/-0/=2, n=11); quality +0.005104 [CI +0, +0.0153] n.s.  (+1/-0/=10, n=11)
+    v2_warm_full           adapt cost +0.001273 [CI +0.000727, +0.00186] SIGNIFICANT  (+9/-0/=2, n=11); e2t +2.636 [CI +1.45, +3.91] SIGNIFICANT  (+9/-0/=2, n=11); quality -0.004997 [CI -0.0216, +0.011] n.s.  (+1/-2/=8, n=11)
+    principle - architecture: adapt cost +0.0002727 [CI +4.55e-05, +0.000545] SIGNIFICANT  (+5/-1/=5, n=11); quality +0.005104 [CI +0, +0.0153] n.s.  (+1/-0/=10, n=11)
+  Domain B:
+    v2_warm_task           adapt cost +0 [CI +0, +0] n.s.  (+0/-0/=11, n=11); e2t +0 [CI +0, +0] n.s.  (+0/-0/=6, n=6); quality +0 [CI +0, +0] n.s.  (+0/-0/=11, n=11)
+    v2_warm_architecture   adapt cost +0 [CI +0, +0] n.s.  (+0/-0/=11, n=11); e2t +0 [CI +0, +0] n.s.  (+0/-0/=6, n=6); quality -0.002523 [CI -0.00757, +0] n.s.  (+0/-1/=10, n=11)
+    v2_warm_principle      adapt cost -0.0001364 [CI -0.000409, +0] n.s.  (+0/-1/=10, n=11); e2t -0.6667 [CI -2, +0] n.s.  (+0/-1/=5, n=6); quality +0.00202 [CI +0, +0.00606] n.s.  (+1/-0/=10, n=11)
+    v2_warm_full           adapt cost -9.091e-05 [CI -0.000273, +0] n.s.  (+0/-1/=10, n=11); e2t -0.5 [CI -1.5, +0] n.s.  (+0/-1/=5, n=6); quality +0.00202 [CI +0, +0.00606] n.s.  (+1/-0/=10, n=11)
+    principle - architecture: adapt cost -0.0001364 [CI -0.000409, +0] n.s.  (+0/-1/=10, n=11); quality +0.004543 [CI +0, +0.0136] n.s.  (+1/-0/=10, n=11)
+  Domain C:
+    v2_warm_task           adapt cost +0 [CI +0, +0] n.s.  (+0/-0/=10, n=10); e2t +0 [CI +0, +0] n.s.  (+0/-0/=10, n=10); quality +0 [CI +0, +0] n.s.  (+0/-0/=10, n=10)
+    v2_warm_architecture   adapt cost +0 [CI +0, +0] n.s.  (+0/-0/=10, n=10); e2t +0 [CI +0, +0] n.s.  (+0/-0/=10, n=10); quality +0 [CI +0, +0] n.s.  (+0/-0/=10, n=10)
+    v2_warm_principle      adapt cost +0.00045 [CI +0.0002, +0.0007] SIGNIFICANT  (+6/-0/=4, n=10); e2t +0.9 [CI +0.4, +1.4] SIGNIFICANT  (+6/-0/=4, n=10); quality -0.004241 [CI -0.0103, +0] n.s.  (+1/-3/=6, n=10)
+    v2_warm_full           adapt cost +0.00045 [CI +0.0002, +0.0007] SIGNIFICANT  (+6/-0/=4, n=10); e2t +0.9 [CI +0.4, +1.4] SIGNIFICANT  (+6/-0/=4, n=10); quality -0.004241 [CI -0.0103, +0] n.s.  (+1/-3/=6, n=10)
+    principle - architecture: adapt cost +0.00045 [CI +0.0002, +0.0007] SIGNIFICANT  (+6/-0/=4, n=10); quality -0.004241 [CI -0.0103, +0] n.s.  (+1/-3/=6, n=10)
+
+4) EXPERIMENT 5 - ADAPTATION ECONOMICS (variant - economic)
+  Domain A: decision shares {"v2_cold": {"ADAPT": 0.67, "PARTIAL_ADAPT": 0.0, "DO_NOT_ADAPT": 0.33, "TERMINATE": 0.0}, "v2_always_adapt": {"ADAPT": 1.0, "PARTIAL_ADAPT": 0.0, "DO_NOT_ADAPT": 0.0, "TERMINATE": 0.0}, "v2_never_adapt": {"ADAPT": 0.2, "PARTIAL_ADAPT": 0.0, "DO_NOT_ADAPT": 0.8, "TERMINATE": 0.0}}
+    v2_always_adapt  evals +1.636 [CI +0.909, +2.45] SIGNIFICANT  (+9/-0/=2, n=11); adapt cost +0.0008182 [CI +0.000455, +0.00123] SIGNIFICANT  (+9/-0/=2, n=11); quality -0.006061 [CI -0.0182, +0] n.s.  (+0/-1/=10, n=11); wall -3.556 [CI -6.77, +0.427] n.s.  (+1/-10/=0, n=11)
+    v2_never_adapt   evals -2.455 [CI -3.18, -1.64] SIGNIFICANT  (+0/-10/=1, n=11); adapt cost -0.001227 [CI -0.00159, -0.000818] SIGNIFICANT  (+0/-10/=1, n=11); quality +0.005195 [CI +0, +0.0156] n.s.  (+1/-0/=10, n=11); wall -5.04 [CI -9.42, -1.12] SIGNIFICANT  (+1/-10/=0, n=11)
+    wasted evals after target: economic 2.27 (sd 1.3, n=11), always 3.91 (sd 0.3, n=11), never 0 (sd 0, n=10)
+    decision error (economic) -0.09 (sd 0.069, n=11); cost-estimate error -0.0261 (sd 0.021, n=11)
+  Domain B: decision shares {"v2_cold": {"ADAPT": 0.95, "PARTIAL_ADAPT": 0.0, "DO_NOT_ADAPT": 0.05, "TERMINATE": 0.0}, "v2_always_adapt": {"ADAPT": 1.0, "PARTIAL_ADAPT": 0.0, "DO_NOT_ADAPT": 0.0, "TERMINATE": 0.0}, "v2_never_adapt": {"ADAPT": 0.29, "PARTIAL_ADAPT": 0.0, "DO_NOT_ADAPT": 0.71, "TERMINATE": 0.0}}
+    v2_always_adapt  evals +0.8182 [CI +0, +2] n.s.  (+3/-0/=8, n=11); adapt cost +0.0004091 [CI +0, +0.001] n.s.  (+3/-0/=8, n=11); quality -0.0006494 [CI -0.00195, +0] n.s.  (+0/-1/=10, n=11); wall -1.697 [CI -4.94, +2] n.s.  (+3/-8/=0, n=11)
+    v2_never_adapt   evals -10.55 [CI -15.3, -6] SIGNIFICANT  (+0/-11/=0, n=11); adapt cost -0.005273 [CI -0.00764, -0.003] SIGNIFICANT  (+0/-11/=0, n=11); quality -0.0005994 [CI -0.0018, +0] n.s.  (+0/-1/=10, n=11); wall -6.051 [CI -9.33, -2.76] SIGNIFICANT  (+1/-10/=0, n=11)
+    wasted evals after target: economic 3.5 (sd 0.84, n=6), always 3.14 (sd 1.6, n=7), never 0.4 (sd 0.55, n=5)
+    decision error (economic) -0.26 (sd 0.24, n=11); cost-estimate error -0.0133 (sd 0.025, n=11)
+  Domain C: decision shares {"v2_cold": {"ADAPT": 1.0, "PARTIAL_ADAPT": 0.0, "DO_NOT_ADAPT": 0.0, "TERMINATE": 0.0}, "v2_always_adapt": {"ADAPT": 1.0, "PARTIAL_ADAPT": 0.0, "DO_NOT_ADAPT": 0.0, "TERMINATE": 0.0}, "v2_never_adapt": {"ADAPT": 0.38, "PARTIAL_ADAPT": 0.0, "DO_NOT_ADAPT": 0.62, "TERMINATE": 0.0}}
+    v2_always_adapt  evals +0 [CI +0, +0] n.s.  (+0/-0/=10, n=10); adapt cost +0 [CI +0, +0] n.s.  (+0/-0/=10, n=10); quality +0 [CI +0, +0] n.s.  (+0/-0/=10, n=10); wall -4.741 [CI -8.11, -1.76] SIGNIFICANT  (+1/-9/=0, n=10)
+    v2_never_adapt   evals -13.9 [CI -17, -10.3] SIGNIFICANT  (+0/-10/=0, n=10); adapt cost -0.00695 [CI -0.0085, -0.00515] SIGNIFICANT  (+0/-10/=0, n=10); quality -0.003367 [CI -0.0134, +0.00374] n.s.  (+1/-3/=6, n=10); wall -9.614 [CI -14.6, -5.75] SIGNIFICANT  (+0/-10/=0, n=10)
+    wasted evals after target: economic 18.4 (sd 8.7, n=10), always 18.4 (sd 8.7, n=10), never 5.33 (sd 2, n=9)
+    decision error (economic) -0.131 (sd 0.049, n=10); cost-estimate error -0.00409 (sd 0.027, n=10)
+
+5) EXPERIMENT 7 - COLD vs WARM (warm - cold)
+  Domain A: e2t +2.636 [CI +1.45, +3.91] SIGNIFICANT  (+9/-0/=2, n=11); adapt cost +0.001273 [CI +0.000727, +0.00186] SIGNIFICANT  (+9/-0/=2, n=11); quality -0.004997 [CI -0.0216, +0.011] n.s.  (+1/-2/=8, n=11); failures +0 [CI +0, +0] n.s.  (+0/-0/=11, n=11)
+  Domain B: e2t -0.5 [CI -1.5, +0] n.s.  (+0/-1/=5, n=6); adapt cost -9.091e-05 [CI -0.000273, +0] n.s.  (+0/-1/=10, n=11); quality +0.00202 [CI +0, +0.00606] n.s.  (+1/-0/=10, n=11); failures +0 [CI +0, +0] n.s.  (+0/-0/=11, n=11)
+  Domain C: e2t +0.9 [CI +0.4, +1.4] SIGNIFICANT  (+6/-0/=4, n=10); adapt cost +0.00045 [CI +0.0002, +0.0007] SIGNIFICANT  (+6/-0/=4, n=10); quality -0.004241 [CI -0.0103, +0] n.s.  (+1/-3/=6, n=10); failures +0 [CI +0, +0] n.s.  (+0/-0/=10, n=10)
+
+6) EXPERIMENT 8 - HELD-OUT CONDITIONS (warm - cold; cpu 0.5, 100MB, noise 0.3, verification cost x8)
+  Domain A (n=11): quality +0.01775 [CI +0, +0.0533] n.s.  (+1/-0/=10, n=11); evals +2.273 [CI +1.27, +3.27] SIGNIFICANT  (+9/-0/=2, n=11); adapt cost +0.001136 [CI +0.000636, +0.00164] SIGNIFICANT  (+9/-0/=2, n=11); principle tests {'contradicted': 23, 'supported': 2, 'inconclusive': 2}
+  Domain B (n=10): quality +0.009566 [CI +0, +0.0279] n.s.  (+2/-0/=8, n=10); evals +0.2 [CI +0, +0.5] n.s.  (+2/-0/=8, n=10); adapt cost +0.0001 [CI +0, +0.00025] n.s.  (+2/-0/=8, n=10); principle tests {'contradicted': 20}
+  Domain C (n=9): quality +0 [CI +0, +0] n.s.  (+0/-0/=9, n=9); evals +0.6667 [CI +0.333, +0.889] SIGNIFICANT  (+6/-0/=3, n=9); adapt cost +0.0003333 [CI +0.000167, +0.000444] SIGNIFICANT  (+6/-0/=3, n=9); principle tests {'contradicted': 7}
+
+7) EXPERIMENT 6 - ARCHITECTURE DISTANCE (final vs initial architecture per run)
+  v02_exp1_A:agm_v2_cold: final dist 0 (sd 0, n=13); identical-to-initial fraction 1.00; novelty levels {'None': 13}; cross-domain selections 0.00
+  v02_exp1_A:agm_v2_explore: final dist 0 (sd 0, n=13); identical-to-initial fraction 1.00; novelty levels {'None': 11, 'A_parameter_variation': 2}; cross-domain selections 0.00
+  v02_exp1_B:agm_v2_cold: final dist 0.0462 (sd 0.072, n=13); identical-to-initial fraction 0.69; novelty levels {'None': 13}; cross-domain selections 0.00
+  v02_exp1_B:agm_v2_memory: final dist 0.0846 (sd 0.18, n=13); identical-to-initial fraction 0.69; novelty levels {'E_unseen_architectural_pattern': 10, 'None': 3}; cross-domain selections 0.25
+  v02_exp2_tgt_A:v2_always_adapt: final dist 0 (sd 0, n=11); identical-to-initial fraction 1.00; novelty levels {'None': 11}; cross-domain selections 0.00
+  v02_exp2_tgt_A:v2_cold: final dist 0 (sd 0, n=11); identical-to-initial fraction 1.00; novelty levels {'None': 11}; cross-domain selections 0.00
+  v02_exp2_tgt_A:v2_from_B: final dist 0 (sd 0, n=11); identical-to-initial fraction 1.00; novelty levels {'E_unseen_architectural_pattern': 10, 'None': 1}; cross-domain selections 0.09
+  v02_exp2_tgt_A:v2_from_C: final dist 0 (sd 0, n=11); identical-to-initial fraction 1.00; novelty levels {'E_unseen_architectural_pattern': 11}; cross-domain selections 0.18
+  v02_exp2_tgt_A:v2_never_adapt: final dist 0 (sd 0, n=11); identical-to-initial fraction 1.00; novelty levels {'None': 11}; cross-domain selections 0.00
+  v02_exp2_tgt_A:v2_warm_architecture: final dist 0 (sd 0, n=11); identical-to-initial fraction 1.00; novelty levels {'E_unseen_architectural_pattern': 10, 'None': 1}; cross-domain selections 0.00
+  v02_exp2_tgt_A:v2_warm_full: final dist 0.114 (sd 0.26, n=11); identical-to-initial fraction 0.82; novelty levels {'E_unseen_architectural_pattern': 10, 'None': 1}; cross-domain selections 0.20
+  v02_exp2_tgt_A:v2_warm_principle: final dist 0 (sd 0, n=11); identical-to-initial fraction 1.00; novelty levels {'E_unseen_architectural_pattern': 10, 'None': 1}; cross-domain selections 0.18
+  v02_exp2_tgt_A:v2_warm_task: final dist 0 (sd 0, n=11); identical-to-initial fraction 1.00; novelty levels {'E_unseen_architectural_pattern': 10, 'None': 1}; cross-domain selections 0.00
+  v02_exp2_tgt_B:v2_always_adapt: final dist 0.109 (sd 0.14, n=11); identical-to-initial fraction 0.45; novelty levels {'None': 11}; cross-domain selections 0.00
+  v02_exp2_tgt_B:v2_cold: final dist 0.0682 (sd 0.078, n=11); identical-to-initial fraction 0.55; novelty levels {'None': 11}; cross-domain selections 0.00
+  v02_exp2_tgt_B:v2_from_A: final dist 0.114 (sd 0.19, n=11); identical-to-initial fraction 0.55; novelty levels {'None': 5, 'E_unseen_architectural_pattern': 6}; cross-domain selections 0.36
+  v02_exp2_tgt_B:v2_from_C: final dist 0.0545 (sd 0.076, n=11); identical-to-initial fraction 0.64; novelty levels {'E_unseen_architectural_pattern': 11}; cross-domain selections 0.27
+  v02_exp2_tgt_B:v2_never_adapt: final dist 0.0682 (sd 0.078, n=11); identical-to-initial fraction 0.55; novelty levels {'None': 11}; cross-domain selections 0.00
+  v02_exp2_tgt_B:v2_warm_architecture: final dist 0.114 (sd 0.19, n=11); identical-to-initial fraction 0.55; novelty levels {'None': 5, 'E_unseen_architectural_pattern': 6}; cross-domain selections 0.00
+  v02_exp2_tgt_B:v2_warm_full: final dist 0.0545 (sd 0.076, n=11); identical-to-initial fraction 0.64; novelty levels {'None': 5, 'E_unseen_architectural_pattern': 6}; cross-domain selections 0.45
+  v02_exp2_tgt_B:v2_warm_principle: final dist 0.0545 (sd 0.076, n=11); identical-to-initial fraction 0.64; novelty levels {'None': 5, 'E_unseen_architectural_pattern': 6}; cross-domain selections 0.45
+  v02_exp2_tgt_B:v2_warm_task: final dist 0.0682 (sd 0.078, n=11); identical-to-initial fraction 0.55; novelty levels {'None': 5, 'E_unseen_architectural_pattern': 6}; cross-domain selections 0.00
+  v02_exp2_tgt_C:v2_always_adapt: final dist 0.36 (sd 0.19, n=10); identical-to-initial fraction 0.10; novelty levels {'None': 10}; cross-domain selections 0.00
+  v02_exp2_tgt_C:v2_cold: final dist 0.36 (sd 0.19, n=10); identical-to-initial fraction 0.10; novelty levels {'None': 10}; cross-domain selections 0.00
+  v02_exp2_tgt_C:v2_from_A: final dist 0.36 (sd 0.19, n=10); identical-to-initial fraction 0.10; novelty levels {'E_unseen_architectural_pattern': 10}; cross-domain selections 0.00
+  v02_exp2_tgt_C:v2_from_B: final dist 0.36 (sd 0.19, n=10); identical-to-initial fraction 0.10; novelty levels {'E_unseen_architectural_pattern': 10}; cross-domain selections 0.10
+  v02_exp2_tgt_C:v2_never_adapt: final dist 0.33 (sd 0.14, n=10); identical-to-initial fraction 0.10; novelty levels {'None': 10}; cross-domain selections 0.00
+  v02_exp2_tgt_C:v2_warm_architecture: final dist 0.36 (sd 0.19, n=10); identical-to-initial fraction 0.10; novelty levels {'E_unseen_architectural_pattern': 10}; cross-domain selections 0.00
+  v02_exp2_tgt_C:v2_warm_full: final dist 0.36 (sd 0.19, n=10); identical-to-initial fraction 0.10; novelty levels {'E_unseen_architectural_pattern': 10}; cross-domain selections 0.10
+  v02_exp2_tgt_C:v2_warm_principle: final dist 0.36 (sd 0.19, n=10); identical-to-initial fraction 0.10; novelty levels {'E_unseen_architectural_pattern': 10}; cross-domain selections 0.10
+  v02_exp2_tgt_C:v2_warm_task: final dist 0.36 (sd 0.19, n=10); identical-to-initial fraction 0.10; novelty levels {'E_unseen_architectural_pattern': 10}; cross-domain selections 0.00
+
+8) PRINCIPLE INVENTORY: {"memory_files": 360, "status_counts": {"UNTESTED": 783, "INCONCLUSIVE": 191, "PARTIALLY_SUPPORTED": 16}, "rule_counts": {"minimal_perception_under_tight_memory": 412, "expensive_analysis_only_when_affordable": 133, "cheap_filter_before_verification": 142, "ensemble_perception_under_uncertainty": 113, "rule_roles_for_verification_tasks": 190}}
+
+9) PRE-REGISTERED SUCCESS CRITERIA (interim)
+  [MET] A: Architectural principles can be extracted from experience.
+        evidence: 990 principle records across memory files; status counts {'UNTESTED': 783, 'INCONCLUSIVE': 191, 'PARTIALLY_SUPPORTED': 16}
+  [MET] B: Principles can be experimentally validated (tested under new conditions with recorded outcomes).
+        evidence: 90 principle tests recorded in transfer targets; 16 principles reached a non-UNTESTED status
+  [MET] C: Validated principles transfer to a genuinely different domain (principle-derived architectures instantiated and evaluated in the target).
+        evidence: principle reuse > 0 in 6/6 source→target cells: ['B->A', 'C->A', 'A->B', 'C->B', 'A->C', 'B->C']
+  [NOT MET] D: Transfer reduces adaptation/search cost (paired Δ adaptation cost < 0 with 95% CI excluding 0, or Δ evaluations-to-target < 0 likewise).
+        evidence: cells with significant cost reduction: []; with significant cost increase: ['B->A', 'C->A', 'A->C', 'B->C']; with significant evaluations-to-target reduction: []
+  [MET] E: The machine decides not to adapt when adaptation is uneconomical (DO_NOT_ADAPT occurs; always-adapt spends more evaluations without higher quality).
+        evidence: DO_NOT_ADAPT share of decisions per domain {'A': 0.32727272727272727, 'B': 0.05454545454545454, 'C': 0.0}; Δ evaluations (always_adapt − economic) {'A': 1.6363636363636365, 'B': 0.8181818181818182, 'C': 0.0}; Δ quality {'A': -0.006060606060606059, 'B': -0.0006493506493506471, 'C': 0.0}
+  [NOT MET] F: Useful transferred architectures are not merely memorized copies (structural distance between transferred and cold final architectures > 0 in some cells, and transferred architectures differ from source architectures).
+        evidence: cells where transferred final architecture differs structurally from the cold final: ['C->B', 'A->C', 'B->C']; fraction identical per cell: {'B->A': 1.0, 'C->A': 1.0, 'A->B': 1.0, 'C->B': 0.9090909090909091, 'A->C': 0.8, 'B->C': 0.9}
+  [NOT MET] G: The benefit survives multiple random seeds (criterion D holds with n ≥ 30 paired seeds and CI excluding 0).
+        evidence: n_pairs per cell: {'B->A': 11, 'C->A': 11, 'A->B': 11, 'C->B': 11, 'A->C': 10, 'B->C': 10}
+
+10) WHAT THE INTERIM DATA SAYS (my reading; verify against the final analysis)
+  - The v0.1 negative transfer result is persistent, not noise: memory from Domain A gives no quality gain in Domain B for v0.1 or v0.2.
+  - In 4 of 6 transfer cells, memory from another domain SIGNIFICANTLY INCREASES adaptation cost and evaluations-to-target, with quality unchanged:
+    memory-ranked candidates are evaluated before the cheap synthesized candidate that the cold agent tries first, and that cheap one already meets the target.
+  - Principle machinery works end to end (extraction, cross-domain instantiation, testing) but tests are mostly CONTRADICTED: the extracted
+    principles do not predict what works under new conditions in these domains.
+  - Economics: DO_NOT_ADAPT occurs in Domain A (target met early); always-adapt burns more evaluations without quality gain; never-adapt is cheap
+    but cannot recover when conditions change.
+  - Final architectures are mostly at zero structural distance from the first choice: cheapest-first search finds the useful region immediately.
+    This is a ceiling effect of the synthetic domains and the main threat to the informativeness of the transfer test.
+  - Causes to consider for v0.3: harder domains where the cheapest architecture is NOT in the top decile; richer principle extraction;
+    principle priors weighted by test history (currently untested principles get a prior that outranks cheap unknowns).

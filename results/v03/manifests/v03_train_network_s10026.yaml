@@ -1,0 +1,50 @@
+experiment:
+  name: v03_train_network
+  description: v0.3 training run in network with the training regime library; AGM
+    v0.3 in exploration mode writes memory.
+  tags:
+  - v03_train
+  seed: 10026
+  repeats: 1
+  task:
+    type: anomaly_detection
+    domain: network
+    dataset_size: 3000
+    noise: 0.1
+    anomaly_rate: 0.03
+    verification_required: false
+    priority: 1
+  environment:
+    cpu: 1
+    memory_mb: 512
+    latency_ms: 2000
+    network: false
+    available_capabilities: all
+  objective:
+    quality_threshold: 0.0
+  budget:
+    max_seconds: 600
+    max_cost: 1.0
+    step_timeout_s: 30
+  schedule:
+    steps: 9
+    step_seconds: 10
+    validation_fraction: 0.2
+    validation_mode: recent
+  regime:
+    set: training
+    oracle_points: 48
+  events: []
+  agents:
+  - name: agm_train
+    type: agm_v3
+    max_evaluations: 6
+    explore_all: true
+    memory:
+      read: true
+      write: true
+      db: /home/cool/AGM-Laboratory/results/v03/memory/train_26.sqlite
+    principle_memory:
+      read: true
+      write: true
+      db: /home/cool/AGM-Laboratory/results/v03/memory/train_26.sqlite

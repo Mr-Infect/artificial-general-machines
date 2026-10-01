@@ -1,0 +1,228 @@
+{
+ "objectives": {
+  "quality_mean": true,
+  "latency_ms": false,
+  "max_memory_mb": false,
+  "adaptation_cost": false,
+  "architecture_evaluations": false,
+  "failure_rate": false
+ },
+ "points": {
+  "fixed": {
+   "quality_mean": 0.7998020860765958,
+   "latency_ms": 87.33674066631163,
+   "max_memory_mb": 288.62890625,
+   "adaptation_cost": 0.0,
+   "architecture_evaluations": 0,
+   "failure_rate": 0.0
+  },
+  "adaptive": {
+   "quality_mean": 0.9312169312169313,
+   "latency_ms": 78.57468755618255,
+   "max_memory_mb": 288.62890625,
+   "adaptation_cost": 0.0,
+   "architecture_evaluations": 0,
+   "failure_rate": 0.0
+  },
+  "search": {
+   "quality_mean": 0.9851851851851853,
+   "latency_ms": 90.78026644541144,
+   "max_memory_mb": 288.62890625,
+   "adaptation_cost": 0.016500000000000004,
+   "architecture_evaluations": 12,
+   "failure_rate": 0.0
+  },
+  "task_memory": {
+   "quality_mean": 0.9666666666666666,
+   "latency_ms": 69.56842744410905,
+   "max_memory_mb": 288.62890625,
+   "adaptation_cost": 0.008000000000000004,
+   "architecture_evaluations": 16,
+   "failure_rate": 0.0
+  },
+  "architecture_memory": {
+   "quality_mean": 0.9925925925925926,
+   "latency_ms": 70.06629611189258,
+   "max_memory_mb": 287.64453125,
+   "adaptation_cost": 0.007500000000000003,
+   "architecture_evaluations": 15,
+   "failure_rate": 0.0
+  },
+  "always_adapt": {
+   "quality_mean": 0.9203142536475871,
+   "latency_ms": 66.17160511167539,
+   "max_memory_mb": 287.64453125,
+   "adaptation_cost": 0.007500000000000003,
+   "architecture_evaluations": 15,
+   "failure_rate": 0.0
+  },
+  "never_adapt": {
+   "quality_mean": 0.9459192223898106,
+   "latency_ms": 74.35039300010733,
+   "max_memory_mb": 287.64453125,
+   "adaptation_cost": 0.003,
+   "architecture_evaluations": 6,
+   "failure_rate": 0.0
+  },
+  "agm_cold": {
+   "quality_mean": 0.9851851851851853,
+   "latency_ms": 71.80141588792645,
+   "max_memory_mb": 286.66015625,
+   "adaptation_cost": 0.008500000000000004,
+   "architecture_evaluations": 17,
+   "failure_rate": 0.0
+  },
+  "agm_full": {
+   "quality_mean": 0.9925925925925926,
+   "latency_ms": 72.88529044389078,
+   "max_memory_mb": 286.66015625,
+   "adaptation_cost": 0.009500000000000005,
+   "architecture_evaluations": 19,
+   "failure_rate": 0.0
+  },
+  "agm_no_principle": {
+   "quality_mean": 0.9459192223898106,
+   "latency_ms": 79.92471855484634,
+   "max_memory_mb": 286.66015625,
+   "adaptation_cost": 0.006500000000000002,
+   "architecture_evaluations": 13,
+   "failure_rate": 0.0
+  },
+  "agm_no_archmem": {
+   "quality_mean": 0.9851851851851853,
+   "latency_ms": 75.67412722306068,
+   "max_memory_mb": 286.66015625,
+   "adaptation_cost": 0.009000000000000005,
+   "architecture_evaluations": 18,
+   "failure_rate": 0.0
+  },
+  "agm_no_negative": {
+   "quality_mean": 0.9459192223898106,
+   "latency_ms": 77.2734780006835,
+   "max_memory_mb": 286.66015625,
+   "adaptation_cost": 0.008500000000000004,
+   "architecture_evaluations": 17,
+   "failure_rate": 0.0
+  },
+  "agm_no_economics": {
+   "quality_mean": 0.9459192223898106,
+   "latency_ms": 74.70851122262603,
+   "max_memory_mb": 286.66015625,
+   "adaptation_cost": 0.008500000000000004,
+   "architecture_evaluations": 17,
+   "failure_rate": 0.0
+  },
+  "agm_no_regime": {
+   "quality_mean": 0.9925925925925926,
+   "latency_ms": 77.24129077824828,
+   "max_memory_mb": 286.66015625,
+   "adaptation_cost": 0.009500000000000005,
+   "architecture_evaluations": 19,
+   "failure_rate": 0.0
+  }
+ },
+ "classification": {
+  "fixed": "dominated",
+  "adaptive": "non-dominated",
+  "search": "non-dominated",
+  "task_memory": "non-dominated",
+  "architecture_memory": "non-dominated",
+  "always_adapt": "non-dominated",
+  "never_adapt": "non-dominated",
+  "agm_cold": "non-dominated",
+  "agm_full": "non-dominated",
+  "agm_no_principle": "non-dominated",
+  "agm_no_archmem": "dominated",
+  "agm_no_negative": "dominated",
+  "agm_no_economics": "dominated",
+  "agm_no_regime": "dominated"
+ },
+ "frontier": [
+  "adaptive",
+  "search",
+  "task_memory",
+  "architecture_memory",
+  "always_adapt",
+  "never_adapt",
+  "agm_cold",
+  "agm_full",
+  "agm_no_principle"
+ ],
+ "pareto_cost_quality": [
+  "adaptive",
+  "never_adapt",
+  "architecture_memory"
+ ],
+ "resource_normalized": {
+  "fixed": {
+   "quality_per_adaptation_cost": null,
+   "quality_per_architecture_evaluation": null,
+   "raw_quality": 0.7998020860765958
+  },
+  "adaptive": {
+   "quality_per_adaptation_cost": null,
+   "quality_per_architecture_evaluation": null,
+   "raw_quality": 0.9312169312169313
+  },
+  "search": {
+   "quality_per_adaptation_cost": 59.708193041526364,
+   "quality_per_architecture_evaluation": 0.08209876543209878,
+   "raw_quality": 0.9851851851851853
+  },
+  "task_memory": {
+   "quality_per_adaptation_cost": 120.83333333333327,
+   "quality_per_architecture_evaluation": 0.06041666666666666,
+   "raw_quality": 0.9666666666666666
+  },
+  "architecture_memory": {
+   "quality_per_adaptation_cost": 132.3456790123456,
+   "quality_per_architecture_evaluation": 0.06617283950617284,
+   "raw_quality": 0.9925925925925926
+  },
+  "always_adapt": {
+   "quality_per_adaptation_cost": 122.70856715301156,
+   "quality_per_architecture_evaluation": 0.06135428357650581,
+   "raw_quality": 0.9203142536475871
+  },
+  "never_adapt": {
+   "quality_per_adaptation_cost": 315.3064074632702,
+   "quality_per_architecture_evaluation": 0.1576532037316351,
+   "raw_quality": 0.9459192223898106
+  },
+  "agm_cold": {
+   "quality_per_adaptation_cost": 115.90413943355115,
+   "quality_per_architecture_evaluation": 0.057952069716775606,
+   "raw_quality": 0.9851851851851853
+  },
+  "agm_full": {
+   "quality_per_adaptation_cost": 104.48343079922022,
+   "quality_per_architecture_evaluation": 0.05224171539961014,
+   "raw_quality": 0.9925925925925926
+  },
+  "agm_no_principle": {
+   "quality_per_adaptation_cost": 145.52603421381696,
+   "quality_per_architecture_evaluation": 0.07276301710690851,
+   "raw_quality": 0.9459192223898106
+  },
+  "agm_no_archmem": {
+   "quality_per_adaptation_cost": 109.46502057613164,
+   "quality_per_architecture_evaluation": 0.05473251028806585,
+   "raw_quality": 0.9851851851851853
+  },
+  "agm_no_negative": {
+   "quality_per_adaptation_cost": 111.2846143988012,
+   "quality_per_architecture_evaluation": 0.05564230719940062,
+   "raw_quality": 0.9459192223898106
+  },
+  "agm_no_economics": {
+   "quality_per_adaptation_cost": 111.2846143988012,
+   "quality_per_architecture_evaluation": 0.05564230719940062,
+   "raw_quality": 0.9459192223898106
+  },
+  "agm_no_regime": {
+   "quality_per_adaptation_cost": 104.48343079922022,
+   "quality_per_architecture_evaluation": 0.05224171539961014,
+   "raw_quality": 0.9925925925925926
+  }
+ }
+}

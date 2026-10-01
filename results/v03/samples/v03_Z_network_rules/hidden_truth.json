@@ -1,0 +1,86 @@
+{
+ "regime": {
+  "set": "heldout",
+  "schedule": [
+   {
+    "regime": "H1",
+    "start_step": 0
+   },
+   {
+    "regime": "H2",
+    "start_step": 2
+   },
+   {
+    "regime": "H3",
+    "start_step": 7
+   }
+  ],
+  "regime_by_step": [
+   "H1",
+   "H1",
+   "H2",
+   "H2",
+   "H2",
+   "H2",
+   "H2",
+   "H3",
+   "H3"
+  ],
+  "transitions": [
+   2,
+   7
+  ],
+  "params": {
+   "H1": {
+    "noise": 0.35,
+    "volatility": 2.0,
+    "rate": 0.03,
+    "memory_mb": 512,
+    "cpu": 1.0,
+    "vcf": 8.0,
+    "penalty": 0.3,
+    "large_model": true
+   },
+   "H2": {
+    "noise": 0.05,
+    "volatility": 0.5,
+    "rate": 0.03,
+    "memory_mb": 100,
+    "cpu": 0.5,
+    "vcf": 4.0,
+    "penalty": 0.5,
+    "large_model": false
+   },
+   "H3": {
+    "noise": 0.2,
+    "volatility": 4.0,
+    "rate": 0.03,
+    "memory_mb": 128,
+    "cpu": 0.75,
+    "vcf": 2.0,
+    "penalty": 0.2,
+    "large_model": true
+   }
+  }
+ },
+ "objective": {
+  "mode": "regime_top_decile",
+  "target": 1.0,
+  "target_by_regime": {
+   "H1": 1.0,
+   "H2": 1.0,
+   "H3": 1.0
+  },
+  "target_by_step": [
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ]
+ }
+}

@@ -1,0 +1,175 @@
+experiment:
+  name: v03_Y_allocation
+  description: v0.3 blind-transfer environment allocation with held-out regime combinations;
+    all agents, memory from the training runs of the same seed.
+  tags:
+  - v03_Y
+  seed: 20204
+  repeats: 1
+  task:
+    type: resource_planning
+    domain: allocation
+    dataset_size: 3000
+    noise: 0.1
+    anomaly_rate: 0.03
+    verification_required: false
+    priority: 1
+  environment:
+    cpu: 1
+    memory_mb: 512
+    latency_ms: 2000
+    network: false
+    available_capabilities: all
+  objective:
+    quality_threshold: 0.0
+  budget:
+    max_seconds: 600
+    max_cost: 1.0
+    step_timeout_s: 30
+  schedule:
+    steps: 9
+    step_seconds: 10
+    validation_fraction: 0.2
+    validation_mode: recent
+  regime:
+    set: heldout
+    oracle_points: 48
+  events: []
+  agents:
+  - name: fixed
+    type: fixed
+    architecture:
+      perception:
+        mode: parallel
+        components:
+        - request_ranker
+        - risk_weighting
+        - admission_check
+      reasoning:
+        type: parallel
+        model: small_reasoner
+        threshold: 0.5
+      verification:
+        type: rule_based
+  - name: adaptive
+    type: adaptive
+    library: roles
+  - name: search
+    type: search
+    space: auto
+    max_evaluations: 6
+  - name: task_memory
+    type: agm_v2
+    max_evaluations: 6
+    memory_mode: task
+    memory:
+      read: true
+      write: true
+      db: /home/cool/AGM-Laboratory/results/v03/memory/allocation_4_task.sqlite
+    principle_memory:
+      read: true
+      write: true
+      db: /home/cool/AGM-Laboratory/results/v03/memory/allocation_4_task.sqlite
+  - name: architecture_memory
+    type: agm_v2
+    max_evaluations: 6
+    memory_mode: architecture
+    memory:
+      read: true
+      write: true
+      db: /home/cool/AGM-Laboratory/results/v03/memory/allocation_4_arch.sqlite
+    principle_memory:
+      read: true
+      write: true
+      db: /home/cool/AGM-Laboratory/results/v03/memory/allocation_4_arch.sqlite
+  - name: always_adapt
+    type: agm_v3
+    max_evaluations: 6
+    explore_all: false
+    economics_mode: always_adapt
+  - name: never_adapt
+    type: agm_v3
+    max_evaluations: 6
+    explore_all: false
+    economics_mode: never_adapt
+  - name: agm_cold
+    type: agm_v3
+    max_evaluations: 6
+    explore_all: false
+  - name: agm_full
+    type: agm_v3
+    max_evaluations: 6
+    explore_all: false
+    memory:
+      read: true
+      write: true
+      db: /home/cool/AGM-Laboratory/results/v03/memory/allocation_4_full.sqlite
+    principle_memory:
+      read: true
+      write: true
+      db: /home/cool/AGM-Laboratory/results/v03/memory/allocation_4_full.sqlite
+  - name: agm_no_principle
+    type: agm_v3
+    max_evaluations: 6
+    explore_all: false
+    use_principles: false
+    memory:
+      read: true
+      write: true
+      db: /home/cool/AGM-Laboratory/results/v03/memory/allocation_4_no_principle.sqlite
+    principle_memory:
+      read: true
+      write: true
+      db: /home/cool/AGM-Laboratory/results/v03/memory/allocation_4_no_principle.sqlite
+  - name: agm_no_archmem
+    type: agm_v3
+    max_evaluations: 6
+    explore_all: false
+    use_archmem: false
+    memory:
+      read: true
+      write: true
+      db: /home/cool/AGM-Laboratory/results/v03/memory/allocation_4_no_archmem.sqlite
+    principle_memory:
+      read: true
+      write: true
+      db: /home/cool/AGM-Laboratory/results/v03/memory/allocation_4_no_archmem.sqlite
+  - name: agm_no_negative
+    type: agm_v3
+    max_evaluations: 6
+    explore_all: false
+    use_negative: false
+    memory:
+      read: true
+      write: true
+      db: /home/cool/AGM-Laboratory/results/v03/memory/allocation_4_no_negative.sqlite
+    principle_memory:
+      read: true
+      write: true
+      db: /home/cool/AGM-Laboratory/results/v03/memory/allocation_4_no_negative.sqlite
+  - name: agm_no_economics
+    type: agm_v3
+    max_evaluations: 6
+    explore_all: false
+    economics_mode: always_adapt
+    memory:
+      read: true
+      write: true
+      db: /home/cool/AGM-Laboratory/results/v03/memory/allocation_4_no_economics.sqlite
+    principle_memory:
+      read: true
+      write: true
+      db: /home/cool/AGM-Laboratory/results/v03/memory/allocation_4_no_economics.sqlite
+  - name: agm_no_regime
+    type: agm_v3
+    max_evaluations: 6
+    explore_all: false
+    regime_detection: false
+    memory:
+      read: true
+      write: true
+      db: /home/cool/AGM-Laboratory/results/v03/memory/allocation_4_no_regime.sqlite
+    principle_memory:
+      read: true
+      write: true
+      db: /home/cool/AGM-Laboratory/results/v03/memory/allocation_4_no_regime.sqlite

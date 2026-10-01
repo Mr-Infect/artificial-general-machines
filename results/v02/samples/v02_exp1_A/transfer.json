@@ -1,0 +1,30 @@
+{
+ "pairs": {},
+ "attempts": {
+  "fixed": [],
+  "adaptive": [],
+  "search": [],
+  "self_evolving": [],
+  "agm_v1_cold": [],
+  "agm_v2_cold": [],
+  "agm_v2_explore": []
+ },
+ "completions": {
+  "fixed": [],
+  "adaptive": [],
+  "search": [],
+  "self_evolving": [],
+  "agm_v1_cold": [],
+  "agm_v2_cold": [],
+  "agm_v2_explore": []
+ },
+ "principle_reuse": {
+  "fixed": null,
+  "adaptive": null,
+  "search": null,
+  "self_evolving": null,
+  "agm_v1_cold": null,
+  "agm_v2_cold": 0,
+  "agm_v2_explore": 0
+ }
+}

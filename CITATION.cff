@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+title: "Artificial General Machines: a falsification study of architectural self-determination"
+message: "If you use this laboratory or its results, please cite it."
+type: software
+authors:
+  - name: "Mr-Infect"
+    email: "mrinfectanalyst@gmail.com"
+repository-code: "https://github.com/Mr-Infect/artifical-general-machines"
+date-released: "2026-10-01"
+version: "0.3"
+license: MIT
+keywords:
+  - architecture search
+  - transfer learning
+  - adaptive agents
+  - negative result
+  - pre-registered experiment
+abstract: >
+  A reproducible laboratory that tests whether a machine can learn transferable
+  principles of computational organization (an "Artificial General Machine")
+  against fixed, adaptive, search-based and memory-based agents. Three rounds of
+  increasingly strict, pre-registered experiments (v0.1, v0.2, v0.3; 30 seeds)
+  failed to separate the AGM from architecture search plus memory. The repository
+  publishes the instrument, the raw analysis tables, the plots and the negative result.

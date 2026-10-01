@@ -1,0 +1,111 @@
+{
+ "pairs": {},
+ "attempts": {
+  "agm_train": [
+   {
+    "principle_id": "prn_1790781838_643c9d3d5c4f",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790781838_643c9d3d5c4f",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790781838_643c9d3d5c4f",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790781838_643c9d3d5c4f",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790781838_643c9d3d5c4f",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790781838_643c9d3d5c4f",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790781838_643c9d3d5c4f",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790781838_643c9d3d5c4f",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790781838_643c9d3d5c4f",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   }
+  ]
+ },
+ "completions": {
+  "agm_train": [
+   {
+    "principle_id": "prn_1790781838_643c9d3d5c4f",
+    "step": 0,
+    "kind": "contradicted",
+    "target_domain": "scientific",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790781838_643c9d3d5c4f",
+    "step": 2,
+    "kind": "contradicted",
+    "target_domain": "scientific",
+    "selected": false,
+    "task_quality": null
+   }
+  ]
+ },
+ "principle_reuse": {
+  "agm_train": 2
+ }
+}

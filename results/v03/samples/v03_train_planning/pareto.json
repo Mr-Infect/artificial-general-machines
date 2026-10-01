@@ -1,0 +1,36 @@
+{
+ "objectives": {
+  "quality_mean": true,
+  "latency_ms": false,
+  "max_memory_mb": false,
+  "adaptation_cost": false,
+  "architecture_evaluations": false,
+  "failure_rate": false
+ },
+ "points": {
+  "agm_train": {
+   "quality_mean": 0.7419384070141932,
+   "latency_ms": 54.64288500014744,
+   "max_memory_mb": 80.859375,
+   "adaptation_cost": 0.021000000000000015,
+   "architecture_evaluations": 42,
+   "failure_rate": 0.0
+  }
+ },
+ "classification": {
+  "agm_train": "non-dominated"
+ },
+ "frontier": [
+  "agm_train"
+ ],
+ "pareto_cost_quality": [
+  "agm_train"
+ ],
+ "resource_normalized": {
+  "agm_train": {
+   "quality_per_adaptation_cost": 35.33040033400918,
+   "quality_per_architecture_evaluation": 0.0176652001670046,
+   "raw_quality": 0.7419384070141932
+  }
+ }
+}

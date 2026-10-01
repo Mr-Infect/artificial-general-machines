@@ -1,0 +1,355 @@
+nohup: ignoring input
+30 jobs (1 per seed), 4 workers, executor=process
+nohup: ignoring input
+resume: 0 done, 30 remaining
+30 jobs (1 per seed), 4 workers, executor=process
+[1/30] seed 2 ok 2501s (elapsed 2501s)
+[2/30] seed 0 ok 2588s (elapsed 2588s)
+[3/30] seed 3 ok 2598s (elapsed 2598s)
+[4/30] seed 1 ok 2639s (elapsed 2639s)
+[5/30] seed 5 ERROR 3686s (elapsed 6273s)
+ib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1144, in _commit_impl
+    self.engine.dialect.do_commit(self.connection)
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 702, in do_commit
+    dbapi_connection.commit()
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+[6/30] seed 8 ERROR 5s (elapsed 6278s)
+e/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: PRAGMA main.table_info("experiments")]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+[7/30] seed 9 ERROR 5s (elapsed 6283s)
+e/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: PRAGMA main.table_info("experiments")]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+[8/30] seed 10 ERROR 5s (elapsed 6289s)
+e/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: PRAGMA main.table_info("experiments")]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+[9/30] seed 11 ERROR 5s (elapsed 6294s)
+e/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: PRAGMA main.table_info("experiments")]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+[10/30] seed 7 ERROR 3658s (elapsed 6298s)
+ib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1144, in _commit_impl
+    self.engine.dialect.do_commit(self.connection)
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 702, in do_commit
+    dbapi_connection.commit()
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+[11/30] seed 12 ERROR 5s (elapsed 6299s)
+e/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: PRAGMA main.table_info("experiments")]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+[12/30] seed 13 ERROR 5s (elapsed 6303s)
+e/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: PRAGMA main.table_info("experiments")]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+[13/30] seed 14 ERROR 5s (elapsed 6304s)
+e/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: PRAGMA main.table_info("experiments")]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+[14/30] seed 15 ERROR 5s (elapsed 6308s)
+e/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: PRAGMA main.table_info("experiments")]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+[15/30] seed 16 ERROR 5s (elapsed 6309s)
+e/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: PRAGMA main.table_info("experiments")]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+[16/30] seed 17 ERROR 5s (elapsed 6313s)
+e/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: PRAGMA main.table_info("experiments")]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+[17/30] seed 18 ERROR 5s (elapsed 6314s)
+e/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: PRAGMA main.table_info("experiments")]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+[18/30] seed 19 ERROR 5s (elapsed 6318s)
+e/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: PRAGMA main.table_info("experiments")]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+[19/30] seed 20 ERROR 5s (elapsed 6319s)
+e/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: PRAGMA main.table_info("experiments")]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+[20/30] seed 4 ERROR 3819s (elapsed 6320s)
+ib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1144, in _commit_impl
+    self.engine.dialect.do_commit(self.connection)
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 702, in do_commit
+    dbapi_connection.commit()
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+[21/30] seed 21 ERROR 5s (elapsed 6323s)
+e/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: PRAGMA main.table_info("experiments")]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+[22/30] seed 22 ERROR 5s (elapsed 6324s)
+e/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: PRAGMA main.table_info("experiments")]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+[23/30] seed 23 ERROR 5s (elapsed 6325s)
+e/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: PRAGMA main.table_info("experiments")]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+[24/30] seed 24 ERROR 5s (elapsed 6328s)
+e/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: PRAGMA main.table_info("experiments")]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+[25/30] seed 25 ERROR 5s (elapsed 6329s)
+e/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: PRAGMA main.table_info("experiments")]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+[26/30] seed 26 ERROR 5s (elapsed 6330s)
+e/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: PRAGMA main.table_info("experiments")]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+[27/30] seed 27 ERROR 5s (elapsed 6333s)
+e/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: PRAGMA main.table_info("experiments")]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+[28/30] seed 6 ERROR 3734s (elapsed 6333s)
+ib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1144, in _commit_impl
+    self.engine.dialect.do_commit(self.connection)
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 702, in do_commit
+    dbapi_connection.commit()
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+[29/30] seed 28 ERROR 5s (elapsed 6334s)
+e/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: PRAGMA main.table_info("experiments")]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+[30/30] seed 29 ERROR 5s (elapsed 6335s)
+e/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: PRAGMA main.table_info("experiments")]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+done
+nohup: ignoring input
+resume: 4 done, 26 remaining
+26 jobs (1 per seed), 4 workers, executor=process
+[1/26] seed 4 ok 886s (elapsed 886s)
+[2/26] seed 5 ok 902s (elapsed 902s)
+[3/26] seed 6 ok 915s (elapsed 915s)
+[4/26] seed 7 ok 922s (elapsed 922s)
+[5/26] seed 8 ok 904s (elapsed 1790s)
+[6/26] seed 9 ok 919s (elapsed 1821s)
+[7/26] seed 10 ok 930s (elapsed 1845s)
+[8/26] seed 11 ok 974s (elapsed 1896s)
+[9/26] seed 12 ok 942s (elapsed 2732s)
+[10/26] seed 14 ok 952s (elapsed 2796s)
+[11/26] seed 15 ok 931s (elapsed 2827s)
+[12/26] seed 13 ok 1006s (elapsed 2828s)
+[13/26] seed 16 ok 858s (elapsed 3590s)
+[14/26] seed 17 ok 868s (elapsed 3664s)
+[15/26] seed 19 ok 864s (elapsed 3691s)
+[16/26] seed 18 ok 872s (elapsed 3699s)
+nohup: ignoring input
+resume: 20 done, 10 remaining
+10 jobs (1 per seed), 4 workers, executor=process
+[1/10] seed 20 ERROR 189s (elapsed 190s)
+site-packages/sqlalchemy/engine/cursor.py", line 1081, in handle_exception
+    result.connection._handle_dbapi_exception(
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/cursor.py", line 1136, in fetchall
+    rows = dbapi_cursor.fetchall()
+sqlalchemy.exc.DatabaseError: (sqlite3.DatabaseError) database disk image is malformed
+(Background on this error at: https://sqlalche.me/e/20/4xp6)
+
+nohup: ignoring input
+resume: 20 done, 10 remaining
+10 jobs (1 per seed), 4 workers, executor=process
+nohup: ignoring input
+resume: 20 done, 10 remaining
+10 jobs (1 per seed), 4 workers, executor=process
+[1/10] seed 23 ERROR 23s (elapsed 24s)
+ngine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/cool/.local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) disk I/O error
+[SQL: PRAGMA main.table_info("experiments")]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+nohup: ignoring input
+resume: 20 done, 10 remaining
+10 jobs (1 per seed), 4 workers, executor=process
+[1/10] seed 22 ok 880s (elapsed 880s)
+[2/10] seed 23 ok 881s (elapsed 881s)
+[3/10] seed 20 ok 902s (elapsed 902s)
+[4/10] seed 21 ok 920s (elapsed 920s)
+[5/10] seed 26 ok 923s (elapsed 1826s)
+[6/10] seed 25 ok 957s (elapsed 1838s)
+[7/10] seed 24 ok 976s (elapsed 1856s)
+[8/10] seed 27 ok 984s (elapsed 1905s)
+[9/10] seed 28 ok 816s (elapsed 2641s)
+[10/10] seed 29 ok 810s (elapsed 2648s)
+done

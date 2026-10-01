@@ -1,0 +1,12 @@
+{
+ "pairs": {},
+ "attempts": {
+  "agm_train": []
+ },
+ "completions": {
+  "agm_train": []
+ },
+ "principle_reuse": {
+  "agm_train": 0
+ }
+}

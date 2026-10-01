@@ -1,0 +1,70 @@
+{
+  "name": "v03_train_network",
+  "description": "v0.3 training run in network with the training regime library; AGM v0.3 in exploration mode writes memory.",
+  "seed": 10003,
+  "repeats": 1,
+  "executor": null,
+  "task": {
+    "type": "anomaly_detection",
+    "domain": "network",
+    "dataset_size": 3000,
+    "noise": 0.1,
+    "anomaly_rate": 0.03,
+    "verification_required": false,
+    "priority": 1
+  },
+  "environment": {
+    "cpu": 1.0,
+    "memory_mb": 512,
+    "latency_ms": 2000,
+    "network": false,
+    "privacy": "local_only",
+    "energy_budget": 1.0,
+    "available_capabilities": "all",
+    "verification_cost_factor": 1.0
+  },
+  "objective": {
+    "quality_threshold": 0.0,
+    "relative_to_best": null,
+    "top_fraction": null
+  },
+  "budget": {
+    "max_seconds": 600.0,
+    "max_cost": 1.0,
+    "step_timeout_s": 30.0
+  },
+  "schedule": {
+    "steps": 9,
+    "step_seconds": 10.0,
+    "validation_fraction": 0.2,
+    "validation_mode": "recent"
+  },
+  "events": [],
+  "agents": [
+    {
+      "name": "agm_train",
+      "type": "agm_v3",
+      "max_evaluations": 6,
+      "explore_all": true,
+      "memory": {
+        "read": true,
+        "write": true,
+        "db": "/home/cool/AGM-Laboratory/results/v03/memory/train_3.sqlite"
+      },
+      "principle_memory": {
+        "read": true,
+        "write": true,
+        "db": "/home/cool/AGM-Laboratory/results/v03/memory/train_3.sqlite"
+      }
+    }
+  ],
+  "memory_db": null,
+  "regime": {
+    "set": "training",
+    "schedule": null,
+    "oracle_points": 48
+  },
+  "tags": [
+    "v03_train"
+  ]
+}

@@ -1,0 +1,521 @@
+{
+  "experiment_id": "exp_1790765054_f1b731119210",
+  "name": "cross_domain_001_domain_a_network",
+  "manifest": {
+    "name": "cross_domain_001_domain_a_network",
+    "description": "Domain A run that populates structural memory for the transfer test.",
+    "seed": 101,
+    "repeats": 3,
+    "executor": null,
+    "task": {
+      "type": "anomaly_detection",
+      "domain": "network",
+      "dataset_size": 2000,
+      "noise": 0.1,
+      "anomaly_rate": 0.03,
+      "verification_required": false,
+      "priority": 1
+    },
+    "environment": {
+      "cpu": 1.0,
+      "memory_mb": 512,
+      "latency_ms": 2000,
+      "network": true,
+      "privacy": "local_only",
+      "energy_budget": 1.0,
+      "available_capabilities": "all"
+    },
+    "objective": {
+      "quality_threshold": 0.85
+    },
+    "budget": {
+      "max_seconds": 120.0,
+      "max_cost": 0.25,
+      "step_timeout_s": 30.0
+    },
+    "schedule": {
+      "steps": 5,
+      "step_seconds": 10.0,
+      "validation_fraction": 0.2
+    },
+    "events": [
+      {
+        "t": 10.0,
+        "type": "memory_reduction",
+        "params": {
+          "memory_mb": 80
+        }
+      },
+      {
+        "t": 20.0,
+        "type": "network_loss",
+        "params": {}
+      },
+      {
+        "t": 20.0,
+        "type": "capability_removal",
+        "params": {
+          "capabilities": [
+            "model:large_reasoner",
+            "tool:search"
+          ]
+        }
+      },
+      {
+        "t": 30.0,
+        "type": "latency_reduction",
+        "params": {
+          "latency_ms": 800
+        }
+      },
+      {
+        "t": 40.0,
+        "type": "priority_increase",
+        "params": {
+          "priority": 3
+        }
+      }
+    ],
+    "agents": [
+      {
+        "name": "fixed",
+        "type": "fixed"
+      },
+      {
+        "name": "adaptive",
+        "type": "adaptive"
+      },
+      {
+        "name": "search",
+        "type": "search",
+        "max_evaluations": 8
+      },
+      {
+        "name": "agm_cold",
+        "type": "agm",
+        "max_evaluations": 6,
+        "memory": {
+          "read": false,
+          "write": true
+        }
+      }
+    ],
+    "memory_db": "results/memory/cross_domain_001.sqlite",
+    "tags": [
+      "cross_domain_001"
+    ]
+  },
+  "manifest_hash": "96daa220129fad11",
+  "git": {
+    "commit": "5f0c37881a8ff74e5d3b3b1159e79f223dd39a44",
+    "dirty": false
+  },
+  "seed": 101,
+  "dataset_id": "8584db9db9ad9e47",
+  "validation_records": 400,
+  "stream_records": 1600,
+  "batch_size": 320,
+  "executor": "docker",
+  "sandbox_image": "sha256:c3f6685589a6867e5bbd9d378965e41a0d114d8d7910ab8f55f1c89dda6e07d6",
+  "registry_capabilities": [
+    "component:anomaly_detector",
+    "component:consistency_checker",
+    "component:range_validator",
+    "component:rate_detector",
+    "component:statistical_detector",
+    "memory:episodic",
+    "memory:graph",
+    "memory:none",
+    "memory:vector",
+    "model:classifier",
+    "model:embedding_model",
+    "model:large_reasoner",
+    "model:small_reasoner",
+    "reasoning:direct",
+    "reasoning:hierarchical",
+    "reasoning:iterative",
+    "reasoning:parallel",
+    "reasoning:sequential",
+    "tool:database",
+    "tool:parser",
+    "tool:python",
+    "tool:search",
+    "tool:simulator",
+    "verification:execution_based",
+    "verification:model_based",
+    "verification:none",
+    "verification:rule_based"
+  ],
+  "python": "3.10.12",
+  "started_at": "2026-09-30T10:44:14.267934+00:00",
+  "host": {
+    "host_cpu_percent": 12.1,
+    "host_mem_available_mb": 4759.4453125,
+    "host_load_1m": 1.0146484375
+  },
+  "model_identifier": "simulated-registry-models",
+  "model_configuration": {
+    "small_reasoner": {
+      "name": "small_reasoner",
+      "kind": "model",
+      "description": "Cheap combiner over detector scores (mean + threshold).",
+      "cost_per_call": 0.0005,
+      "latency_ms": 40.0,
+      "memory_mb": 32.0,
+      "cpu_weight": 1.0,
+      "requires_network": false,
+      "tokens_per_call": 300,
+      "params": {}
+    },
+    "large_reasoner": {
+      "name": "large_reasoner",
+      "kind": "model",
+      "description": "Multi-scale iterative combiner; more compute, better calibration.",
+      "cost_per_call": 0.004,
+      "latency_ms": 250.0,
+      "memory_mb": 128.0,
+      "cpu_weight": 4.0,
+      "requires_network": false,
+      "tokens_per_call": 1800,
+      "params": {}
+    },
+    "classifier": {
+      "name": "classifier",
+      "kind": "model",
+      "description": "Fixed-threshold classifier over a single score.",
+      "cost_per_call": 0.0001,
+      "latency_ms": 10.0,
+      "memory_mb": 16.0,
+      "cpu_weight": 0.5,
+      "requires_network": false,
+      "tokens_per_call": 0,
+      "params": {}
+    },
+    "embedding_model": {
+      "name": "embedding_model",
+      "kind": "model",
+      "description": "Windowed feature embedding used by vector memory.",
+      "cost_per_call": 0.0002,
+      "latency_ms": 30.0,
+      "memory_mb": 64.0,
+      "cpu_weight": 1.5,
+      "requires_network": false,
+      "tokens_per_call": 120,
+      "params": {}
+    }
+  },
+  "finished_at": "2026-09-30T10:44:27.955707+00:00",
+  "agents": {
+    "fixed": {
+      "quality_mean": 0.16,
+      "quality_min": 0.0,
+      "quality_final": 0.0,
+      "steps_at_target": 0,
+      "time_to_target_logical_s": null,
+      "time_to_target_wall_s": null,
+      "search_time_s": 1.2405000234139152e-05,
+      "architecture_evaluations": 0,
+      "model_calls": 1,
+      "tokens": 480,
+      "cpu_time_s": 0.15151199999999998,
+      "max_memory_mb": 13.25,
+      "wall_used_s": 0.3761842140002045,
+      "execution_cost": 0.0005,
+      "adaptation_cost": 0.0,
+      "total_cost": 0.0005,
+      "constraint_violations": 4,
+      "violation_list": [
+        "memory_estimate_exceeds_limit:82>80",
+        "memory_estimate_exceeds_limit:82>80",
+        "memory_estimate_exceeds_limit:82>80",
+        "memory_estimate_exceeds_limit:82>80"
+      ],
+      "failures": 4,
+      "novelty_mean": 0.0,
+      "novelty_max": 0.0,
+      "distinct_architectures": 1,
+      "architectures": [
+        {
+          "step": 0,
+          "hash": "2cf46e3a49f036de",
+          "name": "fixed_fixed"
+        },
+        {
+          "step": 1,
+          "hash": "2cf46e3a49f036de",
+          "name": "fixed_fixed"
+        },
+        {
+          "step": 2,
+          "hash": "2cf46e3a49f036de",
+          "name": "fixed_fixed"
+        },
+        {
+          "step": 3,
+          "hash": "2cf46e3a49f036de",
+          "name": "fixed_fixed"
+        },
+        {
+          "step": 4,
+          "hash": "2cf46e3a49f036de",
+          "name": "fixed_fixed"
+        }
+      ],
+      "memory_reads": 0,
+      "memory_writes": 0,
+      "env_transitions": 5,
+      "decisions": []
+    },
+    "adaptive": {
+      "quality_mean": 0.96,
+      "quality_min": 0.8,
+      "quality_final": 1.0,
+      "steps_at_target": 4,
+      "time_to_target_logical_s": 10.0,
+      "time_to_target_wall_s": 0.7999686419998397,
+      "search_time_s": 0.008631347998743877,
+      "architecture_evaluations": 0,
+      "model_calls": 5,
+      "tokens": 2400,
+      "cpu_time_s": 0.7587389999999999,
+      "max_memory_mb": 13.0,
+      "wall_used_s": 1.7898713039994618,
+      "execution_cost": 0.0025,
+      "adaptation_cost": 0.0,
+      "total_cost": 0.0025,
+      "constraint_violations": 0,
+      "violation_list": [],
+      "failures": 0,
+      "novelty_mean": 0.0,
+      "novelty_max": 0.0,
+      "distinct_architectures": 2,
+      "architectures": [
+        {
+          "step": 0,
+          "hash": "2cf46e3a49f036de",
+          "name": "standard"
+        },
+        {
+          "step": 1,
+          "hash": "4c11ce0f07f705d9",
+          "name": "lightweight"
+        },
+        {
+          "step": 2,
+          "hash": "4c11ce0f07f705d9",
+          "name": "lightweight"
+        },
+        {
+          "step": 3,
+          "hash": "4c11ce0f07f705d9",
+          "name": "lightweight"
+        },
+        {
+          "step": 4,
+          "hash": "4c11ce0f07f705d9",
+          "name": "lightweight"
+        }
+      ],
+      "memory_reads": 0,
+      "memory_writes": 0,
+      "env_transitions": 5,
+      "decisions": []
+    },
+    "search": {
+      "quality_mean": 0.9714285714285715,
+      "quality_min": 0.8571428571428571,
+      "quality_final": 1.0,
+      "steps_at_target": 5,
+      "time_to_target_logical_s": 0.0,
+      "time_to_target_wall_s": 6.67881456500163,
+      "search_time_s": 6.888041391000115,
+      "architecture_evaluations": 8,
+      "model_calls": 13,
+      "tokens": 16200,
+      "cpu_time_s": 2.1196900000000003,
+      "max_memory_mb": 12.875,
+      "wall_used_s": 7.9861160250002285,
+      "execution_cost": 0.0025,
+      "adaptation_cost": 0.014500000000000002,
+      "total_cost": 0.017,
+      "constraint_violations": 0,
+      "violation_list": [],
+      "failures": 0,
+      "novelty_mean": 0.0,
+      "novelty_max": 0.0,
+      "distinct_architectures": 1,
+      "architectures": [
+        {
+          "step": 0,
+          "hash": "eb4a84468e23bc36",
+          "name": "search"
+        },
+        {
+          "step": 1,
+          "hash": "eb4a84468e23bc36",
+          "name": "search"
+        },
+        {
+          "step": 2,
+          "hash": "eb4a84468e23bc36",
+          "name": "search"
+        },
+        {
+          "step": 3,
+          "hash": "eb4a84468e23bc36",
+          "name": "search"
+        },
+        {
+          "step": 4,
+          "hash": "eb4a84468e23bc36",
+          "name": "search"
+        }
+      ],
+      "memory_reads": 0,
+      "memory_writes": 0,
+      "env_transitions": 5,
+      "decisions": []
+    },
+    "agm_cold": {
+      "quality_mean": 0.9714285714285715,
+      "quality_min": 0.8571428571428571,
+      "quality_final": 1.0,
+      "steps_at_target": 5,
+      "time_to_target_logical_s": 0.0,
+      "time_to_target_wall_s": 1.1251824860000852,
+      "search_time_s": 1.9050224290003825,
+      "architecture_evaluations": 2,
+      "model_calls": 7,
+      "tokens": 3600,
+      "cpu_time_s": 0.997617,
+      "max_memory_mb": 12.875,
+      "wall_used_s": 3.5231842379998852,
+      "execution_cost": 0.0025,
+      "adaptation_cost": 0.001,
+      "total_cost": 0.0035,
+      "constraint_violations": 0,
+      "violation_list": [],
+      "failures": 0,
+      "novelty_mean": 0.2,
+      "novelty_max": 1.0,
+      "distinct_architectures": 1,
+      "architectures": [
+        {
+          "step": 0,
+          "hash": "4c11ce0f07f705d9",
+          "name": "syn_anom_direct"
+        },
+        {
+          "step": 1,
+          "hash": "4c11ce0f07f705d9",
+          "name": "syn_anom_direct"
+        },
+        {
+          "step": 2,
+          "hash": "4c11ce0f07f705d9",
+          "name": "syn_anom_direct"
+        },
+        {
+          "step": 3,
+          "hash": "4c11ce0f07f705d9",
+          "name": "syn_anom_direct"
+        },
+        {
+          "step": 4,
+          "hash": "4c11ce0f07f705d9",
+          "name": "syn_anom_direct"
+        }
+      ],
+      "memory_reads": 0,
+      "memory_writes": 5,
+      "env_transitions": 5,
+      "decisions": [
+        {
+          "decision_id": "dec_1790765064_28b47f5bb5be",
+          "experiment_id": "exp_1790765054_f1b731119210",
+          "agent": "agm_cold",
+          "step": 0,
+          "current_architecture_hash": "none",
+          "expected_quality": 0.0,
+          "expected_improvement": 0.85,
+          "search_cost": 0.003,
+          "synthesis_cost": 0.0,
+          "validation_cost": 0.0005,
+          "execution_cost": 0.0005,
+          "deadline_remaining_s": 120.0,
+          "resource_budget_remaining": 0.25,
+          "outcome": "ADAPT",
+          "rationale": "current architecture invalid under environment (cost_ratio=0.014, time_ratio=0.025, priority_weight=1.00)"
+        },
+        {
+          "decision_id": "dec_1790765065_895f44571041",
+          "experiment_id": "exp_1790765054_f1b731119210",
+          "agent": "agm_cold",
+          "step": 1,
+          "current_architecture_hash": "4c11ce0f07f705d9",
+          "expected_quality": 0.8571428571428571,
+          "expected_improvement": 0.1428571428571429,
+          "search_cost": 0.003,
+          "synthesis_cost": 0.0,
+          "validation_cost": 0.0005,
+          "execution_cost": 0.0005,
+          "deadline_remaining_s": 118.87481751399991,
+          "resource_budget_remaining": 0.249,
+          "outcome": "ADAPT",
+          "rationale": "benefit 0.143 > price 0.030 (cost_ratio=0.014, time_ratio=0.016, priority_weight=1.00)"
+        },
+        {
+          "decision_id": "dec_1790765066_d81b720595c1",
+          "experiment_id": "exp_1790765054_f1b731119210",
+          "agent": "agm_cold",
+          "step": 2,
+          "current_architecture_hash": "4c11ce0f07f705d9",
+          "expected_quality": 1.0,
+          "expected_improvement": 0.0,
+          "search_cost": 0.003,
+          "synthesis_cost": 0.0,
+          "validation_cost": 0.0005,
+          "execution_cost": 0.0005,
+          "deadline_remaining_s": 117.61919257199952,
+          "resource_budget_remaining": 0.248,
+          "outcome": "DO_NOT_ADAPT",
+          "rationale": "target met; expected improvement negligible (cost_ratio=0.014, time_ratio=0.018, priority_weight=1.00)"
+        },
+        {
+          "decision_id": "dec_1790765066_89238b8539e6",
+          "experiment_id": "exp_1790765054_f1b731119210",
+          "agent": "agm_cold",
+          "step": 3,
+          "current_architecture_hash": "4c11ce0f07f705d9",
+          "expected_quality": 1.0,
+          "expected_improvement": 0.0,
+          "search_cost": 0.003,
+          "synthesis_cost": 0.0,
+          "validation_cost": 0.0005,
+          "execution_cost": 0.0005,
+          "deadline_remaining_s": 117.24983786099983,
+          "resource_budget_remaining": 0.2475,
+          "outcome": "DO_NOT_ADAPT",
+          "rationale": "target met; expected improvement negligible (cost_ratio=0.014, time_ratio=0.017, priority_weight=1.00)"
+        },
+        {
+          "decision_id": "dec_1790765067_e38e29000270",
+          "experiment_id": "exp_1790765054_f1b731119210",
+          "agent": "agm_cold",
+          "step": 4,
+          "current_architecture_hash": "4c11ce0f07f705d9",
+          "expected_quality": 1.0,
+          "expected_improvement": 0.0,
+          "search_cost": 0.003,
+          "synthesis_cost": 0.0,
+          "validation_cost": 0.0005,
+          "execution_cost": 0.0005,
+          "deadline_remaining_s": 116.84981532599977,
+          "resource_budget_remaining": 0.247,
+          "outcome": "DO_NOT_ADAPT",
+          "rationale": "target met; expected improvement negligible (cost_ratio=0.014, time_ratio=0.019, priority_weight=1.50)"
+        }
+      ]
+    }
+  }
+}

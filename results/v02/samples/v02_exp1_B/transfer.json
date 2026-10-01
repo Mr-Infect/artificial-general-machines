@@ -1,0 +1,104 @@
+{
+ "pairs": {
+  "agm_v1_memory": {
+   "delta_quality_mean": 0.0,
+   "delta_quality_first_step": 0.0,
+   "delta_time_to_target_logical_s": null,
+   "delta_architecture_evaluations": 0,
+   "delta_adaptation_cost": 0.0,
+   "delta_total_cost": 0.0,
+   "cold_reached_target": false,
+   "memory_reached_target": false
+  },
+  "agm_v2_memory": {
+   "delta_quality_mean": 0.0,
+   "delta_quality_first_step": 0.0,
+   "delta_time_to_target_logical_s": null,
+   "delta_architecture_evaluations": 0,
+   "delta_adaptation_cost": 0.0,
+   "delta_total_cost": 0.0,
+   "cold_reached_target": false,
+   "memory_reached_target": false
+  }
+ },
+ "attempts": {
+  "fixed": [],
+  "adaptive": [],
+  "search": [],
+  "self_evolving": [],
+  "agm_v1_cold": [],
+  "agm_v1_memory": [],
+  "agm_v2_cold": [],
+  "agm_v2_memory": [
+   {
+    "principle_id": "prn_1790769678_5f299a49d1aa",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific",
+    "status": "UNTESTED"
+   },
+   {
+    "principle_id": "prn_1790769678_5f299a49d1aa",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific",
+    "status": "INCONCLUSIVE"
+   },
+   {
+    "principle_id": "prn_1790769678_5f299a49d1aa",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific",
+    "status": "INCONCLUSIVE"
+   },
+   {
+    "principle_id": "prn_1790769678_5f299a49d1aa",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific",
+    "status": "INCONCLUSIVE"
+   },
+   {
+    "principle_id": "prn_1790769678_5f299a49d1aa",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific",
+    "status": "INCONCLUSIVE"
+   }
+  ]
+ },
+ "completions": {
+  "fixed": [],
+  "adaptive": [],
+  "search": [],
+  "self_evolving": [],
+  "agm_v1_cold": [],
+  "agm_v1_memory": [],
+  "agm_v2_cold": [],
+  "agm_v2_memory": [
+   {
+    "principle_id": "prn_1790769678_5f299a49d1aa",
+    "step": 0,
+    "kind": "contradicted",
+    "target_domain": "scientific",
+    "selected": false,
+    "task_quality": null
+   }
+  ]
+ },
+ "principle_reuse": {
+  "fixed": null,
+  "adaptive": null,
+  "search": null,
+  "self_evolving": null,
+  "agm_v1_cold": null,
+  "agm_v1_memory": null,
+  "agm_v2_cold": 0,
+  "agm_v2_memory": 1
+ }
+}

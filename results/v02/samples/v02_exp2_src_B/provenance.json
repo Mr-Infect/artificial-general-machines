@@ -1,0 +1,2091 @@
+{
+  "experiment_id": "exp_1790769670_81a9235a7d38",
+  "name": "v02_exp2_src_B",
+  "manifest": {
+    "name": "v02_exp2_src_B",
+    "description": "Exp 2 source run in domain B: AGM v0.2 in exploration mode (evaluates up to 8 candidates per step regardless of early target) writes patterns and principles.",
+    "seed": 3100,
+    "repeats": 1,
+    "executor": null,
+    "task": {
+      "type": "scientific_verification",
+      "domain": "scientific",
+      "dataset_size": 2000,
+      "noise": 0.1,
+      "anomaly_rate": 0.03,
+      "verification_required": true,
+      "priority": 1
+    },
+    "environment": {
+      "cpu": 1.0,
+      "memory_mb": 512,
+      "latency_ms": 2000,
+      "network": true,
+      "privacy": "local_only",
+      "energy_budget": 1.0,
+      "available_capabilities": "all",
+      "verification_cost_factor": 1.0
+    },
+    "objective": {
+      "quality_threshold": 0.0,
+      "relative_to_best": null,
+      "top_fraction": 0.1
+    },
+    "budget": {
+      "max_seconds": 120.0,
+      "max_cost": 0.25,
+      "step_timeout_s": 30.0
+    },
+    "schedule": {
+      "steps": 5,
+      "step_seconds": 10.0,
+      "validation_fraction": 0.2
+    },
+    "events": [
+      {
+        "t": 10.0,
+        "type": "memory_reduction",
+        "params": {
+          "memory_mb": 80
+        }
+      },
+      {
+        "t": 20.0,
+        "type": "network_loss",
+        "params": {}
+      },
+      {
+        "t": 20.0,
+        "type": "capability_removal",
+        "params": {
+          "capabilities": [
+            "model:large_reasoner",
+            "tool:search",
+            "component:lookahead_planner"
+          ]
+        }
+      },
+      {
+        "t": 30.0,
+        "type": "latency_reduction",
+        "params": {
+          "latency_ms": 800
+        }
+      },
+      {
+        "t": 40.0,
+        "type": "priority_increase",
+        "params": {
+          "priority": 3
+        }
+      }
+    ],
+    "agents": [
+      {
+        "name": "agm_v2_src",
+        "type": "agm_v2",
+        "max_evaluations": 8,
+        "memory_mode": "full",
+        "economics_mode": "economic",
+        "explore_all": true,
+        "memory": {
+          "read": true,
+          "write": true,
+          "db": "/home/cool/AGM-Laboratory/results/v02/memory/exp2_src_B_0.sqlite"
+        },
+        "principle_memory": {
+          "read": true,
+          "write": true,
+          "db": "/home/cool/AGM-Laboratory/results/v02/memory/exp2_src_B_0.sqlite"
+        }
+      }
+    ],
+    "memory_db": null,
+    "tags": [
+      "v02_exp2_src"
+    ]
+  },
+  "manifest_hash": "933bdcb3bce851e0",
+  "objective": {
+    "mode": "top_fraction",
+    "target": 0.8,
+    "floor": 0.0,
+    "relative_to_best": null,
+    "top_fraction": 0.1,
+    "best_validation_quality": 0.8,
+    "best_architecture": "wide_cons_dir_none_no",
+    "n_space": 255,
+    "space_results": [
+      {
+        "hash": "4c11ce0f07f705d9",
+        "name": "wide_anom_dir_none_no",
+        "quality": 0.5
+      },
+      {
+        "hash": "e3a7d7c45825ade2",
+        "name": "wide_anom_dir_rule_no",
+        "quality": 0.5
+      },
+      {
+        "hash": "ee9196401165483b",
+        "name": "wide_anom_dir_exec_no",
+        "quality": 0.45161290322580644
+      },
+      {
+        "hash": "662a48a0041be770",
+        "name": "wide_cons_dir_none_no",
+        "quality": 0.8
+      },
+      {
+        "hash": "c9f23cf55c320997",
+        "name": "wide_cons_dir_rule_no",
+        "quality": 0.8
+      },
+      {
+        "hash": "cda213cdd115fcf8",
+        "name": "wide_cons_dir_exec_no",
+        "quality": 0.8
+      },
+      {
+        "hash": "8d51da4468988bb6",
+        "name": "wide_rang_dir_none_no",
+        "quality": 0.2857142857142857
+      },
+      {
+        "hash": "e8b3da881f50681e",
+        "name": "wide_rang_dir_rule_no",
+        "quality": 0.2857142857142857
+      },
+      {
+        "hash": "c45a5a975f4d38a9",
+        "name": "wide_rang_dir_exec_no",
+        "quality": 0.2857142857142857
+      },
+      {
+        "hash": "f1166591d0a381d3",
+        "name": "wide_rate_dir_none_no",
+        "quality": 0.5
+      },
+      {
+        "hash": "b1b147d3bfc0be7c",
+        "name": "wide_rate_dir_rule_no",
+        "quality": 0.5
+      },
+      {
+        "hash": "5893d242a98cf9c3",
+        "name": "wide_rate_dir_exec_no",
+        "quality": 0.5
+      },
+      {
+        "hash": "2868724eec9f7f2d",
+        "name": "wide_stat_dir_none_no",
+        "quality": 0.3870967741935483
+      },
+      {
+        "hash": "72744ea2320115a1",
+        "name": "wide_stat_dir_rule_no",
+        "quality": 0.3870967741935483
+      },
+      {
+        "hash": "a005d65b38c751df",
+        "name": "wide_stat_dir_exec_no",
+        "quality": 0.3870967741935483
+      },
+      {
+        "hash": "f3ace390691e7bc9",
+        "name": "wide_anom+cons_par_none_no",
+        "quality": 0.8
+      },
+      {
+        "hash": "2695376aedfe2c04",
+        "name": "wide_anom+cons_hie_none_no",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "9b5dd51dbcd9d8bf",
+        "name": "wide_anom+cons_par_none_ep",
+        "quality": 0.8
+      },
+      {
+        "hash": "3bcb98f2c016ea8d",
+        "name": "wide_anom+cons_hie_none_ep",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "a429776aa666ed57",
+        "name": "wide_anom+cons_par_rule_no",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "b8fc3deb2bb34641",
+        "name": "wide_anom+cons_hie_rule_no",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "aad2e02f297ba0a5",
+        "name": "wide_anom+cons_par_rule_ep",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "30ee3da68d1ae531",
+        "name": "wide_anom+cons_hie_rule_ep",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "336360316cd69b8a",
+        "name": "wide_anom+cons_par_exec_no",
+        "quality": 0.8
+      },
+      {
+        "hash": "a36afcc07102cc5a",
+        "name": "wide_anom+cons_hie_exec_no",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "8b1f4c9150503656",
+        "name": "wide_anom+cons_par_exec_ep",
+        "quality": 0.8
+      },
+      {
+        "hash": "f22c9f8448350dd9",
+        "name": "wide_anom+cons_hie_exec_ep",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "94f60bac19eddcdf",
+        "name": "wide_anom+rang_par_none_no",
+        "quality": 0.5
+      },
+      {
+        "hash": "3fa2519d5bc3f55b",
+        "name": "wide_anom+rang_hie_none_no",
+        "quality": 0.2857142857142857
+      },
+      {
+        "hash": "b83bbce8ebf2c239",
+        "name": "wide_anom+rang_par_none_ep",
+        "quality": 0.5
+      },
+      {
+        "hash": "3c2eb04b3a3bb360",
+        "name": "wide_anom+rang_hie_none_ep",
+        "quality": 0.2857142857142857
+      },
+      {
+        "hash": "e9a71cf413884f1a",
+        "name": "wide_anom+rang_par_rule_no",
+        "quality": 0.4
+      },
+      {
+        "hash": "4b6c81bae7f9eb16",
+        "name": "wide_anom+rang_hie_rule_no",
+        "quality": 0.2857142857142857
+      },
+      {
+        "hash": "ab91fb0e23c7770f",
+        "name": "wide_anom+rang_par_rule_ep",
+        "quality": 0.4
+      },
+      {
+        "hash": "ba7488c3297eb4f1",
+        "name": "wide_anom+rang_hie_rule_ep",
+        "quality": 0.2857142857142857
+      },
+      {
+        "hash": "34a87c51471dac22",
+        "name": "wide_anom+rang_par_exec_no",
+        "quality": 0.45161290322580644
+      },
+      {
+        "hash": "b707889295d3ab57",
+        "name": "wide_anom+rang_hie_exec_no",
+        "quality": 0.2857142857142857
+      },
+      {
+        "hash": "fa45a4be24697601",
+        "name": "wide_anom+rang_par_exec_ep",
+        "quality": 0.45161290322580644
+      },
+      {
+        "hash": "4fe035563975b002",
+        "name": "wide_anom+rang_hie_exec_ep",
+        "quality": 0.2857142857142857
+      },
+      {
+        "hash": "8fb34e1e5b6922e7",
+        "name": "wide_anom+rate_par_none_no",
+        "quality": 0.6666666666666666
+      },
+      {
+        "hash": "8cce19840efd9797",
+        "name": "wide_anom+rate_hie_none_no",
+        "quality": 0.5
+      },
+      {
+        "hash": "e96165717178c123",
+        "name": "wide_anom+rate_par_none_ep",
+        "quality": 0.6666666666666666
+      },
+      {
+        "hash": "a0f9d342959e0e5a",
+        "name": "wide_anom+rate_hie_none_ep",
+        "quality": 0.5
+      },
+      {
+        "hash": "12701d7fbdfaadb4",
+        "name": "wide_anom+rate_par_rule_no",
+        "quality": 0.5882352941176471
+      },
+      {
+        "hash": "482ff51de9187fcc",
+        "name": "wide_anom+rate_hie_rule_no",
+        "quality": 0.4
+      },
+      {
+        "hash": "863aa348934957ea",
+        "name": "wide_anom+rate_par_rule_ep",
+        "quality": 0.5882352941176471
+      },
+      {
+        "hash": "2fba3fb17ac12983",
+        "name": "wide_anom+rate_hie_rule_ep",
+        "quality": 0.4
+      },
+      {
+        "hash": "afaa341a46f2461a",
+        "name": "wide_anom+rate_par_exec_no",
+        "quality": 0.6666666666666666
+      },
+      {
+        "hash": "5a7024b17f3d16a2",
+        "name": "wide_anom+rate_hie_exec_no",
+        "quality": 0.5
+      },
+      {
+        "hash": "b931e288500ff459",
+        "name": "wide_anom+rate_par_exec_ep",
+        "quality": 0.6666666666666666
+      },
+      {
+        "hash": "9b7e359b84f9915d",
+        "name": "wide_anom+rate_hie_exec_ep",
+        "quality": 0.5
+      },
+      {
+        "hash": "76b70a5fb7784e11",
+        "name": "wide_anom+stat_par_none_no",
+        "quality": 0.5714285714285715
+      },
+      {
+        "hash": "c03702283a4b5ae6",
+        "name": "wide_anom+stat_hie_none_no",
+        "quality": 0.5
+      },
+      {
+        "hash": "de18bb28cea7378f",
+        "name": "wide_anom+stat_par_none_ep",
+        "quality": 0.5714285714285715
+      },
+      {
+        "hash": "3b382f22ca54a8de",
+        "name": "wide_anom+stat_hie_none_ep",
+        "quality": 0.5
+      },
+      {
+        "hash": "1d97824b01f6cfbc",
+        "name": "wide_anom+stat_par_rule_no",
+        "quality": 0.45161290322580644
+      },
+      {
+        "hash": "0e144901de3b2430",
+        "name": "wide_anom+stat_hie_rule_no",
+        "quality": 0.2857142857142857
+      },
+      {
+        "hash": "13e6f7053d79209f",
+        "name": "wide_anom+stat_par_rule_ep",
+        "quality": 0.45161290322580644
+      },
+      {
+        "hash": "01fee2e690f96c59",
+        "name": "wide_anom+stat_hie_rule_ep",
+        "quality": 0.2857142857142857
+      },
+      {
+        "hash": "3fcd38ef40d4f6ad",
+        "name": "wide_anom+stat_par_exec_no",
+        "quality": 0.5714285714285715
+      },
+      {
+        "hash": "31687a403d6e0619",
+        "name": "wide_anom+stat_hie_exec_no",
+        "quality": 0.5
+      },
+      {
+        "hash": "58fd2e726bd14937",
+        "name": "wide_anom+stat_par_exec_ep",
+        "quality": 0.5714285714285715
+      },
+      {
+        "hash": "d85bc3a38afb9862",
+        "name": "wide_anom+stat_hie_exec_ep",
+        "quality": 0.5
+      },
+      {
+        "hash": "98b310125e23e1ff",
+        "name": "wide_cons+rang_par_none_no",
+        "quality": 0.8
+      },
+      {
+        "hash": "08b47ced52eeef1b",
+        "name": "wide_cons+rang_hie_none_no",
+        "quality": 0.7368421052631579
+      },
+      {
+        "hash": "62c286070914faa8",
+        "name": "wide_cons+rang_par_none_ep",
+        "quality": 0.8
+      },
+      {
+        "hash": "d39dcd86a750f7d5",
+        "name": "wide_cons+rang_hie_none_ep",
+        "quality": 0.7368421052631579
+      },
+      {
+        "hash": "ed9a8058fda2acce",
+        "name": "wide_cons+rang_par_rule_no",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "2cccf75c75bd4f1c",
+        "name": "wide_cons+rang_hie_rule_no",
+        "quality": 0.2857142857142857
+      },
+      {
+        "hash": "36a6c90989da17e0",
+        "name": "wide_cons+rang_par_rule_ep",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "a78d0ad7cc13abad",
+        "name": "wide_cons+rang_hie_rule_ep",
+        "quality": 0.2857142857142857
+      },
+      {
+        "hash": "99b1ee2467e8ac39",
+        "name": "wide_cons+rang_par_exec_no",
+        "quality": 0.8
+      },
+      {
+        "hash": "572fb6b6cc29b8bd",
+        "name": "wide_cons+rang_hie_exec_no",
+        "quality": 0.7368421052631579
+      },
+      {
+        "hash": "3d9aff26a5f8f434",
+        "name": "wide_cons+rang_par_exec_ep",
+        "quality": 0.8
+      },
+      {
+        "hash": "f6f6876a0ba42663",
+        "name": "wide_cons+rang_hie_exec_ep",
+        "quality": 0.7368421052631579
+      },
+      {
+        "hash": "de08c0221435d3f9",
+        "name": "wide_cons+rate_par_none_no",
+        "quality": 0.8
+      },
+      {
+        "hash": "4f93b1f5b919de9b",
+        "name": "wide_cons+rate_hie_none_no",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "02e8fc9909fa5c21",
+        "name": "wide_cons+rate_par_none_ep",
+        "quality": 0.8
+      },
+      {
+        "hash": "7d63d71f7f465b16",
+        "name": "wide_cons+rate_hie_none_ep",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "f95edc9f2e5d0275",
+        "name": "wide_cons+rate_par_rule_no",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "84647af98e7f8096",
+        "name": "wide_cons+rate_hie_rule_no",
+        "quality": 0.5882352941176471
+      },
+      {
+        "hash": "90eb75e6d833f7bd",
+        "name": "wide_cons+rate_par_rule_ep",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "2c7bb12c11106ac1",
+        "name": "wide_cons+rate_hie_rule_ep",
+        "quality": 0.5882352941176471
+      },
+      {
+        "hash": "76eff96c528644e8",
+        "name": "wide_cons+rate_par_exec_no",
+        "quality": 0.8
+      },
+      {
+        "hash": "44e30ec65249f8ba",
+        "name": "wide_cons+rate_hie_exec_no",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "cd6e00ab339e5905",
+        "name": "wide_cons+rate_par_exec_ep",
+        "quality": 0.8
+      },
+      {
+        "hash": "ada79b27bec596ff",
+        "name": "wide_cons+rate_hie_exec_ep",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "265c9e6d323b1d01",
+        "name": "wide_cons+stat_par_none_no",
+        "quality": 0.7804878048780487
+      },
+      {
+        "hash": "9742212dd33b1b46",
+        "name": "wide_cons+stat_hie_none_no",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "037fc8c759486e9c",
+        "name": "wide_cons+stat_par_none_ep",
+        "quality": 0.7804878048780487
+      },
+      {
+        "hash": "26680eecd2f3c368",
+        "name": "wide_cons+stat_hie_none_ep",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "4f0b6e7a9caea276",
+        "name": "wide_cons+stat_par_rule_no",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "28336ecd9750d9b2",
+        "name": "wide_cons+stat_hie_rule_no",
+        "quality": 0.7027027027027027
+      },
+      {
+        "hash": "2ebb03f547a56fe9",
+        "name": "wide_cons+stat_par_rule_ep",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "c69ec009f7032095",
+        "name": "wide_cons+stat_hie_rule_ep",
+        "quality": 0.7027027027027027
+      },
+      {
+        "hash": "62c01279933fb010",
+        "name": "wide_cons+stat_par_exec_no",
+        "quality": 0.7804878048780487
+      },
+      {
+        "hash": "62570faf9207d829",
+        "name": "wide_cons+stat_hie_exec_no",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "009444eab629fa6e",
+        "name": "wide_cons+stat_par_exec_ep",
+        "quality": 0.7804878048780487
+      },
+      {
+        "hash": "2176916ae32f2dba",
+        "name": "wide_cons+stat_hie_exec_ep",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "0e00cde5fbcb1d9f",
+        "name": "wide_rang+rate_par_none_no",
+        "quality": 0.6285714285714286
+      },
+      {
+        "hash": "e11a0bcac7d44a3c",
+        "name": "wide_rang+rate_hie_none_no",
+        "quality": 0.3448275862068966
+      },
+      {
+        "hash": "d8f028abf8bdacd0",
+        "name": "wide_rang+rate_par_none_ep",
+        "quality": 0.6285714285714286
+      },
+      {
+        "hash": "18558ea914bf4bcf",
+        "name": "wide_rang+rate_hie_none_ep",
+        "quality": 0.3448275862068966
+      },
+      {
+        "hash": "fbec0d64e588b918",
+        "name": "wide_rang+rate_par_rule_no",
+        "quality": 0.5882352941176471
+      },
+      {
+        "hash": "578da7517d59c204",
+        "name": "wide_rang+rate_hie_rule_no",
+        "quality": 0.07999999999999999
+      },
+      {
+        "hash": "6f13c40c1dd22798",
+        "name": "wide_rang+rate_par_rule_ep",
+        "quality": 0.5882352941176471
+      },
+      {
+        "hash": "fa352755b0bee2a3",
+        "name": "wide_rang+rate_hie_rule_ep",
+        "quality": 0.07999999999999999
+      },
+      {
+        "hash": "d49dc73ddaefb12f",
+        "name": "wide_rang+rate_par_exec_no",
+        "quality": 0.6285714285714286
+      },
+      {
+        "hash": "e3bd9a7c74c22507",
+        "name": "wide_rang+rate_hie_exec_no",
+        "quality": 0.3448275862068966
+      },
+      {
+        "hash": "af3322bd1eaedd77",
+        "name": "wide_rang+rate_par_exec_ep",
+        "quality": 0.6285714285714286
+      },
+      {
+        "hash": "accbc4e7caff4b3b",
+        "name": "wide_rang+rate_hie_exec_ep",
+        "quality": 0.3448275862068966
+      },
+      {
+        "hash": "12689daeef3bc3cc",
+        "name": "wide_rang+stat_par_none_no",
+        "quality": 0.48484848484848486
+      },
+      {
+        "hash": "d8d0b498f9be072b",
+        "name": "wide_rang+stat_hie_none_no",
+        "quality": 0.2222222222222222
+      },
+      {
+        "hash": "5d3f2de8ab37ea4f",
+        "name": "wide_rang+stat_par_none_ep",
+        "quality": 0.48484848484848486
+      },
+      {
+        "hash": "a7a45eec09b24528",
+        "name": "wide_rang+stat_hie_none_ep",
+        "quality": 0.2222222222222222
+      },
+      {
+        "hash": "b2ae28a6f06f28f1",
+        "name": "wide_rang+stat_par_rule_no",
+        "quality": 0.4
+      },
+      {
+        "hash": "19ec2b54e7ab40c7",
+        "name": "wide_rang+stat_hie_rule_no",
+        "quality": 0.15384615384615385
+      },
+      {
+        "hash": "78c86924f777b9b9",
+        "name": "wide_rang+stat_par_rule_ep",
+        "quality": 0.4
+      },
+      {
+        "hash": "7dcbf2129a639f1c",
+        "name": "wide_rang+stat_hie_rule_ep",
+        "quality": 0.15384615384615385
+      },
+      {
+        "hash": "d9fe9611d12c9348",
+        "name": "wide_rang+stat_par_exec_no",
+        "quality": 0.48484848484848486
+      },
+      {
+        "hash": "870233721a94ac10",
+        "name": "wide_rang+stat_hie_exec_no",
+        "quality": 0.2222222222222222
+      },
+      {
+        "hash": "e774ef984aea1c70",
+        "name": "wide_rang+stat_par_exec_ep",
+        "quality": 0.48484848484848486
+      },
+      {
+        "hash": "0d59c4be84abc893",
+        "name": "wide_rang+stat_hie_exec_ep",
+        "quality": 0.2222222222222222
+      },
+      {
+        "hash": "059e863fc5a39e8b",
+        "name": "wide_rate+stat_par_none_no",
+        "quality": 0.6486486486486487
+      },
+      {
+        "hash": "0709b82088c58d0a",
+        "name": "wide_rate+stat_hie_none_no",
+        "quality": 0.45161290322580644
+      },
+      {
+        "hash": "3a5e628f557482b5",
+        "name": "wide_rate+stat_par_none_ep",
+        "quality": 0.6486486486486487
+      },
+      {
+        "hash": "64a37dc6f1d48ab8",
+        "name": "wide_rate+stat_hie_none_ep",
+        "quality": 0.45161290322580644
+      },
+      {
+        "hash": "0c697e709afc9b71",
+        "name": "wide_rate+stat_par_rule_no",
+        "quality": 0.6285714285714286
+      },
+      {
+        "hash": "2d16f2b4019f9ce8",
+        "name": "wide_rate+stat_hie_rule_no",
+        "quality": 0.4
+      },
+      {
+        "hash": "9053291007c6353a",
+        "name": "wide_rate+stat_par_rule_ep",
+        "quality": 0.6285714285714286
+      },
+      {
+        "hash": "38c1e51f0784f67d",
+        "name": "wide_rate+stat_hie_rule_ep",
+        "quality": 0.4
+      },
+      {
+        "hash": "d023e9fb33fa0960",
+        "name": "wide_rate+stat_par_exec_no",
+        "quality": 0.6486486486486487
+      },
+      {
+        "hash": "16d01392ce94b23f",
+        "name": "wide_rate+stat_hie_exec_no",
+        "quality": 0.45161290322580644
+      },
+      {
+        "hash": "eb82f8392b62435e",
+        "name": "wide_rate+stat_par_exec_ep",
+        "quality": 0.6486486486486487
+      },
+      {
+        "hash": "169bf272d3b9d8b0",
+        "name": "wide_rate+stat_hie_exec_ep",
+        "quality": 0.45161290322580644
+      },
+      {
+        "hash": "f9340019763758ae",
+        "name": "wide_anom+cons+rang_par_none_no",
+        "quality": 0.8
+      },
+      {
+        "hash": "244de493d9e41ff2",
+        "name": "wide_anom+cons+rang_hie_none_no",
+        "quality": 0.5
+      },
+      {
+        "hash": "3cd97599f0aee3fb",
+        "name": "wide_anom+cons+rang_par_none_ep",
+        "quality": 0.8
+      },
+      {
+        "hash": "05c5ad6c39f42701",
+        "name": "wide_anom+cons+rang_hie_none_ep",
+        "quality": 0.5
+      },
+      {
+        "hash": "e57f8da0b84cc1be",
+        "name": "wide_anom+cons+rang_par_rule_no",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "562271f0ca75d80a",
+        "name": "wide_anom+cons+rang_hie_rule_no",
+        "quality": 0.5
+      },
+      {
+        "hash": "f0783889a249f129",
+        "name": "wide_anom+cons+rang_par_rule_ep",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "4041886fabd744e8",
+        "name": "wide_anom+cons+rang_hie_rule_ep",
+        "quality": 0.5
+      },
+      {
+        "hash": "edb3d44827a95faf",
+        "name": "wide_anom+cons+rang_par_exec_no",
+        "quality": 0.8
+      },
+      {
+        "hash": "2904ee3c44d3cefe",
+        "name": "wide_anom+cons+rang_hie_exec_no",
+        "quality": 0.5
+      },
+      {
+        "hash": "398f0b563e2392f9",
+        "name": "wide_anom+cons+rang_par_exec_ep",
+        "quality": 0.8
+      },
+      {
+        "hash": "b64f73a0aa5c2e7a",
+        "name": "wide_anom+cons+rang_hie_exec_ep",
+        "quality": 0.5
+      },
+      {
+        "hash": "4c7addf9cb665c26",
+        "name": "wide_anom+cons+rate_par_none_no",
+        "quality": 0.8
+      },
+      {
+        "hash": "45d1f444f00ab201",
+        "name": "wide_anom+cons+rate_hie_none_no",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "ec38be6f9ff4efb2",
+        "name": "wide_anom+cons+rate_par_none_ep",
+        "quality": 0.8
+      },
+      {
+        "hash": "0b252ac9a5c302b9",
+        "name": "wide_anom+cons+rate_hie_none_ep",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "bb784466fb53450c",
+        "name": "wide_anom+cons+rate_par_rule_no",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "4db046466efd0a1c",
+        "name": "wide_anom+cons+rate_hie_rule_no",
+        "quality": 0.7027027027027027
+      },
+      {
+        "hash": "fd8e4bd4b44514ad",
+        "name": "wide_anom+cons+rate_par_rule_ep",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "d97c365cf8bf4d8d",
+        "name": "wide_anom+cons+rate_hie_rule_ep",
+        "quality": 0.7027027027027027
+      },
+      {
+        "hash": "9d8c1b5081d83410",
+        "name": "wide_anom+cons+rate_par_exec_no",
+        "quality": 0.8
+      },
+      {
+        "hash": "825d0c36292020e7",
+        "name": "wide_anom+cons+rate_hie_exec_no",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "558fd3aa1f4c3a8e",
+        "name": "wide_anom+cons+rate_par_exec_ep",
+        "quality": 0.8
+      },
+      {
+        "hash": "a909cfd9cd0da132",
+        "name": "wide_anom+cons+rate_hie_exec_ep",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "318eabbf6018a30c",
+        "name": "wide_anom+cons+stat_par_none_no",
+        "quality": 0.7804878048780487
+      },
+      {
+        "hash": "1428e694018332de",
+        "name": "wide_anom+cons+stat_hie_none_no",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "d2b268588723da70",
+        "name": "wide_anom+cons+stat_par_none_ep",
+        "quality": 0.7804878048780487
+      },
+      {
+        "hash": "93e4fc63e9afbe50",
+        "name": "wide_anom+cons+stat_hie_none_ep",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "0a09de7f5a542145",
+        "name": "wide_anom+cons+stat_par_rule_no",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "55088713d2e64bed",
+        "name": "wide_anom+cons+stat_hie_rule_no",
+        "quality": 0.5882352941176471
+      },
+      {
+        "hash": "fdd27b5a14edbcea",
+        "name": "wide_anom+cons+stat_par_rule_ep",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "6493b0ec335efb04",
+        "name": "wide_anom+cons+stat_hie_rule_ep",
+        "quality": 0.5882352941176471
+      },
+      {
+        "hash": "4dc2dc2b8608a9cc",
+        "name": "wide_anom+cons+stat_par_exec_no",
+        "quality": 0.7804878048780487
+      },
+      {
+        "hash": "9605be65894d43f2",
+        "name": "wide_anom+cons+stat_hie_exec_no",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "af739f61d398d5b3",
+        "name": "wide_anom+cons+stat_par_exec_ep",
+        "quality": 0.7804878048780487
+      },
+      {
+        "hash": "2d8c36fca056d082",
+        "name": "wide_anom+cons+stat_hie_exec_ep",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "87f979d11491341f",
+        "name": "wide_anom+rang+rate_par_none_no",
+        "quality": 0.6666666666666666
+      },
+      {
+        "hash": "52518f622407a23f",
+        "name": "wide_anom+rang+rate_hie_none_no",
+        "quality": 0.4
+      },
+      {
+        "hash": "2645c4dab1fdd991",
+        "name": "wide_anom+rang+rate_par_none_ep",
+        "quality": 0.6666666666666666
+      },
+      {
+        "hash": "184540ebf6eca832",
+        "name": "wide_anom+rang+rate_hie_none_ep",
+        "quality": 0.4
+      },
+      {
+        "hash": "8cf982e915a4fd9a",
+        "name": "wide_anom+rang+rate_par_rule_no",
+        "quality": 0.6285714285714286
+      },
+      {
+        "hash": "ace5a82226bd3cd3",
+        "name": "wide_anom+rang+rate_hie_rule_no",
+        "quality": 0.4
+      },
+      {
+        "hash": "d1cf9caa2ffe375d",
+        "name": "wide_anom+rang+rate_par_rule_ep",
+        "quality": 0.6285714285714286
+      },
+      {
+        "hash": "9a4ba0b30132f69b",
+        "name": "wide_anom+rang+rate_hie_rule_ep",
+        "quality": 0.4
+      },
+      {
+        "hash": "789c03884d277cab",
+        "name": "wide_anom+rang+rate_par_exec_no",
+        "quality": 0.6666666666666666
+      },
+      {
+        "hash": "f51c1187d3e707ce",
+        "name": "wide_anom+rang+rate_hie_exec_no",
+        "quality": 0.4
+      },
+      {
+        "hash": "798a8f240ecc3485",
+        "name": "wide_anom+rang+rate_par_exec_ep",
+        "quality": 0.6666666666666666
+      },
+      {
+        "hash": "bcf7047f50c99ca2",
+        "name": "wide_anom+rang+rate_hie_exec_ep",
+        "quality": 0.4
+      },
+      {
+        "hash": "fcfafc65b0797a35",
+        "name": "wide_anom+rang+stat_par_none_no",
+        "quality": 0.5714285714285715
+      },
+      {
+        "hash": "ff0f3023066ce6f0",
+        "name": "wide_anom+rang+stat_hie_none_no",
+        "quality": 0.3448275862068966
+      },
+      {
+        "hash": "f6cc811e8b2daa5a",
+        "name": "wide_anom+rang+stat_par_none_ep",
+        "quality": 0.5714285714285715
+      },
+      {
+        "hash": "f069baa1456aaf81",
+        "name": "wide_anom+rang+stat_hie_none_ep",
+        "quality": 0.3448275862068966
+      },
+      {
+        "hash": "a7a00a35a8da4c88",
+        "name": "wide_anom+rang+stat_par_rule_no",
+        "quality": 0.5454545454545454
+      },
+      {
+        "hash": "ac29a6bbda90f079",
+        "name": "wide_anom+rang+stat_hie_rule_no",
+        "quality": 0.3448275862068966
+      },
+      {
+        "hash": "c16d2b740acc0cf0",
+        "name": "wide_anom+rang+stat_par_rule_ep",
+        "quality": 0.5454545454545454
+      },
+      {
+        "hash": "d4d18bb62236ef7e",
+        "name": "wide_anom+rang+stat_hie_rule_ep",
+        "quality": 0.3448275862068966
+      },
+      {
+        "hash": "e7d9d16f5296c43a",
+        "name": "wide_anom+rang+stat_par_exec_no",
+        "quality": 0.5714285714285715
+      },
+      {
+        "hash": "0025e2d783a99110",
+        "name": "wide_anom+rang+stat_hie_exec_no",
+        "quality": 0.3448275862068966
+      },
+      {
+        "hash": "cb96c9b894e0a6f8",
+        "name": "wide_anom+rang+stat_par_exec_ep",
+        "quality": 0.5714285714285715
+      },
+      {
+        "hash": "07c4bf74d804c029",
+        "name": "wide_anom+rang+stat_hie_exec_ep",
+        "quality": 0.3448275862068966
+      },
+      {
+        "hash": "8fe8137e83feafb8",
+        "name": "wide_anom+rate+stat_par_none_no",
+        "quality": 0.6842105263157894
+      },
+      {
+        "hash": "1f82ea0b9d1b0904",
+        "name": "wide_anom+rate+stat_hie_none_no",
+        "quality": 0.5454545454545454
+      },
+      {
+        "hash": "a740c42ddfec0b38",
+        "name": "wide_anom+rate+stat_par_none_ep",
+        "quality": 0.6842105263157894
+      },
+      {
+        "hash": "04a363a2d2355739",
+        "name": "wide_anom+rate+stat_hie_none_ep",
+        "quality": 0.5454545454545454
+      },
+      {
+        "hash": "5e8094c00e46c547",
+        "name": "wide_anom+rate+stat_par_rule_no",
+        "quality": 0.6666666666666666
+      },
+      {
+        "hash": "415bdd00b42d334d",
+        "name": "wide_anom+rate+stat_hie_rule_no",
+        "quality": 0.45161290322580644
+      },
+      {
+        "hash": "8f2f29398dd9bbdf",
+        "name": "wide_anom+rate+stat_par_rule_ep",
+        "quality": 0.6666666666666666
+      },
+      {
+        "hash": "f68fbb0e49d5045f",
+        "name": "wide_anom+rate+stat_hie_rule_ep",
+        "quality": 0.45161290322580644
+      },
+      {
+        "hash": "2640359e561dd644",
+        "name": "wide_anom+rate+stat_par_exec_no",
+        "quality": 0.6842105263157894
+      },
+      {
+        "hash": "b8588565a467f8bb",
+        "name": "wide_anom+rate+stat_hie_exec_no",
+        "quality": 0.5454545454545454
+      },
+      {
+        "hash": "a5dd278614b3a64c",
+        "name": "wide_anom+rate+stat_par_exec_ep",
+        "quality": 0.6842105263157894
+      },
+      {
+        "hash": "7d590494dcbac860",
+        "name": "wide_anom+rate+stat_hie_exec_ep",
+        "quality": 0.5454545454545454
+      },
+      {
+        "hash": "32f7e0801adeaabb",
+        "name": "wide_cons+rang+rate_par_none_no",
+        "quality": 0.8
+      },
+      {
+        "hash": "a912387b351110a7",
+        "name": "wide_cons+rang+rate_hie_none_no",
+        "quality": 0.6285714285714286
+      },
+      {
+        "hash": "7df589a866f3ea50",
+        "name": "wide_cons+rang+rate_par_none_ep",
+        "quality": 0.8
+      },
+      {
+        "hash": "26de989cfa591819",
+        "name": "wide_cons+rang+rate_hie_none_ep",
+        "quality": 0.6285714285714286
+      },
+      {
+        "hash": "9ab22e27c80f5871",
+        "name": "wide_cons+rang+rate_par_rule_no",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "1a5baaeb971b9c05",
+        "name": "wide_cons+rang+rate_hie_rule_no",
+        "quality": 0.6285714285714286
+      },
+      {
+        "hash": "7330b7ab4581c937",
+        "name": "wide_cons+rang+rate_par_rule_ep",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "907cdddd9df98ed1",
+        "name": "wide_cons+rang+rate_hie_rule_ep",
+        "quality": 0.6285714285714286
+      },
+      {
+        "hash": "e7cca4e56a621cf9",
+        "name": "wide_cons+rang+rate_par_exec_no",
+        "quality": 0.8
+      },
+      {
+        "hash": "f50bb9d051ae8448",
+        "name": "wide_cons+rang+rate_hie_exec_no",
+        "quality": 0.6285714285714286
+      },
+      {
+        "hash": "827eb409e95c019f",
+        "name": "wide_cons+rang+rate_par_exec_ep",
+        "quality": 0.8
+      },
+      {
+        "hash": "1cadca716a40e4d0",
+        "name": "wide_cons+rang+rate_hie_exec_ep",
+        "quality": 0.6285714285714286
+      },
+      {
+        "hash": "3f087db708d01e93",
+        "name": "wide_cons+rang+stat_par_none_no",
+        "quality": 0.7804878048780487
+      },
+      {
+        "hash": "3c5e2d6fb8dbb946",
+        "name": "wide_cons+rang+stat_hie_none_no",
+        "quality": 0.5
+      },
+      {
+        "hash": "048b29c7d217a900",
+        "name": "wide_cons+rang+stat_par_none_ep",
+        "quality": 0.7804878048780487
+      },
+      {
+        "hash": "f574b5790e862c2b",
+        "name": "wide_cons+rang+stat_hie_none_ep",
+        "quality": 0.5
+      },
+      {
+        "hash": "627239d8cdf69fb9",
+        "name": "wide_cons+rang+stat_par_rule_no",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "56aa686dd2e22afe",
+        "name": "wide_cons+rang+stat_hie_rule_no",
+        "quality": 0.5
+      },
+      {
+        "hash": "50b4d2f31337b885",
+        "name": "wide_cons+rang+stat_par_rule_ep",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "5f4d53cac2edae37",
+        "name": "wide_cons+rang+stat_hie_rule_ep",
+        "quality": 0.5
+      },
+      {
+        "hash": "1f4a9863c29d54f6",
+        "name": "wide_cons+rang+stat_par_exec_no",
+        "quality": 0.7804878048780487
+      },
+      {
+        "hash": "2aabd9305bb9466d",
+        "name": "wide_cons+rang+stat_hie_exec_no",
+        "quality": 0.5
+      },
+      {
+        "hash": "9476833ef580ecf9",
+        "name": "wide_cons+rang+stat_par_exec_ep",
+        "quality": 0.7804878048780487
+      },
+      {
+        "hash": "592d301eb110d99b",
+        "name": "wide_cons+rang+stat_hie_exec_ep",
+        "quality": 0.5
+      },
+      {
+        "hash": "57ca1fd92a9912df",
+        "name": "wide_cons+rate+stat_par_none_no",
+        "quality": 0.7804878048780487
+      },
+      {
+        "hash": "75ed98af50f3c6ee",
+        "name": "wide_cons+rate+stat_hie_none_no",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "84e8b8272ed87e71",
+        "name": "wide_cons+rate+stat_par_none_ep",
+        "quality": 0.7804878048780487
+      },
+      {
+        "hash": "06821cfbf2cd0b20",
+        "name": "wide_cons+rate+stat_hie_none_ep",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "6c9378659bb3a62c",
+        "name": "wide_cons+rate+stat_par_rule_no",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "4a1c21b93ca532b8",
+        "name": "wide_cons+rate+stat_hie_rule_no",
+        "quality": 0.6666666666666666
+      },
+      {
+        "hash": "b3bc086de5d69ab9",
+        "name": "wide_cons+rate+stat_par_rule_ep",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "b9763b7711dadbe3",
+        "name": "wide_cons+rate+stat_hie_rule_ep",
+        "quality": 0.6666666666666666
+      },
+      {
+        "hash": "2e2db461bd179d29",
+        "name": "wide_cons+rate+stat_par_exec_no",
+        "quality": 0.7804878048780487
+      },
+      {
+        "hash": "39d099016154ca04",
+        "name": "wide_cons+rate+stat_hie_exec_no",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "71c69e9c8893326a",
+        "name": "wide_cons+rate+stat_par_exec_ep",
+        "quality": 0.7804878048780487
+      },
+      {
+        "hash": "cb6ab3256b6a6113",
+        "name": "wide_cons+rate+stat_hie_exec_ep",
+        "quality": 0.7692307692307693
+      },
+      {
+        "hash": "bee4b07134ceaeeb",
+        "name": "wide_rang+rate+stat_par_none_no",
+        "quality": 0.6842105263157894
+      },
+      {
+        "hash": "60000e6e69320ec9",
+        "name": "wide_rang+rate+stat_hie_none_no",
+        "quality": 0.3448275862068966
+      },
+      {
+        "hash": "b28a214bfd15013a",
+        "name": "wide_rang+rate+stat_par_none_ep",
+        "quality": 0.6842105263157894
+      },
+      {
+        "hash": "40f333465e7c5c46",
+        "name": "wide_rang+rate+stat_hie_none_ep",
+        "quality": 0.3448275862068966
+      },
+      {
+        "hash": "4750051fdaef443e",
+        "name": "wide_rang+rate+stat_par_rule_no",
+        "quality": 0.6666666666666666
+      },
+      {
+        "hash": "e1a33d43812e2864",
+        "name": "wide_rang+rate+stat_hie_rule_no",
+        "quality": 0.3448275862068966
+      },
+      {
+        "hash": "41dc40584706ca19",
+        "name": "wide_rang+rate+stat_par_rule_ep",
+        "quality": 0.6666666666666666
+      },
+      {
+        "hash": "8921cc64f55bad2b",
+        "name": "wide_rang+rate+stat_hie_rule_ep",
+        "quality": 0.3448275862068966
+      },
+      {
+        "hash": "f58df2f5a3d1a1eb",
+        "name": "wide_rang+rate+stat_par_exec_no",
+        "quality": 0.6842105263157894
+      },
+      {
+        "hash": "620933f9e7601de7",
+        "name": "wide_rang+rate+stat_hie_exec_no",
+        "quality": 0.3448275862068966
+      },
+      {
+        "hash": "c8333a2f6039cc78",
+        "name": "wide_rang+rate+stat_par_exec_ep",
+        "quality": 0.6842105263157894
+      },
+      {
+        "hash": "9a064371878f628c",
+        "name": "wide_rang+rate+stat_hie_exec_ep",
+        "quality": 0.3448275862068966
+      }
+    ],
+    "quantile_of_target": 0.10588235294117647
+  },
+  "git": {
+    "commit": "d07b0f410b21850b45498422625f582f192085d8",
+    "dirty": false
+  },
+  "seed": 3100,
+  "dataset_id": "fddbe802c4702fc5",
+  "validation_records": 400,
+  "stream_records": 1600,
+  "batch_size": 320,
+  "executor": "process",
+  "sandbox_image": null,
+  "registry_capabilities": [
+    "component:anomaly_detector",
+    "component:capacity_forecaster",
+    "component:consistency_checker",
+    "component:feasibility_checker",
+    "component:lookahead_planner",
+    "component:priority_filter",
+    "component:range_validator",
+    "component:rate_detector",
+    "component:risk_estimator",
+    "component:statistical_detector",
+    "memory:episodic",
+    "memory:graph",
+    "memory:none",
+    "memory:vector",
+    "model:classifier",
+    "model:embedding_model",
+    "model:large_reasoner",
+    "model:small_reasoner",
+    "reasoning:direct",
+    "reasoning:hierarchical",
+    "reasoning:iterative",
+    "reasoning:parallel",
+    "reasoning:sequential",
+    "tool:database",
+    "tool:parser",
+    "tool:python",
+    "tool:search",
+    "tool:simulator",
+    "verification:execution_based",
+    "verification:model_based",
+    "verification:none",
+    "verification:rule_based"
+  ],
+  "python": "3.10.12",
+  "started_at": "2026-09-30T12:01:10.065908+00:00",
+  "host": {
+    "host_cpu_percent": 37.9,
+    "host_mem_available_mb": 4444.29296875,
+    "host_load_1m": 3.29345703125
+  },
+  "model_identifier": "simulated-registry-models",
+  "model_configuration": {
+    "small_reasoner": {
+      "name": "small_reasoner",
+      "kind": "model",
+      "description": "Cheap combiner over detector scores (mean + threshold).",
+      "cost_per_call": 0.0005,
+      "latency_ms": 40.0,
+      "memory_mb": 32.0,
+      "cpu_weight": 1.0,
+      "requires_network": false,
+      "tokens_per_call": 300,
+      "params": {}
+    },
+    "large_reasoner": {
+      "name": "large_reasoner",
+      "kind": "model",
+      "description": "Multi-scale iterative combiner; more compute, better calibration.",
+      "cost_per_call": 0.004,
+      "latency_ms": 250.0,
+      "memory_mb": 128.0,
+      "cpu_weight": 4.0,
+      "requires_network": false,
+      "tokens_per_call": 1800,
+      "params": {}
+    },
+    "classifier": {
+      "name": "classifier",
+      "kind": "model",
+      "description": "Fixed-threshold classifier over a single score.",
+      "cost_per_call": 0.0001,
+      "latency_ms": 10.0,
+      "memory_mb": 16.0,
+      "cpu_weight": 0.5,
+      "requires_network": false,
+      "tokens_per_call": 0,
+      "params": {}
+    },
+    "embedding_model": {
+      "name": "embedding_model",
+      "kind": "model",
+      "description": "Windowed feature embedding used by vector memory.",
+      "cost_per_call": 0.0002,
+      "latency_ms": 30.0,
+      "memory_mb": 64.0,
+      "cpu_weight": 1.5,
+      "requires_network": false,
+      "tokens_per_call": 120,
+      "params": {}
+    }
+  },
+  "finished_at": "2026-09-30T12:01:51.191779+00:00",
+  "agents": {
+    "agm_v2_src": {
+      "quality_mean": 0.7330094466936572,
+      "quality_min": 0.4615384615384615,
+      "quality_final": 0.8,
+      "steps_at_target": 2,
+      "time_to_target_logical_s": 30.0,
+      "time_to_target_wall_s": 13.327055140000084,
+      "search_time_s": 15.621255017003932,
+      "architecture_evaluations": 32,
+      "model_calls": 37,
+      "tokens": 21600,
+      "cpu_time_s": 2.143355,
+      "max_memory_mb": 59.625,
+      "wall_used_s": 14.000248938998993,
+      "execution_cost": 0.0025,
+      "adaptation_cost": 0.01600000000000001,
+      "total_cost": 0.01850000000000001,
+      "constraint_violations": 0,
+      "violation_list": [],
+      "failures": 0,
+      "novelty_mean": 0.2,
+      "novelty_max": 1.0,
+      "distinct_architectures": 1,
+      "architectures": [
+        {
+          "step": 0,
+          "hash": "662a48a0041be770",
+          "name": "syn_cons_direct"
+        },
+        {
+          "step": 1,
+          "hash": "662a48a0041be770",
+          "name": "syn_cons_direct"
+        },
+        {
+          "step": 2,
+          "hash": "662a48a0041be770",
+          "name": "syn_cons_direct"
+        },
+        {
+          "step": 3,
+          "hash": "662a48a0041be770",
+          "name": "syn_cons_direct"
+        },
+        {
+          "step": 4,
+          "hash": "662a48a0041be770",
+          "name": "syn_cons_direct"
+        }
+      ],
+      "memory_reads": 5,
+      "memory_writes": 5,
+      "principle_reads": 5,
+      "principle_writes": 7,
+      "run_id": "exp_1790769670_81a9235a7d38.agm_v2_src",
+      "n_events": 763,
+      "architecture_aliases": {
+        "4c11ce0f07f705d9": "A-001",
+        "662a48a0041be770": "A-002",
+        "8d51da4468988bb6": "A-003",
+        "f1166591d0a381d3": "A-004",
+        "2868724eec9f7f2d": "A-005",
+        "f0783889a249f129": "A-006",
+        "4041886fabd744e8": "A-007",
+        "8f4fb79b558d04c7": "A-008",
+        "2f7308d007865592": "A-009",
+        "e3a7d7c45825ade2": "A-010",
+        "ee9196401165483b": "A-011",
+        "c9f23cf55c320997": "A-012",
+        "cda213cdd115fcf8": "A-013",
+        "e8b3da881f50681e": "A-014",
+        "c45a5a975f4d38a9": "A-015",
+        "b1b147d3bfc0be7c": "A-016",
+        "5893d242a98cf9c3": "A-017",
+        "72744ea2320115a1": "A-018",
+        "a005d65b38c751df": "A-019",
+        "f3ace390691e7bc9": "A-020",
+        "2695376aedfe2c04": "A-021",
+        "9b5dd51dbcd9d8bf": "A-022",
+        "3bcb98f2c016ea8d": "A-023",
+        "a429776aa666ed57": "A-024",
+        "b8fc3deb2bb34641": "A-025",
+        "aad2e02f297ba0a5": "A-026",
+        "30ee3da68d1ae531": "A-027",
+        "336360316cd69b8a": "A-028",
+        "a36afcc07102cc5a": "A-029",
+        "8b1f4c9150503656": "A-030",
+        "f22c9f8448350dd9": "A-031",
+        "94f60bac19eddcdf": "A-032",
+        "3fa2519d5bc3f55b": "A-033",
+        "b83bbce8ebf2c239": "A-034",
+        "3c2eb04b3a3bb360": "A-035",
+        "e9a71cf413884f1a": "A-036",
+        "4b6c81bae7f9eb16": "A-037",
+        "ab91fb0e23c7770f": "A-038",
+        "ba7488c3297eb4f1": "A-039",
+        "34a87c51471dac22": "A-040",
+        "b707889295d3ab57": "A-041",
+        "fa45a4be24697601": "A-042",
+        "4fe035563975b002": "A-043",
+        "8fb34e1e5b6922e7": "A-044",
+        "8cce19840efd9797": "A-045",
+        "e96165717178c123": "A-046",
+        "a0f9d342959e0e5a": "A-047",
+        "12701d7fbdfaadb4": "A-048",
+        "482ff51de9187fcc": "A-049",
+        "863aa348934957ea": "A-050",
+        "2fba3fb17ac12983": "A-051",
+        "afaa341a46f2461a": "A-052",
+        "5a7024b17f3d16a2": "A-053",
+        "b931e288500ff459": "A-054",
+        "9b7e359b84f9915d": "A-055",
+        "76b70a5fb7784e11": "A-056",
+        "c03702283a4b5ae6": "A-057",
+        "de18bb28cea7378f": "A-058",
+        "3b382f22ca54a8de": "A-059",
+        "1d97824b01f6cfbc": "A-060",
+        "0e144901de3b2430": "A-061",
+        "13e6f7053d79209f": "A-062",
+        "01fee2e690f96c59": "A-063",
+        "3fcd38ef40d4f6ad": "A-064",
+        "31687a403d6e0619": "A-065",
+        "58fd2e726bd14937": "A-066",
+        "d85bc3a38afb9862": "A-067",
+        "98b310125e23e1ff": "A-068",
+        "08b47ced52eeef1b": "A-069",
+        "62c286070914faa8": "A-070",
+        "d39dcd86a750f7d5": "A-071",
+        "ed9a8058fda2acce": "A-072",
+        "2cccf75c75bd4f1c": "A-073",
+        "36a6c90989da17e0": "A-074",
+        "a78d0ad7cc13abad": "A-075",
+        "99b1ee2467e8ac39": "A-076",
+        "572fb6b6cc29b8bd": "A-077",
+        "3d9aff26a5f8f434": "A-078",
+        "f6f6876a0ba42663": "A-079",
+        "de08c0221435d3f9": "A-080",
+        "4f93b1f5b919de9b": "A-081",
+        "02e8fc9909fa5c21": "A-082",
+        "7d63d71f7f465b16": "A-083",
+        "f95edc9f2e5d0275": "A-084",
+        "84647af98e7f8096": "A-085",
+        "90eb75e6d833f7bd": "A-086",
+        "2c7bb12c11106ac1": "A-087",
+        "76eff96c528644e8": "A-088",
+        "44e30ec65249f8ba": "A-089",
+        "cd6e00ab339e5905": "A-090",
+        "ada79b27bec596ff": "A-091",
+        "265c9e6d323b1d01": "A-092",
+        "9742212dd33b1b46": "A-093",
+        "037fc8c759486e9c": "A-094",
+        "26680eecd2f3c368": "A-095",
+        "4f0b6e7a9caea276": "A-096",
+        "28336ecd9750d9b2": "A-097",
+        "2ebb03f547a56fe9": "A-098",
+        "c69ec009f7032095": "A-099",
+        "62c01279933fb010": "A-100",
+        "62570faf9207d829": "A-101",
+        "009444eab629fa6e": "A-102",
+        "2176916ae32f2dba": "A-103",
+        "0e00cde5fbcb1d9f": "A-104",
+        "e11a0bcac7d44a3c": "A-105",
+        "d8f028abf8bdacd0": "A-106",
+        "18558ea914bf4bcf": "A-107",
+        "fbec0d64e588b918": "A-108",
+        "578da7517d59c204": "A-109",
+        "6f13c40c1dd22798": "A-110",
+        "fa352755b0bee2a3": "A-111",
+        "d49dc73ddaefb12f": "A-112",
+        "e3bd9a7c74c22507": "A-113",
+        "af3322bd1eaedd77": "A-114",
+        "accbc4e7caff4b3b": "A-115",
+        "12689daeef3bc3cc": "A-116",
+        "d8d0b498f9be072b": "A-117",
+        "5d3f2de8ab37ea4f": "A-118",
+        "a7a45eec09b24528": "A-119",
+        "b2ae28a6f06f28f1": "A-120",
+        "19ec2b54e7ab40c7": "A-121",
+        "78c86924f777b9b9": "A-122",
+        "7dcbf2129a639f1c": "A-123",
+        "d9fe9611d12c9348": "A-124",
+        "870233721a94ac10": "A-125",
+        "e774ef984aea1c70": "A-126",
+        "0d59c4be84abc893": "A-127",
+        "059e863fc5a39e8b": "A-128",
+        "0709b82088c58d0a": "A-129",
+        "3a5e628f557482b5": "A-130",
+        "64a37dc6f1d48ab8": "A-131",
+        "0c697e709afc9b71": "A-132",
+        "2d16f2b4019f9ce8": "A-133",
+        "9053291007c6353a": "A-134",
+        "38c1e51f0784f67d": "A-135",
+        "d023e9fb33fa0960": "A-136",
+        "16d01392ce94b23f": "A-137",
+        "eb82f8392b62435e": "A-138",
+        "169bf272d3b9d8b0": "A-139",
+        "f9340019763758ae": "A-140",
+        "244de493d9e41ff2": "A-141",
+        "3cd97599f0aee3fb": "A-142",
+        "05c5ad6c39f42701": "A-143",
+        "e57f8da0b84cc1be": "A-144",
+        "562271f0ca75d80a": "A-145",
+        "edb3d44827a95faf": "A-146",
+        "2904ee3c44d3cefe": "A-147",
+        "398f0b563e2392f9": "A-148",
+        "b64f73a0aa5c2e7a": "A-149",
+        "4c7addf9cb665c26": "A-150",
+        "45d1f444f00ab201": "A-151",
+        "ec38be6f9ff4efb2": "A-152",
+        "0b252ac9a5c302b9": "A-153",
+        "bb784466fb53450c": "A-154",
+        "4db046466efd0a1c": "A-155",
+        "fd8e4bd4b44514ad": "A-156",
+        "d97c365cf8bf4d8d": "A-157",
+        "9d8c1b5081d83410": "A-158",
+        "825d0c36292020e7": "A-159",
+        "558fd3aa1f4c3a8e": "A-160",
+        "a909cfd9cd0da132": "A-161",
+        "318eabbf6018a30c": "A-162",
+        "1428e694018332de": "A-163",
+        "d2b268588723da70": "A-164",
+        "93e4fc63e9afbe50": "A-165",
+        "0a09de7f5a542145": "A-166",
+        "55088713d2e64bed": "A-167",
+        "fdd27b5a14edbcea": "A-168",
+        "6493b0ec335efb04": "A-169",
+        "4dc2dc2b8608a9cc": "A-170",
+        "9605be65894d43f2": "A-171",
+        "af739f61d398d5b3": "A-172",
+        "2d8c36fca056d082": "A-173",
+        "87f979d11491341f": "A-174",
+        "52518f622407a23f": "A-175",
+        "2645c4dab1fdd991": "A-176",
+        "184540ebf6eca832": "A-177",
+        "8cf982e915a4fd9a": "A-178",
+        "ace5a82226bd3cd3": "A-179",
+        "d1cf9caa2ffe375d": "A-180",
+        "9a4ba0b30132f69b": "A-181",
+        "789c03884d277cab": "A-182",
+        "f51c1187d3e707ce": "A-183",
+        "798a8f240ecc3485": "A-184",
+        "bcf7047f50c99ca2": "A-185",
+        "fcfafc65b0797a35": "A-186",
+        "ff0f3023066ce6f0": "A-187",
+        "f6cc811e8b2daa5a": "A-188",
+        "f069baa1456aaf81": "A-189",
+        "a7a00a35a8da4c88": "A-190",
+        "ac29a6bbda90f079": "A-191",
+        "c16d2b740acc0cf0": "A-192",
+        "d4d18bb62236ef7e": "A-193",
+        "e7d9d16f5296c43a": "A-194",
+        "0025e2d783a99110": "A-195",
+        "cb96c9b894e0a6f8": "A-196",
+        "07c4bf74d804c029": "A-197",
+        "8fe8137e83feafb8": "A-198",
+        "1f82ea0b9d1b0904": "A-199",
+        "a740c42ddfec0b38": "A-200",
+        "04a363a2d2355739": "A-201",
+        "5e8094c00e46c547": "A-202",
+        "415bdd00b42d334d": "A-203",
+        "8f2f29398dd9bbdf": "A-204",
+        "f68fbb0e49d5045f": "A-205",
+        "2640359e561dd644": "A-206",
+        "b8588565a467f8bb": "A-207",
+        "a5dd278614b3a64c": "A-208",
+        "7d590494dcbac860": "A-209",
+        "32f7e0801adeaabb": "A-210",
+        "a912387b351110a7": "A-211",
+        "7df589a866f3ea50": "A-212",
+        "26de989cfa591819": "A-213",
+        "9ab22e27c80f5871": "A-214",
+        "1a5baaeb971b9c05": "A-215",
+        "7330b7ab4581c937": "A-216",
+        "907cdddd9df98ed1": "A-217",
+        "e7cca4e56a621cf9": "A-218",
+        "f50bb9d051ae8448": "A-219",
+        "827eb409e95c019f": "A-220",
+        "1cadca716a40e4d0": "A-221",
+        "3f087db708d01e93": "A-222",
+        "3c5e2d6fb8dbb946": "A-223",
+        "048b29c7d217a900": "A-224",
+        "f574b5790e862c2b": "A-225",
+        "627239d8cdf69fb9": "A-226",
+        "56aa686dd2e22afe": "A-227",
+        "50b4d2f31337b885": "A-228",
+        "5f4d53cac2edae37": "A-229",
+        "1f4a9863c29d54f6": "A-230",
+        "2aabd9305bb9466d": "A-231",
+        "9476833ef580ecf9": "A-232",
+        "592d301eb110d99b": "A-233",
+        "57ca1fd92a9912df": "A-234",
+        "75ed98af50f3c6ee": "A-235",
+        "84e8b8272ed87e71": "A-236",
+        "06821cfbf2cd0b20": "A-237",
+        "6c9378659bb3a62c": "A-238",
+        "4a1c21b93ca532b8": "A-239",
+        "b3bc086de5d69ab9": "A-240",
+        "b9763b7711dadbe3": "A-241",
+        "2e2db461bd179d29": "A-242",
+        "39d099016154ca04": "A-243",
+        "71c69e9c8893326a": "A-244",
+        "cb6ab3256b6a6113": "A-245",
+        "bee4b07134ceaeeb": "A-246",
+        "60000e6e69320ec9": "A-247",
+        "b28a214bfd15013a": "A-248",
+        "40f333465e7c5c46": "A-249",
+        "4750051fdaef443e": "A-250",
+        "e1a33d43812e2864": "A-251",
+        "41dc40584706ca19": "A-252",
+        "8921cc64f55bad2b": "A-253",
+        "f58df2f5a3d1a1eb": "A-254",
+        "620933f9e7601de7": "A-255",
+        "c8333a2f6039cc78": "A-256",
+        "9a064371878f628c": "A-257",
+        "3cbbd29b273c6c25": "A-258",
+        "245054179373d54b": "A-259"
+      },
+      "agent_extra": {
+        "memory_mode": "full",
+        "economics_mode": "economic",
+        "principle_reuse": 0,
+        "principles_created": 2,
+        "principles_tested": [],
+        "transfers": [],
+        "evaluations_to_target": 8,
+        "decisions": [
+          {
+            "decision_id": "dec_1790769699_c92f94013206",
+            "experiment_id": "exp_1790769670_81a9235a7d38",
+            "agent": "agm_v2_src",
+            "step": 0,
+            "outcome": "ADAPT",
+            "expected_gain": 0.8,
+            "estimated_adaptation_cost": 0.08133333333333334,
+            "net_expected": 0.7186666666666667,
+            "rationale": "current architecture invalid under environment (gain=0.800: impr 0.800 + resource 0.000 + risk 0.000; cost=0.081: money 0.018 + time 0.033 + failure-risk 0.030; priority\u00d71.00)",
+            "inputs": {
+              "current_architecture_hash": "none",
+              "current_valid": false,
+              "expected_quality": 0.0,
+              "expected_improvement": 0.8,
+              "expected_resource_benefit": 0.0,
+              "expected_risk_reduction": 0.0,
+              "search_cost_usd": 0.004,
+              "synthesis_cost_usd": 0.0,
+              "validation_cost_usd": 0.0005,
+              "execution_overhead_s": 4.0,
+              "failure_risk": 0.1,
+              "deadline_remaining_s": 120.0,
+              "budget_remaining_usd": 0.25,
+              "target_quality": 0.8,
+              "priority": 1,
+              "n_unevaluated_candidates": 257,
+              "usd_to_quality": 1.0,
+              "seconds_to_quality": 1.0,
+              "failure_penalty_quality": 0.3
+            },
+            "actual_adaptation_cost": 0.0607409640249892,
+            "actual_adaptation_cost_usd": 0.004,
+            "actual_adaptation_seconds": 5.368915682998704,
+            "realized_gain": 0.4615384615384615,
+            "decision_error": -0.31786916915319435,
+            "cost_estimate_error": -0.02059236930834414,
+            "mode": "economic"
+          },
+          {
+            "decision_id": "dec_1790769703_ccc6605eaebe",
+            "experiment_id": "exp_1790769670_81a9235a7d38",
+            "agent": "agm_v2_src",
+            "step": 1,
+            "outcome": "ADAPT",
+            "expected_gain": 0.3884615384615385,
+            "estimated_adaptation_cost": 0.05970907780434434,
+            "net_expected": 0.3287524606571942,
+            "rationale": "net expected value +0.329 > 0 (gain=0.388: impr 0.338 + resource 0.050 + risk 0.000; cost=0.060: money 0.018 + time 0.014 + failure-risk 0.027; priority\u00d71.00)",
+            "inputs": {
+              "current_architecture_hash": "662a48a0041be770",
+              "current_valid": true,
+              "expected_quality": 0.4615384615384615,
+              "expected_improvement": 0.33846153846153854,
+              "expected_resource_benefit": 0.05,
+              "expected_risk_reduction": 0.0,
+              "search_cost_usd": 0.004,
+              "synthesis_cost_usd": 0.0,
+              "validation_cost_usd": 0.0005,
+              "execution_overhead_s": 1.6,
+              "failure_risk": 0.0911764705882353,
+              "deadline_remaining_s": 114.07225472400205,
+              "budget_remaining_usd": 0.2455,
+              "target_quality": 0.8,
+              "priority": 1,
+              "n_unevaluated_candidates": 62,
+              "usd_to_quality": 1.0,
+              "seconds_to_quality": 1.0,
+              "failure_penalty_quality": 0.3
+            },
+            "actual_adaptation_cost": 0.032260364317646756,
+            "actual_adaptation_cost_usd": 0.0040000000000000036,
+            "actual_adaptation_seconds": 1.8214014209988818,
+            "realized_gain": 0.27530364372469635,
+            "decision_error": -0.08570918125014462,
+            "cost_estimate_error": -0.027448713486697585,
+            "mode": "economic"
+          },
+          {
+            "decision_id": "dec_1790769706_ef889f87990a",
+            "experiment_id": "exp_1790769670_81a9235a7d38",
+            "agent": "agm_v2_src",
+            "step": 2,
+            "outcome": "ADAPT",
+            "expected_gain": 0.1131578947368422,
+            "estimated_adaptation_cost": 0.056815619723344764,
+            "net_expected": 0.05634227501349743,
+            "rationale": "net expected value +0.056 > 0 (gain=0.113: impr 0.063 + resource 0.050 + risk 0.000; cost=0.057: money 0.019 + time 0.014 + failure-risk 0.024; priority\u00d71.00)",
+            "inputs": {
+              "current_architecture_hash": "662a48a0041be770",
+              "current_valid": true,
+              "expected_quality": 0.7368421052631579,
+              "expected_improvement": 0.06315789473684219,
+              "expected_resource_benefit": 0.05,
+              "expected_risk_reduction": 0.0,
+              "search_cost_usd": 0.004,
+              "synthesis_cost_usd": 0.0,
+              "validation_cost_usd": 0.0005,
+              "execution_overhead_s": 1.6,
+              "failure_risk": 0.07941176470588236,
+              "deadline_remaining_s": 111.73269295099999,
+              "budget_remaining_usd": 0.241,
+              "target_quality": 0.8,
+              "priority": 1,
+              "n_unevaluated_candidates": 54,
+              "usd_to_quality": 1.0,
+              "seconds_to_quality": 1.0,
+              "failure_penalty_quality": 0.3
+            },
+            "actual_adaptation_cost": 0.03268125899290272,
+            "actual_adaptation_cost_usd": 0.0040000000000000036,
+            "actual_adaptation_seconds": 1.7970805459990515,
+            "realized_gain": -0.07017543859649122,
+            "decision_error": -0.15919897260289137,
+            "cost_estimate_error": -0.02413436073044204,
+            "mode": "economic"
+          },
+          {
+            "decision_id": "dec_1790769708_1698a39a0f76",
+            "experiment_id": "exp_1790769670_81a9235a7d38",
+            "agent": "agm_v2_src",
+            "step": 3,
+            "outcome": "ADAPT",
+            "expected_gain": 0.1833333333333334,
+            "estimated_adaptation_cost": 0.053955895384733915,
+            "net_expected": 0.1293774379485995,
+            "rationale": "net expected value +0.129 > 0 (gain=0.183: impr 0.133 + resource 0.050 + risk 0.000; cost=0.054: money 0.019 + time 0.015 + failure-risk 0.020; priority\u00d71.00)",
+            "inputs": {
+              "current_architecture_hash": "662a48a0041be770",
+              "current_valid": true,
+              "expected_quality": 0.6666666666666666,
+              "expected_improvement": 0.13333333333333341,
+              "expected_resource_benefit": 0.05,
+              "expected_risk_reduction": 0.0,
+              "search_cost_usd": 0.004,
+              "synthesis_cost_usd": 0.0,
+              "validation_cost_usd": 0.0005,
+              "execution_overhead_s": 1.6,
+              "failure_risk": 0.06764705882352942,
+              "deadline_remaining_s": 109.33223320499928,
+              "budget_remaining_usd": 0.2365,
+              "target_quality": 0.8,
+              "priority": 1,
+              "n_unevaluated_candidates": 46,
+              "usd_to_quality": 1.0,
+              "seconds_to_quality": 1.0,
+              "failure_penalty_quality": 0.3
+            },
+            "actual_adaptation_cost": 0.03435999521069071,
+            "actual_adaptation_cost_usd": 0.0040000000000000036,
+            "actual_adaptation_seconds": 1.9074840459998086,
+            "realized_gain": 0.33333333333333337,
+            "decision_error": 0.16959590017404316,
+            "cost_estimate_error": -0.019595900174043203,
+            "mode": "economic"
+          },
+          {
+            "decision_id": "dec_1790769710_90db7b308d46",
+            "experiment_id": "exp_1790769670_81a9235a7d38",
+            "agent": "agm_v2_src",
+            "step": 4,
+            "outcome": "DO_NOT_ADAPT",
+            "expected_gain": 0.07500000000000001,
+            "estimated_adaptation_cost": 0.05116037478751441,
+            "net_expected": 0.023839625212485602,
+            "rationale": "target met; expected gain negligible (gain=0.075: impr -0.200 + resource 0.050 + risk 0.000; cost=0.051: money 0.019 + time 0.015 + failure-risk 0.017; priority\u00d71.50)",
+            "inputs": {
+              "current_architecture_hash": "662a48a0041be770",
+              "current_valid": true,
+              "expected_quality": 1.0,
+              "expected_improvement": -0.19999999999999996,
+              "expected_resource_benefit": 0.05,
+              "expected_risk_reduction": 0.0,
+              "search_cost_usd": 0.004,
+              "synthesis_cost_usd": 0.0,
+              "validation_cost_usd": 0.0005,
+              "execution_overhead_s": 1.6,
+              "failure_risk": 0.05588235294117647,
+              "deadline_remaining_s": 106.67294485999992,
+              "budget_remaining_usd": 0.23199999999999998,
+              "target_quality": 0.8,
+              "priority": 3,
+              "n_unevaluated_candidates": 38,
+              "usd_to_quality": 1.0,
+              "seconds_to_quality": 1.0,
+              "failure_penalty_quality": 0.3
+            },
+            "actual_adaptation_cost": 0.0058128935862283935,
+            "actual_adaptation_cost_usd": 0.0,
+            "actual_adaptation_seconds": 0.6200784770007886,
+            "realized_gain": -0.19999999999999996,
+            "decision_error": -0.22965251879871396,
+            "cost_estimate_error": -0.04534748120128602,
+            "mode": "economic"
+          }
+        ],
+        "decision_outcomes": {
+          "ADAPT": 4,
+          "PARTIAL_ADAPT": 0,
+          "DO_NOT_ADAPT": 1,
+          "TERMINATE": 0
+        },
+        "mean_decision_error": -0.12456678832618025,
+        "mean_cost_estimate_error": -0.027423764980162597,
+        "selected_history": [
+          {
+            "step": 0,
+            "hash": "662a48a0041be770",
+            "source": "synthesis",
+            "principle_id": null,
+            "distance_to_initial": 0.0,
+            "distance_to_previous": 0.0,
+            "novelty_level": null,
+            "cross_domain": false
+          },
+          {
+            "step": 1,
+            "hash": "662a48a0041be770",
+            "source": "synthesis",
+            "principle_id": null,
+            "distance_to_initial": 0.0,
+            "distance_to_previous": 0.0,
+            "novelty_level": null,
+            "cross_domain": false
+          },
+          {
+            "step": 2,
+            "hash": "662a48a0041be770",
+            "source": "synthesis",
+            "principle_id": null,
+            "distance_to_initial": 0.0,
+            "distance_to_previous": 0.0,
+            "novelty_level": null,
+            "cross_domain": false
+          },
+          {
+            "step": 3,
+            "hash": "662a48a0041be770",
+            "source": "synthesis",
+            "principle_id": null,
+            "distance_to_initial": 0.0,
+            "distance_to_previous": 0.0,
+            "novelty_level": null,
+            "cross_domain": false
+          },
+          {
+            "step": 4,
+            "hash": "662a48a0041be770",
+            "source": "synthesis",
+            "principle_id": null,
+            "distance_to_initial": 0.0,
+            "distance_to_previous": 0.0,
+            "novelty_level": null,
+            "cross_domain": false
+          }
+        ],
+        "final_distance_to_initial": 0.0,
+        "max_distance_to_initial": 0.0
+      },
+      "env_transitions": 5,
+      "decisions": []
+    }
+  }
+}

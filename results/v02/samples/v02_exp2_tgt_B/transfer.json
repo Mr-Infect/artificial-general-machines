@@ -1,0 +1,39 @@
+{
+ "pairs": {},
+ "attempts": {
+  "v2_cold": [],
+  "v2_from_A": [],
+  "v2_from_C": [],
+  "v2_warm_full": [],
+  "v2_warm_architecture": [],
+  "v2_warm_principle": [],
+  "v2_warm_task": [],
+  "v2_always_adapt": [],
+  "v2_never_adapt": [],
+  "v1_warm_architecture": []
+ },
+ "completions": {
+  "v2_cold": [],
+  "v2_from_A": [],
+  "v2_from_C": [],
+  "v2_warm_full": [],
+  "v2_warm_architecture": [],
+  "v2_warm_principle": [],
+  "v2_warm_task": [],
+  "v2_always_adapt": [],
+  "v2_never_adapt": [],
+  "v1_warm_architecture": []
+ },
+ "principle_reuse": {
+  "v2_cold": 0,
+  "v2_from_A": 0,
+  "v2_from_C": 0,
+  "v2_warm_full": 0,
+  "v2_warm_architecture": 0,
+  "v2_warm_principle": 0,
+  "v2_warm_task": 0,
+  "v2_always_adapt": 0,
+  "v2_never_adapt": 0,
+  "v1_warm_architecture": null
+ }
+}

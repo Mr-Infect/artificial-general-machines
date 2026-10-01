@@ -1,0 +1,104 @@
+{
+  "name": "cross_domain_001_domain_a_network",
+  "description": "Domain A run that populates structural memory for the transfer test.",
+  "seed": 100,
+  "repeats": 3,
+  "executor": null,
+  "task": {
+    "type": "anomaly_detection",
+    "domain": "network",
+    "dataset_size": 2000,
+    "noise": 0.1,
+    "anomaly_rate": 0.03,
+    "verification_required": false,
+    "priority": 1
+  },
+  "environment": {
+    "cpu": 1.0,
+    "memory_mb": 512,
+    "latency_ms": 2000,
+    "network": true,
+    "privacy": "local_only",
+    "energy_budget": 1.0,
+    "available_capabilities": "all"
+  },
+  "objective": {
+    "quality_threshold": 0.85
+  },
+  "budget": {
+    "max_seconds": 120.0,
+    "max_cost": 0.25,
+    "step_timeout_s": 30.0
+  },
+  "schedule": {
+    "steps": 5,
+    "step_seconds": 10.0,
+    "validation_fraction": 0.2
+  },
+  "events": [
+    {
+      "t": 10.0,
+      "type": "memory_reduction",
+      "params": {
+        "memory_mb": 80
+      }
+    },
+    {
+      "t": 20.0,
+      "type": "network_loss",
+      "params": {}
+    },
+    {
+      "t": 20.0,
+      "type": "capability_removal",
+      "params": {
+        "capabilities": [
+          "model:large_reasoner",
+          "tool:search"
+        ]
+      }
+    },
+    {
+      "t": 30.0,
+      "type": "latency_reduction",
+      "params": {
+        "latency_ms": 800
+      }
+    },
+    {
+      "t": 40.0,
+      "type": "priority_increase",
+      "params": {
+        "priority": 3
+      }
+    }
+  ],
+  "agents": [
+    {
+      "name": "fixed",
+      "type": "fixed"
+    },
+    {
+      "name": "adaptive",
+      "type": "adaptive"
+    },
+    {
+      "name": "search",
+      "type": "search",
+      "max_evaluations": 8
+    },
+    {
+      "name": "agm_cold",
+      "type": "agm",
+      "max_evaluations": 6,
+      "memory": {
+        "read": false,
+        "write": true
+      }
+    }
+  ],
+  "memory_db": "results/memory/cross_domain_001.sqlite",
+  "tags": [
+    "cross_domain_001"
+  ]
+}

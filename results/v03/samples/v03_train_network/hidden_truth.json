@@ -1,0 +1,86 @@
+{
+ "regime": {
+  "set": "training",
+  "schedule": [
+   {
+    "regime": "starved",
+    "start_step": 0
+   },
+   {
+    "regime": "turbulent",
+    "start_step": 3
+   },
+   {
+    "regime": "calm",
+    "start_step": 5
+   }
+  ],
+  "regime_by_step": [
+   "starved",
+   "starved",
+   "starved",
+   "turbulent",
+   "turbulent",
+   "calm",
+   "calm",
+   "calm",
+   "calm"
+  ],
+  "transitions": [
+   3,
+   5
+  ],
+  "params": {
+   "calm": {
+    "noise": 0.05,
+    "volatility": 0.5,
+    "rate": 0.03,
+    "memory_mb": 512,
+    "cpu": 1.0,
+    "vcf": 1.0,
+    "penalty": 0.0,
+    "large_model": true
+   },
+   "starved": {
+    "noise": 0.1,
+    "volatility": 1.0,
+    "rate": 0.03,
+    "memory_mb": 90,
+    "cpu": 0.5,
+    "vcf": 1.0,
+    "penalty": 0.5,
+    "large_model": false
+   },
+   "turbulent": {
+    "noise": 0.25,
+    "volatility": 3.0,
+    "rate": 0.03,
+    "memory_mb": 512,
+    "cpu": 1.0,
+    "vcf": 6.0,
+    "penalty": 0.2,
+    "large_model": true
+   }
+  }
+ },
+ "objective": {
+  "mode": "regime_top_decile",
+  "target": 0.9231,
+  "target_by_regime": {
+   "starved": 0.9231,
+   "turbulent": 1.0,
+   "calm": 1.0
+  },
+  "target_by_step": [
+   0.9231,
+   0.9231,
+   0.9231,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ]
+ }
+}

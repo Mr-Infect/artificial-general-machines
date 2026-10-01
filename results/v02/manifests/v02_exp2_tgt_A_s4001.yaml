@@ -1,0 +1,166 @@
+experiment:
+  name: v02_exp2_tgt_A
+  description: 'Exp 2/3/4/5/7 target run in domain A: cold vs transferred memory (from
+    each other domain and merged), memory-mode and economics ablations, AGM v0.1 with
+    warm architecture memory.'
+  tags:
+  - v02_exp2_tgt
+  seed: 4001
+  repeats: 1
+  task:
+    type: anomaly_detection
+    domain: network
+    dataset_size: 2000
+    noise: 0.1
+    anomaly_rate: 0.03
+    verification_required: false
+    priority: 1
+  environment:
+    cpu: 1
+    memory_mb: 512
+    latency_ms: 2000
+    network: true
+    available_capabilities: all
+  objective:
+    quality_threshold: 0.0
+    top_fraction: 0.1
+  budget:
+    max_seconds: 120
+    max_cost: 0.25
+    step_timeout_s: 30
+  schedule:
+    steps: 5
+    step_seconds: 10
+    validation_fraction: 0.2
+  events:
+  - t: 10
+    type: memory_reduction
+    params:
+      memory_mb: 80
+  - t: 20
+    type: network_loss
+  - t: 20
+    type: capability_removal
+    params:
+      capabilities:
+      - model:large_reasoner
+      - tool:search
+      - component:lookahead_planner
+  - t: 30
+    type: latency_reduction
+    params:
+      latency_ms: 800
+  - t: 40
+    type: priority_increase
+    params:
+      priority: 3
+  agents:
+  - name: v2_cold
+    type: agm_v2
+    max_evaluations: 6
+    memory_mode: none
+    economics_mode: economic
+    explore_all: false
+  - name: v2_from_B
+    type: agm_v2
+    max_evaluations: 6
+    memory_mode: full
+    economics_mode: economic
+    explore_all: false
+    memory:
+      read: true
+      write: true
+      db: /home/cool/AGM-Laboratory/results/v02/memory/exp2_from_B_to_A_1.sqlite
+    principle_memory:
+      read: true
+      write: true
+      db: /home/cool/AGM-Laboratory/results/v02/memory/exp2_from_B_to_A_1.sqlite
+  - name: v2_from_C
+    type: agm_v2
+    max_evaluations: 6
+    memory_mode: full
+    economics_mode: economic
+    explore_all: false
+    memory:
+      read: true
+      write: true
+      db: /home/cool/AGM-Laboratory/results/v02/memory/exp2_from_C_to_A_1.sqlite
+    principle_memory:
+      read: true
+      write: true
+      db: /home/cool/AGM-Laboratory/results/v02/memory/exp2_from_C_to_A_1.sqlite
+  - name: v2_warm_full
+    type: agm_v2
+    max_evaluations: 6
+    memory_mode: full
+    economics_mode: economic
+    explore_all: false
+    memory:
+      read: true
+      write: true
+      db: /home/cool/AGM-Laboratory/results/v02/memory/exp2_warm_A_1_full.sqlite
+    principle_memory:
+      read: true
+      write: true
+      db: /home/cool/AGM-Laboratory/results/v02/memory/exp2_warm_A_1_full.sqlite
+  - name: v2_warm_architecture
+    type: agm_v2
+    max_evaluations: 6
+    memory_mode: architecture
+    economics_mode: economic
+    explore_all: false
+    memory:
+      read: true
+      write: true
+      db: /home/cool/AGM-Laboratory/results/v02/memory/exp2_warm_A_1_architecture.sqlite
+    principle_memory:
+      read: true
+      write: true
+      db: /home/cool/AGM-Laboratory/results/v02/memory/exp2_warm_A_1_architecture.sqlite
+  - name: v2_warm_principle
+    type: agm_v2
+    max_evaluations: 6
+    memory_mode: principle
+    economics_mode: economic
+    explore_all: false
+    memory:
+      read: true
+      write: true
+      db: /home/cool/AGM-Laboratory/results/v02/memory/exp2_warm_A_1_principle.sqlite
+    principle_memory:
+      read: true
+      write: true
+      db: /home/cool/AGM-Laboratory/results/v02/memory/exp2_warm_A_1_principle.sqlite
+  - name: v2_warm_task
+    type: agm_v2
+    max_evaluations: 6
+    memory_mode: task
+    economics_mode: economic
+    explore_all: false
+    memory:
+      read: true
+      write: true
+      db: /home/cool/AGM-Laboratory/results/v02/memory/exp2_warm_A_1_task.sqlite
+    principle_memory:
+      read: true
+      write: true
+      db: /home/cool/AGM-Laboratory/results/v02/memory/exp2_warm_A_1_task.sqlite
+  - name: v2_always_adapt
+    type: agm_v2
+    max_evaluations: 6
+    memory_mode: none
+    economics_mode: always_adapt
+    explore_all: false
+  - name: v2_never_adapt
+    type: agm_v2
+    max_evaluations: 6
+    memory_mode: none
+    economics_mode: never_adapt
+    explore_all: false
+  - name: v1_warm_architecture
+    type: agm
+    max_evaluations: 6
+    memory:
+      read: true
+      write: true
+      db: /home/cool/AGM-Laboratory/results/v02/memory/exp2_warm_A_1_v1.sqlite

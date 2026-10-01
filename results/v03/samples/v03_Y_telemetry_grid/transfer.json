@@ -1,0 +1,1298 @@
+{
+ "pairs": {},
+ "attempts": {
+  "fixed": [],
+  "adaptive": [],
+  "search": [],
+  "task_memory": [],
+  "architecture_memory": [],
+  "always_adapt": [],
+  "never_adapt": [],
+  "agm_cold": [],
+  "agm_full": [
+   {
+    "principle_id": "prn_1790782103_b95d124c7bb0",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782183_8b5e239dbf7a",
+    "source_domains": [
+     "planning"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782183_8b5e239dbf7a",
+    "source_domains": [
+     "planning"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   }
+  ],
+  "agm_no_principle": [],
+  "agm_no_archmem": [
+   {
+    "principle_id": "prn_1790782103_b95d124c7bb0",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782183_8b5e239dbf7a",
+    "source_domains": [
+     "planning"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782183_8b5e239dbf7a",
+    "source_domains": [
+     "planning"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   }
+  ],
+  "agm_no_negative": [
+   {
+    "principle_id": "prn_1790782103_b95d124c7bb0",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782183_8b5e239dbf7a",
+    "source_domains": [
+     "planning"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782183_8b5e239dbf7a",
+    "source_domains": [
+     "planning"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782183_8b5e239dbf7a",
+    "source_domains": [
+     "planning"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782183_8b5e239dbf7a",
+    "source_domains": [
+     "planning"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782183_8b5e239dbf7a",
+    "source_domains": [
+     "planning"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782183_8b5e239dbf7a",
+    "source_domains": [
+     "planning"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782183_8b5e239dbf7a",
+    "source_domains": [
+     "planning"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782183_8b5e239dbf7a",
+    "source_domains": [
+     "planning"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782183_8b5e239dbf7a",
+    "source_domains": [
+     "planning"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   }
+  ],
+  "agm_no_economics": [
+   {
+    "principle_id": "prn_1790782103_b95d124c7bb0",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782183_8b5e239dbf7a",
+    "source_domains": [
+     "planning"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782183_8b5e239dbf7a",
+    "source_domains": [
+     "planning"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   }
+  ],
+  "agm_no_regime": [
+   {
+    "principle_id": "prn_1790782103_b95d124c7bb0",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782183_8b5e239dbf7a",
+    "source_domains": [
+     "planning"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782183_8b5e239dbf7a",
+    "source_domains": [
+     "planning"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "telemetry_grid",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   }
+  ]
+ },
+ "completions": {
+  "fixed": [],
+  "adaptive": [],
+  "search": [],
+  "task_memory": [],
+  "architecture_memory": [],
+  "always_adapt": [],
+  "never_adapt": [],
+  "agm_cold": [],
+  "agm_full": [
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "step": 0,
+    "kind": "contradicted",
+    "target_domain": "telemetry_grid",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782103_b95d124c7bb0",
+    "step": 0,
+    "kind": "supported",
+    "target_domain": "telemetry_grid",
+    "selected": true,
+    "task_quality": 0.6
+   },
+   {
+    "principle_id": "prn_1790782183_8b5e239dbf7a",
+    "step": 0,
+    "kind": "contradicted",
+    "target_domain": "telemetry_grid",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "step": 1,
+    "kind": "contradicted",
+    "target_domain": "telemetry_grid",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "step": 2,
+    "kind": "contradicted",
+    "target_domain": "telemetry_grid",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "step": 2,
+    "kind": "contradicted",
+    "target_domain": "telemetry_grid",
+    "selected": false,
+    "task_quality": null
+   }
+  ],
+  "agm_no_principle": [],
+  "agm_no_archmem": [
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "step": 0,
+    "kind": "contradicted",
+    "target_domain": "telemetry_grid",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782103_b95d124c7bb0",
+    "step": 0,
+    "kind": "supported",
+    "target_domain": "telemetry_grid",
+    "selected": true,
+    "task_quality": 0.6
+   },
+   {
+    "principle_id": "prn_1790782183_8b5e239dbf7a",
+    "step": 0,
+    "kind": "contradicted",
+    "target_domain": "telemetry_grid",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "step": 1,
+    "kind": "contradicted",
+    "target_domain": "telemetry_grid",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "step": 2,
+    "kind": "contradicted",
+    "target_domain": "telemetry_grid",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "step": 2,
+    "kind": "contradicted",
+    "target_domain": "telemetry_grid",
+    "selected": false,
+    "task_quality": null
+   }
+  ],
+  "agm_no_negative": [
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "step": 0,
+    "kind": "contradicted",
+    "target_domain": "telemetry_grid",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782103_b95d124c7bb0",
+    "step": 0,
+    "kind": "supported",
+    "target_domain": "telemetry_grid",
+    "selected": true,
+    "task_quality": 0.6
+   },
+   {
+    "principle_id": "prn_1790782183_8b5e239dbf7a",
+    "step": 0,
+    "kind": "contradicted",
+    "target_domain": "telemetry_grid",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "step": 0,
+    "kind": "contradicted",
+    "target_domain": "telemetry_grid",
+    "selected": false,
+    "task_quality": null
+   }
+  ],
+  "agm_no_economics": [
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "step": 0,
+    "kind": "contradicted",
+    "target_domain": "telemetry_grid",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782103_b95d124c7bb0",
+    "step": 0,
+    "kind": "supported",
+    "target_domain": "telemetry_grid",
+    "selected": true,
+    "task_quality": 0.6
+   },
+   {
+    "principle_id": "prn_1790782183_8b5e239dbf7a",
+    "step": 0,
+    "kind": "contradicted",
+    "target_domain": "telemetry_grid",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "step": 1,
+    "kind": "contradicted",
+    "target_domain": "telemetry_grid",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "step": 2,
+    "kind": "contradicted",
+    "target_domain": "telemetry_grid",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "step": 2,
+    "kind": "contradicted",
+    "target_domain": "telemetry_grid",
+    "selected": false,
+    "task_quality": null
+   }
+  ],
+  "agm_no_regime": [
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "step": 0,
+    "kind": "contradicted",
+    "target_domain": "telemetry_grid",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782103_b95d124c7bb0",
+    "step": 0,
+    "kind": "supported",
+    "target_domain": "telemetry_grid",
+    "selected": true,
+    "task_quality": 0.6
+   },
+   {
+    "principle_id": "prn_1790782183_8b5e239dbf7a",
+    "step": 0,
+    "kind": "contradicted",
+    "target_domain": "telemetry_grid",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "step": 1,
+    "kind": "contradicted",
+    "target_domain": "telemetry_grid",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782103_f03ab2e5831c",
+    "step": 2,
+    "kind": "contradicted",
+    "target_domain": "telemetry_grid",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782103_4813235466b0",
+    "step": 2,
+    "kind": "contradicted",
+    "target_domain": "telemetry_grid",
+    "selected": false,
+    "task_quality": null
+   }
+  ]
+ },
+ "principle_reuse": {
+  "fixed": null,
+  "adaptive": null,
+  "search": null,
+  "task_memory": 0,
+  "architecture_memory": 0,
+  "always_adapt": 0,
+  "never_adapt": 0,
+  "agm_cold": 0,
+  "agm_full": 10,
+  "agm_no_principle": 0,
+  "agm_no_archmem": 10,
+  "agm_no_negative": 7,
+  "agm_no_economics": 10,
+  "agm_no_regime": 10
+ }
+}

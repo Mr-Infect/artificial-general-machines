@@ -1,0 +1,2255 @@
+{
+ "pairs": {},
+ "attempts": {
+  "fixed": [],
+  "adaptive": [],
+  "search": [],
+  "task_memory": [],
+  "architecture_memory": [],
+  "always_adapt": [],
+  "never_adapt": [],
+  "agm_cold": [],
+  "agm_full": [
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "SUPPORTED",
+    "decision": "TRUST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "SUPPORTED",
+    "decision": "TRUST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "SUPPORTED",
+    "decision": "TRUST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "SUPPORTED",
+    "decision": "TRUST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "SUPPORTED",
+    "decision": "TRUST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "SUPPORTED",
+    "decision": "TRUST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "SUPPORTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "SUPPORTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   }
+  ],
+  "agm_no_principle": [],
+  "agm_no_archmem": [
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782077_4aea00bac02f",
+    "source_domains": [
+     "network",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782077_4aea00bac02f",
+    "source_domains": [
+     "network",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "ADAPT"
+   }
+  ],
+  "agm_no_negative": [
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "SUPPORTED",
+    "decision": "TRUST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "SUPPORTED",
+    "decision": "TRUST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "SUPPORTED",
+    "decision": "TRUST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "SUPPORTED",
+    "decision": "TRUST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "SUPPORTED",
+    "decision": "TRUST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "SUPPORTED",
+    "decision": "TRUST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "SUPPORTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "SUPPORTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   }
+  ],
+  "agm_no_economics": [
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "SUPPORTED",
+    "decision": "TRUST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "SUPPORTED",
+    "decision": "TRUST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "SUPPORTED",
+    "decision": "TRUST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "SUPPORTED",
+    "decision": "TRUST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "SUPPORTED",
+    "decision": "TRUST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "SUPPORTED",
+    "decision": "TRUST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "SUPPORTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "SUPPORTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   }
+  ],
+  "agm_no_regime": [
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "SUPPORTED",
+    "decision": "TRUST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "SUPPORTED",
+    "decision": "TRUST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "SUPPORTED",
+    "decision": "TRUST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "SUPPORTED",
+    "decision": "TRUST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "SUPPORTED",
+    "decision": "TRUST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "SUPPORTED",
+    "decision": "TRUST"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "SUPPORTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "source_domains": [
+     "network"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "PARTIALLY_SUPPORTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "source_domains": [
+     "planning",
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "SUPPORTED",
+    "decision": "ADAPT"
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "UNTESTED",
+    "decision": "TEST"
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "source_domains": [
+     "scientific"
+    ],
+    "target_domain": "scientific_drift",
+    "status": "INCONCLUSIVE",
+    "decision": "TEST"
+   }
+  ]
+ },
+ "completions": {
+  "fixed": [],
+  "adaptive": [],
+  "search": [],
+  "task_memory": [],
+  "architecture_memory": [],
+  "always_adapt": [],
+  "never_adapt": [],
+  "agm_cold": [],
+  "agm_full": [
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "step": 0,
+    "kind": "supported",
+    "target_domain": "scientific_drift",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "step": 0,
+    "kind": "supported",
+    "target_domain": "scientific_drift",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "step": 0,
+    "kind": "supported",
+    "target_domain": "scientific_drift",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "step": 1,
+    "kind": "contradicted",
+    "target_domain": "scientific_drift",
+    "selected": false,
+    "task_quality": null
+   }
+  ],
+  "agm_no_principle": [],
+  "agm_no_archmem": [
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "step": 0,
+    "kind": "contradicted",
+    "target_domain": "scientific_drift",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "step": 0,
+    "kind": "contradicted",
+    "target_domain": "scientific_drift",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "step": 0,
+    "kind": "contradicted",
+    "target_domain": "scientific_drift",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "step": 0,
+    "kind": "contradicted",
+    "target_domain": "scientific_drift",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782077_4aea00bac02f",
+    "step": 7,
+    "kind": "contradicted",
+    "target_domain": "scientific_drift",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782108_33095dbc8f67",
+    "step": 7,
+    "kind": "contradicted",
+    "target_domain": "scientific_drift",
+    "selected": false,
+    "task_quality": null
+   }
+  ],
+  "agm_no_negative": [
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "step": 0,
+    "kind": "supported",
+    "target_domain": "scientific_drift",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "step": 0,
+    "kind": "supported",
+    "target_domain": "scientific_drift",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "step": 0,
+    "kind": "supported",
+    "target_domain": "scientific_drift",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "step": 1,
+    "kind": "contradicted",
+    "target_domain": "scientific_drift",
+    "selected": false,
+    "task_quality": null
+   }
+  ],
+  "agm_no_economics": [
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "step": 0,
+    "kind": "supported",
+    "target_domain": "scientific_drift",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "step": 0,
+    "kind": "supported",
+    "target_domain": "scientific_drift",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "step": 0,
+    "kind": "supported",
+    "target_domain": "scientific_drift",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "step": 1,
+    "kind": "contradicted",
+    "target_domain": "scientific_drift",
+    "selected": false,
+    "task_quality": null
+   }
+  ],
+  "agm_no_regime": [
+   {
+    "principle_id": "prn_1790782077_57b0cb96c2af",
+    "step": 0,
+    "kind": "supported",
+    "target_domain": "scientific_drift",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782119_ca959b1bbcb8",
+    "step": 0,
+    "kind": "supported",
+    "target_domain": "scientific_drift",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782108_c0c50a0ea26a",
+    "step": 0,
+    "kind": "supported",
+    "target_domain": "scientific_drift",
+    "selected": false,
+    "task_quality": null
+   },
+   {
+    "principle_id": "prn_1790782119_920d06493533",
+    "step": 1,
+    "kind": "contradicted",
+    "target_domain": "scientific_drift",
+    "selected": false,
+    "task_quality": null
+   }
+  ]
+ },
+ "principle_reuse": {
+  "fixed": null,
+  "adaptive": null,
+  "search": null,
+  "task_memory": 0,
+  "architecture_memory": 0,
+  "always_adapt": 0,
+  "never_adapt": 0,
+  "agm_cold": 0,
+  "agm_full": 4,
+  "agm_no_principle": 0,
+  "agm_no_archmem": 6,
+  "agm_no_negative": 4,
+  "agm_no_economics": 4,
+  "agm_no_regime": 4
+ }
+}
