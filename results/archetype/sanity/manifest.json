@@ -1,0 +1,85 @@
+{
+ "name": "sanity",
+ "seeds": [
+  0,
+  1,
+  2
+ ],
+ "config": {
+  "train_budget": 60,
+  "phase1_budget": 40,
+  "phase2_budget": 20,
+  "surfaces": 3,
+  "agents": [
+   "fixed",
+   "adaptive",
+   "search",
+   "search_screen",
+   "task_memory",
+   "architecture_memory",
+   "principle_memory",
+   "always_adapt",
+   "never_adapt",
+   "random_transfer",
+   "surface_similarity",
+   "latent_oracle",
+   "archetype",
+   "archetype_no_structural_memory",
+   "archetype_no_contraindications",
+   "archetype_no_transfer_confidence",
+   "archetype_no_counterfactual",
+   "archetype_no_economics",
+   "archetype_no_regime_detection",
+   "archetype_no_structural_analogy",
+   "archetype_no_reconstruction"
+  ],
+  "train_families": [
+   "T00",
+   "T03",
+   "T05"
+  ],
+  "test_families": [
+   "B00",
+   "F00"
+  ],
+  "intervention_agents": [
+   "archetype",
+   "archetype_no_structural_memory",
+   "archetype_no_counterfactual",
+   "principle_memory",
+   "search_screen",
+   "surface_similarity"
+  ],
+  "intervention_families": [
+   "B00"
+  ],
+  "intervention_properties": [
+   "dependency_depth",
+   "branching_factor",
+   "parallelizability",
+   "observation_noise",
+   "temporal_correlation",
+   "state_volatility",
+   "resource_constraint",
+   "verification_cost",
+   "delayed_feedback",
+   "action_reversibility",
+   "coupling",
+   "adversariality",
+   "information_decay",
+   "uncertainty",
+   "failure_cost"
+  ],
+  "interventions": true,
+  "decoupled_control": true
+ },
+ "provenance": {
+  "git": {
+   "commit": "3844452f064f60ec3f897ca56177b6d31abf813a",
+   "dirty": true
+  },
+  "run": "sanity",
+  "preset": "sanity",
+  "config_hash": "9d30c3201db9ba2f"
+ }
+}

@@ -33,3 +33,9 @@ results/v03/*
 !results/v03/manifests/
 !results/v03/plots/
 !results/v03/samples/
+
+# ARCHETYPE: raw run shards and databases are not tracked; manifests, driver logs and analysis are.
+!results/archetype/
+results/archetype/*/seed_*.json
+results/archetype/*/*.sqlite*
+results/archetype/*/driver.lock

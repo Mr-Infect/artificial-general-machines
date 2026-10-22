@@ -1,0 +1,105 @@
+{
+ "seeds": [
+  0,
+  1,
+  2
+ ],
+ "passed": true,
+ "checks": [
+  {
+   "check": "no latent label, role, organization label, family id or genome value in learner-visible views",
+   "passed": true,
+   "detail": "270 views scanned; found: []"
+  },
+  {
+   "check": "learner-side modules do not import evaluator modules (oracle baseline excepted)",
+   "passed": true,
+   "detail": "clean"
+  },
+  {
+   "check": "encoder features invariant under renaming, reordering and rescaling",
+   "passed": true,
+   "detail": "largest relative change 0.00e+00"
+  },
+  {
+   "check": "scrambled surfaces carry no theme vocabulary",
+   "passed": true,
+   "detail": "90 scrambled surfaces, 0 themed tokens"
+  },
+  {
+   "check": "same organization rebuilt from a disjoint inventory is equivalent at role level",
+   "passed": true,
+   "detail": "shared primitive names: 0; role distance {'role_multiset': 0.0, 'operator_multiset': 0.0, 'organization_features': 0.0, 'identical': 0.0, 'aggregate': 0.0}"
+  },
+  {
+   "check": "architecture space has at least 1000 configurations in every environment",
+   "passed": true,
+   "detail": "min 2808, max 12636"
+  },
+  {
+   "check": "false analogy exists: the training optimum does not transfer to its look-alike",
+   "passed": true,
+   "detail": "{\"mean\": -0.834116301137568, \"max\": 0.9232061835205289, \"share_below_zero\": 0.5333333333333333, \"share_useful\": 0.03333333333333333}"
+  },
+  {
+   "check": "isomorphic transfer exists: the training optimum transfers to its structural twin",
+   "passed": true,
+   "detail": "{\"mean\": 0.9336604465282615, \"min\": 0.5097000074419659, \"share_useful\": 0.8666666666666667}"
+  },
+  {
+   "check": "no trivial universal architecture",
+   "passed": true,
+   "detail": "best single configuration closes 0.29 of the gap on average"
+  },
+  {
+   "check": "reference optima use several different organizations",
+   "passed": true,
+   "detail": "{\"ARCH_1\": 26, \"ARCH_7\": 11, \"ARCH_3\": 6, \"ARCH_8\": 12, \"ARCH_2\": 8, \"ARCH_10\": 12, \"ARCH_9\": 9, \"ARCH_6\": 4, \"ARCH_4\": 2}"
+  },
+  {
+   "check": "an intervention changes exactly one latent property",
+   "passed": true,
+   "detail": "15 knobs"
+  },
+  {
+   "check": "hidden-only interventions leave the entire learner-visible view identical",
+   "passed": true,
+   "detail": "compared observations, task specification, primitives and limits"
+  },
+  {
+   "check": "sanity experiment produced every expected record",
+   "passed": true,
+   "detail": "3 seeds"
+  },
+  {
+   "check": "provenance complete (commit, seed, genome hash, surface seed, versions, config, timestamp, executor, limits)",
+   "passed": true,
+   "detail": "{\"archetype\": \"archetype-0.1\", \"ir\": \"archetype-ir-0.1\", \"fitness\": \"archetype-fitness-0.1\", \"primitive_grammar\": \"archetype-primitives-0.1\", \"learner\": \"archetype-learner-0.1\"}"
+  },
+  {
+   "check": "deterministic replay reproduces the record hash",
+   "passed": true,
+   "detail": "{\"seed\": 0, \"stored\": \"bf00f338809283a6\", \"replayed\": \"bf00f338809283a6\", \"identical\": true}"
+  },
+  {
+   "check": "latent oracle reaches the reference optimum (upper bound is consistent)",
+   "passed": true,
+   "detail": "oracle gap closure 1.0"
+  },
+  {
+   "check": "plain search is neither trivial nor hopeless",
+   "passed": true,
+   "detail": "share of episodes where search never became useful: [0.3333333333333333, 0.2222222222222222]"
+  },
+  {
+   "check": "learned knowledge is frozen and hashed before evaluation",
+   "passed": true,
+   "detail": "snapshot hash unchanged after evaluation is enforced by the protocol"
+  },
+  {
+   "check": "decoupling control computed",
+   "passed": true,
+   "detail": "real 0.29629629629629634, decoupled 0.35555555555555557 (tiny preset: informative only in the full run)"
+  }
+ ]
+}
